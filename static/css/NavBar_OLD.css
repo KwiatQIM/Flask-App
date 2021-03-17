@@ -1,0 +1,35 @@
+/* Main Navbar at top of page */
+nav#MainNav {
+	background: var(--rebeccapurple);
+	border-bottom: 1px solid black;
+	font-size:20px;
+    color:white;
+}
+
+nav#MainNav .navbar-header{
+    font-size:30px;
+	border-right:2px solid darkgrey;
+	padding: 0px 20px;
+}
+nav#MainNav .nav-link{
+    color:white;
+}
+
+/* 1d 1w 1m Navbar */
+nav#GraphScaleNav {
+	border-bottom: 2px solid lightgrey;
+	margin-left:-20px;
+	margin-bottom:5px;
+}
+nav#GraphScaleNav .nav-item{
+	padding:3px 5px;
+}
+nav#GraphScaleNav button{
+	border: 1px solid black;
+	border-radius:20px;
+	color:lightseagreen;
+	font-weight: bold;
+	font-size:12px;
+	padding:0px 8px;
+	background-color: white;
+}

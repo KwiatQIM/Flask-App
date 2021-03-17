@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kwiat Quantum Information Group</title>
+    <meta name="description" content="The Kwiat quantum information research group at the University of Illinois at Urbana-Champaign. Our research interests include fundamental studies of quantum mechanics, optical quantum information resources and applications, and the interaction of quantum states of light with biological systems."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../favicon.ico">
+
+
+      <!-- Imports from base.html -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/Main.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/NavBar.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+
+        {% block head %}{% endblock %}
+
+</head>
+<body>
+
+    <!--Nav Bar START-->
+    <!--#############-->
+    <nav class="navbar navbar-expand-lg" id="MainNav">
+        <div class="navbar-header">Quantum Tomography</div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="">Home</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="http://research.physics.illinois.edu/QI/Photonics/">Group Page</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+    <!--Nav Bar END-->
+    <!--###########-->
+
+
+    <!-- Body Content START-->
+    <!--###################-->
+    <div id="BodyContent">
+      {% block body %}{% endblock %}
+    </div>
+    <!-- Body Content END-->
+    <!--#################-->
+
+</body>
+</html>

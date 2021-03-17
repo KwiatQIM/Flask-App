@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<h1> Welcome</h1>
+<!--<form id="upload-form" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">-->
+<form method="POST" action="test">
+        <fieldset>
+        <!--Slider 1 -->
+            <div class="col-md-4">
+                <h4>Slider 1</h4>
+            </div>
+            <div class="col-md-8">
+                <div class="slidecontainer">
+                          <input type="range" min="0" max="100" value="50" class="slider" id="slide1" name="slide1">
+                          <br>
+                </div>
+            </div>
+
+        <!--Slider 2 -->
+            <div class="col-md-4">
+                <h4>Slider 2</h4>
+            </div>
+            <div class="col-md-8">
+                <div class="slidecontainer">
+                          <input type="range" min="0" max="100" value="50" class="slider" id="slide2" name="slide2">
+                          <br>
+                </div>
+            </div>
+
+        <!--Slider 3 -->
+        <div class="col-md-4">
+            <h4>Slider 3</h4>
+        </div>
+        <div class="col-md-8">
+            <div class="slidecontainer">
+                      <input type="range" min="0" max="100" value="50" class="slider" id="slide3" name="slide3">
+                      <br>
+            </div>
+        </div>
+
+
+                <div class="col-md-6 col-lg-offset-2">
+                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </fieldset>
+</form>
+{% endblock %}

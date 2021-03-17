@@ -1,0 +1,12 @@
+body {
+    overflow-x:hidden;
+    font-family:'Roboto', sans-serif;
+}
+
+:root {
+    --rebeccapurple:#653398;
+}
+
+div#BodyContent {
+    padding:15px 1%;
+}
