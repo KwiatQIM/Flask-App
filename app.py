@@ -17,7 +17,7 @@ def test():
     slider_1_val = request.form["slide1"]
     slider_2_val = request.form["slide2"]
     slider_3_val = request.form["slide3"]
-    return slider_1_val
+    return slider_2_val
 
 if __name__ == "__main__":
     app.run(debug=True)
