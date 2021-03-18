@@ -1,7 +1,7 @@
 from flask import Flask, make_response, redirect, request, jsonify, render_template, flash
 import matplotlib.pyplot as plt
 import numpy as np
-
+from StateDiagnosisApplication import StateDiagnosis
 app = Flask(__name__)
 
 
@@ -14,10 +14,14 @@ def index():
 # This is function grabs the values from the sliders on the previous page.
 @app.route("/test", methods=["POST"])
 def test():
-    epsilon     = request.form["epsilon"]
-    decoherence = request.form["decoherence"]
-    background  = request.form["background"]
-    return background
+    epsilon     = float(request.form["amountInputEps"])
+    decoherence = float(request.form["amountInputDco"])
+    background  = float(request.form["amountInputBgd"])
+
+    myState = StateDiagnosis(epsilon, decoherence, background)
+
+    return str(myState.concurrence())
+
 
 
 if __name__ == "__main__":

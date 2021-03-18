@@ -14,7 +14,8 @@
             </div>
             <div class="col-md-8">
                 <div class="slidecontainer">
-                          <input type="range" min="0" max="1000" value="500" class="slider" id="epsilon" name="epsilon">
+                          <input type="range" name="amountRangeEps" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputEps.value=this.value" id="epsilonRng" />
+                          <input type="number" name="amountInputEps" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeEps.value=this.value"id="epsilonInp"/>
                           <br>
                 </div>
             </div>
@@ -25,8 +26,9 @@
             </div>
             <div class="col-md-8">
                 <div class="slidecontainer">
-                          <input type="range" min="0" max="1000" value="500" class="slider" id="decoherence" name="decoherence">
-                          <br>
+                      <input type="range" name="amountRangeDco" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputDco.value=this.value" id="decoherenceRng" />
+                      <input type="number" name="amountInputDco" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeDco.value=this.value"id="decoherenceInp" />
+                      <br>
                 </div>
             </div>
 
@@ -36,7 +38,8 @@
         </div>
         <div class="col-md-8">
             <div class="slidecontainer">
-                      <input type="range" min="0" max="1000" value="500" class="slider" id="background" name="background">
+                      <input type="range" name="amountRangeBgd" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputBgd.value=this.value" id="backgroundRng" />
+                      <input type="number" name="amountInputBgd" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeBgd.value=this.value" id="backgroundInp" />
                       <br>
             </div>
         </div>
