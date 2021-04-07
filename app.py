@@ -19,8 +19,11 @@ def test():
     background  = float(request.form["amountInputBgd"])
 
     myState = StateDiagnosis(epsilon, decoherence, background)
+    concurrence = myState.concurrence()
+    daVis = myState.DA_visibility()
 
-    return str(myState.concurrence())
+    return render_template("ResultPage.html", concurrence=str(concurrence), daVis=str(daVis), concRND = str(round(concurrence,4)), daVisRND = str(round(daVis,4)))
+
 
 
 
