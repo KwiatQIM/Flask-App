@@ -4,6 +4,15 @@
 {% endblock %}
 
 {% block body %}
-<h1> your concurrence is {{ concRND }} and your DA visibility is {{ daVisRND }}</h1>
 
+<div class="row">
+    <div class="column">
+        <h1>Concurrence: {{concRND}}</h1>
+        <p> {{ concRND }} </p>
+    </div>
+    <div class="column">
+        <h1>Visibility in the Diagonal Basis: {{daVisRND}}</h1>
+        <p> {{ daVisRND }} </p>
+    </div>
+</div>
 {% endblock %}

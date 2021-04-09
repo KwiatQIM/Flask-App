@@ -4,52 +4,70 @@
 {% endblock %}
 
 {% block body %}
-<h1> Welcome</h1>
-<!--<form id="upload-form" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">-->
+<div class="row">
+    <div class="column">
 
-<form method="POST" action="test">
-        <fieldset>
-        <!--Slider 1 -->
-            <div class="col-md-4">
-                <h4>&epsilon;</h4>
-            </div>
-            <div class="col-md-8">
-                <div class="slidecontainer">
-                          <input type="range" name="amountRangeEps" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputEps.value=this.value" id="epsilonRng" />
-                          <input type="number" name="amountInputEps" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeEps.value=this.value"id="epsilonInp"/>
-                          <br>
-                </div>
-            </div>
+        <h1> Welcome</h1>
+        <!--<form id="upload-form" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">-->
 
-        <!--Slider 2 -->
-            <div class="col-md-4">
-                <h4>Decoherence</h4>
-            </div>
-            <div class="col-md-8">
-                <div class="slidecontainer">
-                      <input type="range" name="amountRangeDco" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputDco.value=this.value" id="decoherenceRng" />
-                      <input type="number" name="amountInputDco" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeDco.value=this.value"id="decoherenceInp" />
-                      <br>
-                </div>
-            </div>
+        <form method="POST" action="test">
+                <fieldset>
+                <!--Slider 1 -->
+                    <div class="col-md-4">
+                        <h4>&epsilon;</h4>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="slidecontainer">
+                                  <input type="range" name="amountRangeEps" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputEps.value=this.value" id="epsilonRng" />
+                                  <input type="number" name="amountInputEps" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeEps.value=this.value"id="epsilonInp"/>
+                                  <br>
+                        </div>
+                    </div>
 
-        <!--Slider 3 -->
-        <div class="col-md-4">
-            <h4>Background</h4>
-        </div>
-        <div class="col-md-8">
-            <div class="slidecontainer">
-                      <input type="range" name="amountRangeBgd" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputBgd.value=this.value" id="backgroundRng" />
-                      <input type="number" name="amountInputBgd" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeBgd.value=this.value" id="backgroundInp" />
-                      <br>
-            </div>
-        </div>
+                <!--Slider 2 -->
+                    <div class="col-md-4">
+                        <h4>Decoherence</h4>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="slidecontainer">
+                              <input type="range" name="amountRangeDco" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputDco.value=this.value" id="decoherenceRng" />
+                              <input type="number" name="amountInputDco" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeDco.value=this.value"id="decoherenceInp" />
+                              <br>
+                        </div>
+                    </div>
+
+                <!--Slider 3 -->
+                    <div class="col-md-4">
+                        <h4>Background</h4>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="slidecontainer">
+                              <input type="range" name="amountRangeBgd" min="0" max="1" value="0" step=".01" oninput="this.form.amountInputBgd.value=this.value" id="backgroundRng" />
+                              <input type="number" name="amountInputBgd" min="0" max="1" value="0" step=".01" oninput="this.form.amountRangeBgd.value=this.value" id="backgroundInp" />
+                              <br>
+                        </div>
+                    </div>
 
 
-                <div class="col-md-6 col-lg-offset-2">
-                    <button type="reset" class="btn btn-default">Reset</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </fieldset>
-</form>
+                    <div class="col-md-6 col-lg-offset-2">
+                        <button type="reset" class="btn btn-default">Reset</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </fieldset>
+        </form>
+
+
+    </div>
+    <div class="column">
+
+        <h1>Description:</h1>
+        <h3>&epsilon;:</h3>
+        <p>Defined as (|b/a|)<sup>2</sup> in the equation &psi; = a|HH> + b|VV>, assuming b &leq; a.</p>
+        <h3>Decoherence:</h3>
+        <p>The fraction of the maximum off-diagonal elements in the state's density matrix</p>
+        <h3>Background:</h3>
+        <p>The proportion of the background density that is measured (background density is 1/4(I<sub>4</sub>, the 4x4 identity matrix, for a 2 qubit state)</p>
+    </div>
+</div>
+
 {% endblock %}

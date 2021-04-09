@@ -18,6 +18,22 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/NavBar.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
 
+
+    <style>
+        .row {
+            width:100%;
+        }
+        .column {
+            width:50%;
+            height:200px;
+            float:left;
+        }
+        .row:after {
+            clear:both;
+        }
+
+    </style>
+
         {% block head %}{% endblock %}
 
 </head>
