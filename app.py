@@ -24,6 +24,8 @@ def test():
 
     return render_template("ResultPage.html", concurrence=str(concurrence), daVis=str(daVis), concRND = str(round(concurrence,4)), daVisRND = str(round(daVis,4)))
 
+#@app.route('/plot/everything')
+#def plot_everything():
 
 
 

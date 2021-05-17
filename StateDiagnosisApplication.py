@@ -43,3 +43,45 @@ class StateDiagnosis:
 
     def concurrence(self):
         return qlib.concurrence(self.finalStateDensity)
+
+    def plot_varyEpsilon(self):
+        # setting up the imbalance vector to be used in calculations
+        eps_vec = np.linspace(0, 1, 100)
+        concVec = np.zeros_like(eps_vec)
+        DAVec = np.zeros_like(eps_vec)
+
+        for i in range(len(eps_vec)):
+            diagnosis = StateDiagnosis(eps_vec[i], self.decoherence, self.background)
+            concVec[i] = diagnosis.concurrence()
+            DAVec[i] = diagnosis.DA_visibility()
+
+        # returns the concurrence and DA visibility vectors when you vary the IMBALANCE
+        return concVec, DAVec
+
+    def plot_varyBackground(self):
+        # setting up background proportion vector to be varied
+        bkg_vec = np.linspace(0, 1, 100)
+        concVec = np.zeros_like(bkg_vec)
+        DAVec = np.zeros_like(bkg_vec)
+
+        for i in range(len(bkg_vec)):
+            diagnosis = StateDiagnosis(self.epsilon, self.decoherence, bkg_vec[i])
+            concVec[i] = diagnosis.concurrence()
+            DAVec[i] = diagnosis.DA_visibility()
+
+        # returns the concurrence and DA visibility vectors when varying BACKGROUND PROPORTION
+        return concVec, DAVec
+
+    def plot_varyDecoherence(self):
+        # setting up the decoherence vector to be varied
+        dec_vec = np.linspace(0, 1, 100)
+        concVec = np.zeros_like(dec_vec)
+        DAVec = np.zeros_like(dec_vec)
+
+        for i in range(len(dec_vec)):
+            diagnosis = StateDiagnosis(self.epsilon, dec_vec, self.background)
+            concVec[i] = diagnosis.concurrence()
+            DAVec[i] = diagnosis.DA_visibility()
+
+        # returns the concurrence and DA visibility vectors when varying DECOHERENCE
+        return concVec, DAVec
