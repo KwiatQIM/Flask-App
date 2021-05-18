@@ -8,11 +8,23 @@
 <div class="row">
     <div class="column">
         <h1>Concurrence: {{concRND}}</h1>
-        <p> </p>
+        <h1>Visibility in the Diagonal Basis: {{daVisRND}}</h1>
+        <img src="{{grph}}" alt="Image Placeholder" width = "450" height="400">
     </div>
     <div class="column">
-        <h1>Visibility in the Diagonal Basis: {{daVisRND}}</h1>
-        <p>  </p>
+        <h1>Your inputs were:</h1>
+        <h3>Epsilon: {{eps}}</h3>
+        <h3>Decoherence: {{dec}}</h3>
+        <h3>Background: {{bac}}</h3>
+        <p></p>
+        <p></p>
+        <h1>Description:</h1>
+        <h3>&epsilon;:</h3>
+        <p>Defined as (|b/a|)<sup>2</sup> in the equation &psi; = a|HH> + b|VV>, assuming b &leq; a.</p>
+        <h3>Decoherence:</h3>
+        <p>The fraction of the maximum off-diagonal elements in the state's density matrix</p>
+        <h3>Background:</h3>
+        <p>The proportion of the background density that is measured (background density is 1/4(I<sub>4</sub>, the 4x4 identity matrix, for a 2 qubit state)</p>
     </div>
 </div>
 {% endblock %}

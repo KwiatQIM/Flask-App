@@ -8,7 +8,7 @@ class StateDiagnosis:
         self.background = background
 
         self.background_density = 1 / 4 * np.eye(4)
-        self.StateDensity = StateDensity = np.array([[1 / (1 + self.epsilon), 0, 0, self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon)] \
+        self.StateDensity = StateDensity = np.array([[1 / (1 + self.epsilon), 0, 0, self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon)]
                                                         , [0, 0, 0, 0], [0, 0, 0, 0], [self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon), 0, 0, self.epsilon / (1 + self.epsilon)]])
         self.finalStateDensity = (1-self.background)*(self.StateDensity) + self.background*(self.background_density)
 
@@ -79,7 +79,7 @@ class StateDiagnosis:
         DAVec = np.zeros_like(dec_vec)
 
         for i in range(len(dec_vec)):
-            diagnosis = StateDiagnosis(self.epsilon, dec_vec, self.background)
+            diagnosis = StateDiagnosis(self.epsilon, dec_vec[i], self.background)
             concVec[i] = diagnosis.concurrence()
             DAVec[i] = diagnosis.DA_visibility()
 
