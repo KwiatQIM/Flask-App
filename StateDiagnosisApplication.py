@@ -2,14 +2,24 @@ import numpy as np
 import QuantumTomography as qlib
 
 class StateDiagnosis:
-    def __init__(self, epsilon, decoherence, background):
+    def __init__(self, epsilon, decoherence, background, nbits=2):
         self.epsilon = epsilon
         self.decoherence = decoherence
         self.background = background
+        self.nbits = nbits
 
-        self.background_density = 1 / 4 * np.eye(4)
-        self.StateDensity = StateDensity = np.array([[1 / (1 + self.epsilon), 0, 0, self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon)]
-                                                        , [0, 0, 0, 0], [0, 0, 0, 0], [self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon), 0, 0, self.epsilon / (1 + self.epsilon)]])
+        if self.nbits == 2:
+            self.background_density = 1 / 4 * np.eye(4)
+            self.StateDensity = StateDensity = np.array(
+                [[1 / (1 + self.epsilon), 0, 0, self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon)]
+                    , [0, 0, 0, 0], [0, 0, 0, 0], [self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon), 0, 0,
+                                                   self.epsilon / (1 + self.epsilon)]])
+        elif self.nbits == 1:
+            self.background_density = 1 / 2 * np.eye(2)
+            self.StateDensity = StateDensity = np.array(
+                [[1 / (1 + self.epsilon), self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon)],
+                 [self.decoherence * np.sqrt(self.epsilon) / (1 + self.epsilon), self.epsilon / (1 + self.epsilon)]])
+
         self.finalStateDensity = (1-self.background)*(self.StateDensity) + self.background*(self.background_density)
 
     def DA_visibility(self):

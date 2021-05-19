@@ -48,15 +48,16 @@
                         </div>
                     </div>
 
-
+                    <input type="radio" name="nbits" value="one"> &lArr; 1 qubit
+                    <input type="radio" name="nbits" value="two", checked="true"> &lArr; 2 qubit
                     <div class="col-md-6 col-lg-offset-2">
                         <button type="reset" class="btn btn-default">Reset</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </fieldset>
         </form>
-
-
+    <hr>
+    <img src="{{grph}}" alt="Image Placeholder" width = "450" height="400">
     </div>
     <div class="column">
 
@@ -67,7 +68,16 @@
         <p>The fraction of the maximum off-diagonal elements in the state's density matrix</p>
         <h3>Background:</h3>
         <p>The proportion of the background density that is measured (background density is 1/4(I<sub>4</sub>, the 4x4 identity matrix, for a 2 qubit state)</p>
+        <hr>
+        <h1>Results for:</h1>
+        <h3>&epsilon; = {{eps}}</h3>
+        <h3>Decoherence = {{dec}}</h3>
+        <h3>Background = {{bac}}</h3>
+        <h3>Qubits: {{nbits}}</h3>
+        <h1>Concurrence = {{concRND}}</h1>
+        <h1>DA visibility = {{daVisRND}}</h1>
     </div>
+
 </div>
 
 {% endblock %}

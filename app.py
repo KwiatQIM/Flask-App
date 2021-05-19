@@ -5,18 +5,21 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import numpy as np
 from StateDiagnosisApplication import StateDiagnosis
+
 app = Flask(__name__)
-
-# default values for the three inputs
-# eps = 0.5
-# dec = 1
-# bac = 0
-
 
 # Default home page. This is the page the user first sees when visting the site
 @app.route('/')
 def index():
-    return render_template("FrontPage.html")
+    epsilon = 0.5
+    decoherence = 1
+    background = 0
+    nbits = 2
+    myState = StateDiagnosis(epsilon, decoherence, background, nbits)
+    daVis = myState.DA_visibility()
+    concurrence = myState.concurrence()
+    tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background) + '/' + str(nbits)
+    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph, nbits=nbits)
 
 
 # This is function grabs the values from the sliders on the previous page.
@@ -25,21 +28,31 @@ def test():
     epsilon     = float(request.form["amountInputEps"])
     decoherence = float(request.form["amountInputDco"])
     background  = float(request.form["amountInputBgd"])
-    tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background)
+    nbits = str(request.form["nbits"])
+    if (nbits == 'two'):
+        nbits = 2
+    elif (nbits == 'one'):
+        nbits = 1
 
-    myState = StateDiagnosis(epsilon, decoherence, background)
+
+
+    tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background) + '/' + str(nbits)
+
+    myState = StateDiagnosis(epsilon, decoherence, background, nbits)
     concurrence = myState.concurrence()
     daVis = myState.DA_visibility()
 
-    return render_template("ResultPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
+    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph, nbits=nbits)
 
 
-@app.route('/plot/<eps>/<dec>/<bac>')
-def plot_everything(eps='0.5', dec='1', bac='0'):
+# Function that creates a page with only the 9 subplots on it.
+@app.route('/plot/<eps>/<dec>/<bac>/<nbits>')
+def plot_everything(eps='0.5', dec='1', bac='0', nbits='2'):
     eps = float(eps)
     dec = float(dec)
     bac = float(bac)
-    x = StateDiagnosis(eps, dec, bac)
+    nbits = int(nbits)
+    x = StateDiagnosis(eps, dec, bac, nbits)
     concEps, DAEps = x.plot_varyEpsilon()
     concBack, DABack = x.plot_varyBackground()
     concDec, DADec = x.plot_varyDecoherence()
@@ -51,42 +64,54 @@ def plot_everything(eps='0.5', dec='1', bac='0'):
     axes1.set_title('Varying\nEpsilon')
     axes1.set_xlabel('Concurrence')
     axes1.set_ylabel('DA visibility')
+    axes1.set_xlim([0,1])
+    axes1.set_ylim([0,1])
 
     axes2 = fig.add_subplot(3,3,2)
     axes2.plot(concDec, DADec)
     axes2.set_title('Varying\nDecoherence')
     axes2.set_xlabel('Concurrence')
+    axes2.set_xlim([0, 1])
+    axes2.set_ylim([0, 1])
 
     axes3 = fig.add_subplot(3,3,3)
     axes3.plot(concBack, DABack)
     axes3.set_title('Varying\nBackground')
     axes3.set_xlabel('Concurrence')
+    axes3.set_xlim([0, 1])
+    axes3.set_ylim([0, 1])
 
     axes4 = fig.add_subplot(3,3,4)
     axes4.plot(zero_to_one, DAEps)
     axes4.set_xlabel('Epsilon')
     axes4.set_ylabel('DA visibility')
+    axes4.set_ylim([0, 1])
 
     axes5 = fig.add_subplot(3,3,5)
     axes5.plot(zero_to_one, DADec)
     axes5.set_xlabel('Decoherence')
+    axes5.set_ylim([0, 1])
 
     axes6 = fig.add_subplot(3,3,6)
     axes6.plot(zero_to_one, DABack)
     axes6.set_xlabel('Background')
+    axes6.set_ylim([0, 1])
 
     axes7 = fig.add_subplot(3,3,7)
     axes7.plot(zero_to_one, concEps)
     axes7.set_xlabel('Epsilon')
     axes7.set_ylabel('Concurrence')
+    axes7.set_ylim([0, 1])
 
     axes8 = fig.add_subplot(3,3,8)
     axes8.plot(zero_to_one, concDec)
     axes8.set_xlabel('Decoherence')
+    axes8.set_ylim([0, 1])
 
     axes9 = fig.add_subplot(3,3,9)
     axes9.plot(zero_to_one, concBack)
     axes9.set_xlabel('Background')
+    axes9.set_ylim([0, 1])
 
     fig.tight_layout(pad=1)
 
@@ -96,8 +121,6 @@ def plot_everything(eps='0.5', dec='1', bac='0'):
     response = make_response(output.getvalue())
     response.mimetype = 'image/png'
     return response
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)
