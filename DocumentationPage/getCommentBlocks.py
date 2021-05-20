@@ -1,7 +1,5 @@
 import re
 
-file = 'QuantumTomography/TomoClass.py'
-
 # Returns a list of comment blocks for a given a file
 def getAllCommentBlocks(filepath):
     # Grab contents of file as string
@@ -11,6 +9,9 @@ def getAllCommentBlocks(filepath):
     return re.findall(r'"""(.+?)"""', txt,re.DOTALL)
 
 if __name__ == "__main__":
+
+    file = 'QuantumTomography/TomoClass.py'
+
     comments = getAllCommentBlocks(file)
     for string in comments:
         print(string)
