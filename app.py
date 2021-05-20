@@ -118,5 +118,14 @@ def plot_everything(eps='0.5', dec='1', bac='0'):
     response.mimetype = 'image/png'
     return response
 
+
+# Route for documentation page
+# This is function grabs the values from the sliders on the previous page.
+@app.route("/Doc")
+def displayDocumentationPage():
+
+    return render_template("DocumentationPage.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
