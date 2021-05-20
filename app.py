@@ -8,51 +8,47 @@ from StateDiagnosisApplication import StateDiagnosis
 
 app = Flask(__name__)
 
+# NOTE: in this code, epsilon refers to Term Imbalance
+
 # Default home page. This is the page the user first sees when visting the site
 @app.route('/')
 def index():
     epsilon = 0.5
     decoherence = 1
     background = 0
-    nbits = 2
-    myState = StateDiagnosis(epsilon, decoherence, background, nbits)
+    myState = StateDiagnosis(epsilon, decoherence, background)
     daVis = myState.DA_visibility()
     concurrence = myState.concurrence()
-    tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background) + '/' + str(nbits)
-    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph, nbits=nbits)
+    tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background)
+    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
 
 
 # This is function grabs the values from the sliders on the previous page.
 @app.route("/test", methods=["POST"])
 def test():
-    epsilon     = float(request.form["amountInputEps"])
+    epsilon = float(request.form["amountInputEps"])
     decoherence = float(request.form["amountInputDco"])
-    background  = float(request.form["amountInputBgd"])
-    nbits = str(request.form["nbits"])
-    if (nbits == 'two'):
-        nbits = 2
-    elif (nbits == 'one'):
-        nbits = 1
+    background = float(request.form["amountInputBgd"])
 
 
 
-    tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background) + '/' + str(nbits)
+    tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background)
 
-    myState = StateDiagnosis(epsilon, decoherence, background, nbits)
+    myState = StateDiagnosis(epsilon, decoherence, background)
     concurrence = myState.concurrence()
     daVis = myState.DA_visibility()
 
-    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph, nbits=nbits)
+    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
 
 
 # Function that creates a page with only the 9 subplots on it.
-@app.route('/plot/<eps>/<dec>/<bac>/<nbits>')
-def plot_everything(eps='0.5', dec='1', bac='0', nbits='2'):
+@app.route('/plot/<eps>/<dec>/<bac>')
+def plot_everything(eps='0.5', dec='1', bac='0'):
     eps = float(eps)
     dec = float(dec)
     bac = float(bac)
-    nbits = int(nbits)
-    x = StateDiagnosis(eps, dec, bac, nbits)
+
+    x = StateDiagnosis(eps, dec, bac)
     concEps, DAEps = x.plot_varyEpsilon()
     concBack, DABack = x.plot_varyBackground()
     concDec, DADec = x.plot_varyDecoherence()
@@ -61,7 +57,7 @@ def plot_everything(eps='0.5', dec='1', bac='0', nbits='2'):
     fig = Figure()
     axes1 = fig.add_subplot(3, 3, 1)
     axes1.plot(concEps, DAEps)
-    axes1.set_title('Varying\nEpsilon')
+    axes1.set_title('Varying\nImbalance')
     axes1.set_xlabel('Concurrence')
     axes1.set_ylabel('DA visibility')
     axes1.set_xlim([0,1])
@@ -83,7 +79,7 @@ def plot_everything(eps='0.5', dec='1', bac='0', nbits='2'):
 
     axes4 = fig.add_subplot(3,3,4)
     axes4.plot(zero_to_one, DAEps)
-    axes4.set_xlabel('Epsilon')
+    axes4.set_xlabel('Imbalance')
     axes4.set_ylabel('DA visibility')
     axes4.set_ylim([0, 1])
 
@@ -99,7 +95,7 @@ def plot_everything(eps='0.5', dec='1', bac='0', nbits='2'):
 
     axes7 = fig.add_subplot(3,3,7)
     axes7.plot(zero_to_one, concEps)
-    axes7.set_xlabel('Epsilon')
+    axes7.set_xlabel('Imbalance')
     axes7.set_ylabel('Concurrence')
     axes7.set_ylim([0, 1])
 

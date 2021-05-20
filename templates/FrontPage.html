@@ -5,7 +5,7 @@
 
 {% block body %}
 <div class="row">
-    <div class="column">
+    <div class="col-md-6">
 
         <h1> Welcome</h1>
         <!--<form id="upload-form" action="{{ url_for('index') }}" method="POST" enctype="multipart/form-data">-->
@@ -14,7 +14,11 @@
                 <fieldset>
                 <!--Slider 1 -->
                     <div class="col-md-4">
-                        <h4>&epsilon;</h4>
+                        <h4><strong>Term Imbalance:</strong></h4>
+
+                    </div>
+                    <div class="col-md-10">
+                        <p>Defined as (|b/a|)<sup>2</sup> in the equation &psi; = a|HH> + b|VV>, assuming b &leq; a.</p>
                     </div>
                     <div class="col-md-8">
                         <div class="slidecontainer">
@@ -26,7 +30,10 @@
 
                 <!--Slider 2 -->
                     <div class="col-md-4">
-                        <h4>Decoherence</h4>
+                        <h4><strong>Decoherence:</strong></h4>
+                    </div>
+                    <div class="col-md-10">
+                        <p>The fraction of the maximum off-diagonal elements in the state's density matrix</p>
                     </div>
                     <div class="col-md-8">
                         <div class="slidecontainer">
@@ -38,7 +45,10 @@
 
                 <!--Slider 3 -->
                     <div class="col-md-4">
-                        <h4>Background</h4>
+                        <h4><strong>Background:</strong></h4>
+                    </div>
+                    <div class="col-md-10">
+                        <p>The proportion of the background density that is measured (background density is 1/4(I<sub>4</sub>, the 4x4 identity matrix, for a 2 qubit state)</p>
                     </div>
                     <div class="col-md-8">
                         <div class="slidecontainer">
@@ -48,34 +58,42 @@
                         </div>
                     </div>
 
-                    <input type="radio" name="nbits" value="one"> &lArr; 1 qubit
-                    <input type="radio" name="nbits" value="two", checked="true"> &lArr; 2 qubit
                     <div class="col-md-6 col-lg-offset-2">
                         <button type="reset" class="btn btn-default">Reset</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </fieldset>
         </form>
-    <hr>
-    <img src="{{grph}}" alt="Image Placeholder" width = "450" height="400">
     </div>
-    <div class="column">
+    <div class="col-md-6">
 
-        <h1>Description:</h1>
-        <h3>&epsilon;:</h3>
-        <p>Defined as (|b/a|)<sup>2</sup> in the equation &psi; = a|HH> + b|VV>, assuming b &leq; a.</p>
-        <h3>Decoherence:</h3>
-        <p>The fraction of the maximum off-diagonal elements in the state's density matrix</p>
-        <h3>Background:</h3>
-        <p>The proportion of the background density that is measured (background density is 1/4(I<sub>4</sub>, the 4x4 identity matrix, for a 2 qubit state)</p>
-        <hr>
+
         <h1>Results for:</h1>
-        <h3>&epsilon; = {{eps}}</h3>
-        <h3>Decoherence = {{dec}}</h3>
-        <h3>Background = {{bac}}</h3>
-        <h3>Qubits: {{nbits}}</h3>
-        <h1>Concurrence = {{concRND}}</h1>
-        <h1>DA visibility = {{daVisRND}}</h1>
+        <div class="row">
+            <div class="col-sm-4">
+                <p>Term Imbalance = {{eps}}</p>
+            </div>
+            <div class="col-sm-4">
+                <p>Decoherence = {{dec}}</p>
+            </div>
+            <div class="col-sm-4">
+                <p>Background = {{bac}}</p>
+            </div>
+        </div>
+        <hr>
+        <div class="text-center">
+            <img src="{{grph}}" alt="Image Placeholder" width = "450" height="400" class="center">
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Concurrence = {{concRND}}</h2>
+            </div>
+            <div class="col-md-6">
+                <h2>DA visibility = {{daVisRND}}</h2>
+            </div>
+        </div>
+
     </div>
 
 </div>
