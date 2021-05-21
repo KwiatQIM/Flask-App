@@ -2,5 +2,7 @@ venv
 .idea
 _pycache_
 __pycache__
+src/_pycache_
+src/__pycache__
 .DS_Store
 passenger_wsgi.py
