@@ -1,5 +1,5 @@
 # Kwiat Group's Flask App
-[![Website tomography.web.engr.illinois.edu/TomographyDemo.php](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://tomography.web.engr.illinois.edu/TomographyDemo.php)
+[![Website http://quantumtomo.web.illinois.edu/](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://quantumtomo.web.illinois.edu/)
 [![Generic badge](https://img.shields.io/badge/Python_version-3.8-blue.svg)](https://pypi.org/project/Quantum-Tomography/)
 
 This is a website is to provide various plots of specific quantum states.
