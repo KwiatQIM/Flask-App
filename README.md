@@ -1,8 +1,12 @@
 # Kwiat Group's Flask App
+[![Website tomography.web.engr.illinois.edu/TomographyDemo.php](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://tomography.web.engr.illinois.edu/TomographyDemo.php)
+[![Generic badge](https://img.shields.io/badge/Python_version-3.8-blue.svg)](https://pypi.org/project/Quantum-Tomography/)
+
 This is a website is to provide various plots of specific quantum states.
+The site is available here: [quantumtomo.web.illinois.edu](http://quantumtomo.web.illinois.edu/)
 
 ## Setup
-This python application is built and tested around python 3.9. 
+This python application is built,tested, and hosted around python 3.8. 
 For best results [install this version of python](https://www.python.org/downloads/). 
 
 1. **Clone** the repo to your local computer
