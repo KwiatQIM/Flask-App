@@ -165,7 +165,7 @@ class Tomography():
         return self.state_tomography(locals().get('tomo_input'), locals().get('intensity'))
     """
     standardizeConf()
-    Desc: Helper function to handle different cases of conf inputs
+    Desc: Helper function to handle different cases of conf inputs.
     """
     def standardizeConf(self):
         for k in self.conf.keys():

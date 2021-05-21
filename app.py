@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Default home page. This is the page the user first sees when visting the site
 @app.route('/')
 def index():
-    epsilon = 0.5
+    epsilon = 1
     decoherence = 1
     background = 0
     myState = StateDiagnosis(epsilon, decoherence, background)
@@ -81,32 +81,38 @@ def plot_everything(eps='0.5', dec='1', bac='0'):
     axes4.plot(zero_to_one, DAEps)
     axes4.set_xlabel('Imbalance')
     axes4.set_ylabel('DA visibility')
+    axes4.set_xlim([0, 1])
     axes4.set_ylim([0, 1])
 
     axes5 = fig.add_subplot(3,3,5)
     axes5.plot(zero_to_one, DADec)
     axes5.set_xlabel('Decoherence')
+    axes5.set_xlim([0, 1])
     axes5.set_ylim([0, 1])
 
     axes6 = fig.add_subplot(3,3,6)
     axes6.plot(zero_to_one, DABack)
     axes6.set_xlabel('Background')
+    axes6.set_xlim([0, 1])
     axes6.set_ylim([0, 1])
 
     axes7 = fig.add_subplot(3,3,7)
     axes7.plot(zero_to_one, concEps)
     axes7.set_xlabel('Imbalance')
     axes7.set_ylabel('Concurrence')
+    axes7.set_xlim([0, 1])
     axes7.set_ylim([0, 1])
 
     axes8 = fig.add_subplot(3,3,8)
     axes8.plot(zero_to_one, concDec)
     axes8.set_xlabel('Decoherence')
+    axes8.set_xlim([0, 1])
     axes8.set_ylim([0, 1])
 
     axes9 = fig.add_subplot(3,3,9)
     axes9.plot(zero_to_one, concBack)
     axes9.set_xlabel('Background')
+    axes9.set_xlim([0, 1])
     axes9.set_ylim([0, 1])
 
     fig.tight_layout(pad=1)
