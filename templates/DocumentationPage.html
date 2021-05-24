@@ -1,20 +1,332 @@
 {% extends 'base.html' %}
 
+<!-- This is how the base file for this page (no automation) should look:-->
+<!-- <div class="container"> -->
+<!--    <div class="row"> -->
+<!--        <div class="col-md-3" id="TableOfContents"> -->
+<!--            <h3 style="text-align:center;">Table of Contents</h3> -->
+<!--            <h4>TomoClass</h4>  comment(TomoClass)  -->
+<!--            <h4>TomoFunctions</h4> comment(TomoFunctions) -->
+<!--            <h4>TomoDisplay</h4> comment(TomoDisplay) -->
+<!--            <h4>Other Files</h4> comment(Other Files) -->
+<!--         </div> -->
+<!--        <div class='col-md-9' id='Methods'> comment(Open Methods Div) -->
+<!--        </div> comment(Closing the Methods Div)  -->
+<!--    </div> -->
+<!--</div >-->
+
 {% block head %}
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-3" id="TableOfContents">
-            <h3 style="text-align:center;">Table of Contents</h3>
-            <h4>TomoClass</h4>
-            <h4>TomoFunctions</h4>
-            <h4>TomoDisplay</h4>
-            <h4>Other Files</h4>
-        </div>
-        <div class="col-md-9" id="Methods">
-
+<div class="lib_ref">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3" id="TableOfContents">
+                <h3 style="text-align:center;">Table of Contents</h3>
+                <h4>TomoClass</h4> <!-- TomoClass -->
+<ul>
+  <li id="setConfSetting_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">setConfSetting</li>
+  <li id="importConf_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">importConf</li>
+  <li id="importData_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">importData</li>
+  <li id="importEval_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">importEval</li>
+  <li id="standardizeConf_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">standardizeConf</li>
+  <li id="state_tomography_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">state_tomography</li>
+  <li id="state_tomo_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">state_tomo</li>
+  <li id="maximum_likelihood_tomography_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">maximum_likelihood_tomography</li>
+  <li id="maxlike_fitness_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">maxlike_fitness</li>
+  <li id="maxlike_fitness_hedged_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">maxlike_fitness_hedged</li>
+  <li id="linear_tomography_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">linear_tomography</li>
+  <li id="filter_data_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">filter_data</li>
+  <li id="buildTomoInput_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">buildTomoInput</li>
+  <li id="getNumCoinc_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getNumCoinc</li>
+  <li id="getNumSingles_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getNumSingles</li>
+  <li id="getCoincidences_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getCoincidences</li>
+  <li id="getSingles_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getSingles</li>
+  <li id="getTimes_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getTimes</li>
+  <li id="getMeasurements_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getMeasurements</li>
+  <li id="getNumBits_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getNumBits</li>
+  <li id="getNumDetPerQubit_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getNumDetPerQubit</li>
+  <li id="getNumOfDetectorsTotal_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getNumOfDetectorsTotal</li>
+  <li id="numBits_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">numBits</li>
+  <li id="getTomoInputTemplate_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getTomoInputTemplate</li>
+  <li id="getProperties_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getProperties</li>
+  <li id="tomography_states_generator_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">tomography_states_generator</li>
+  <li id="getBellSettings_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">getBellSettings</li>
+</ul>
+                <h4>TomoFunctions</h4> <!-- TomoFunctions -->
+<ul>
+  <li id="Function_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">Function</li>
+  <li id="density2tm_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">density2tm</li>
+  <li id="density2t_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">density2t</li>
+  <li id="toDensity_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">toDensity</li>
+  <li id="t_matrix_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">t_matrix</li>
+  <li id="t_to_density_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">t_to_density</li>
+  <li id="fidelity_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">fidelity</li>
+  <li id="concurrence_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">concurrence</li>
+  <li id="tangle_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">tangle</li>
+  <li id="entropy_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">entropy</li>
+  <li id="linear_entropy_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">linear_entropy</li>
+  <li id="negativity_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">negativity</li>
+  <li id="purity_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">purity</li>
+  <li id="partial_transpose_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">partial_transpose</li>
+  <li id="performOperation_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">performOperation</li>
+  <li id="random_pure_state_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">random_pure_state</li>
+</ul>
+                <h4>TomoDisplay</h4> <!-- TomoDisplay -->
+<ul>
+  <li id="makeRhoImages_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">makeRhoImages</li>
+  <li id="saveRhoImages_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">saveRhoImages</li>
+  <li id="printLastOutput_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">printLastOutput</li>
+  <li id="matrixToHTML_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">matrixToHTML</li>
+  <li id="propertiesToHTML_li_link" onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'">propertiesToHTML</li>
+</ul>
+                <h4>Other Files</h4> <!-- Other Files -->
+            </div>
+            <div class='col-md-9' id='Methods'> <!-- Open Methods Div -->
+<div>
+  <div class="MethodInfo" id="setConfSetting" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.setConfSetting</h1>
+    <h3 class="methodSyntax">Tomography.setConfSetting(setting, val)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="importConf" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.importConf</h1>
+    <h3 class="methodSyntax">Tomography.importConf(conftxt)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="importData" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.importData</h1>
+    <h3 class="methodSyntax">Tomography.importData(datatxt)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="importEval" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.importEval</h1>
+    <h3 class="methodSyntax">Tomography.importEval(evaltxt)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="standardizeConf" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.standardizeConf</h1>
+    <h3 class="methodSyntax">Tomography.standardizeConf()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="state_tomography" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.state_tomography</h1>
+    <h3 class="methodSyntax">Tomography.state_tomography(tomo_input, intensities)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="state_tomo" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.state_tomo</h1>
+    <h3 class="methodSyntax">Tomography.state_tomo(measurements, counts)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="maximum_likelihood_tomography" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.maximum_likelihood_tomography</h1>
+    <h3 class="methodSyntax">Tomography.maximum_likelihood_tomography(starting_matrix, coincidences, m, acc)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="maxlike_fitness" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.maxlike_fitness</h1>
+    <h3 class="methodSyntax">Tomography.maxlike_fitness(t, coincidences, accidentals, m, prediction)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="maxlike_fitness_hedged" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.maxlike_fitness_hedged</h1>
+    <h3 class="methodSyntax">Tomography.maxlike_fitness_hedged(t, coincidences, accidentals, m, prediction, bet)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="linear_tomography" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.linear_tomography</h1>
+    <h3 class="methodSyntax">Tomography.linear_tomography(coincidences, measurements)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="filter_data" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.filter_data</h1>
+    <h3 class="methodSyntax">Tomography.filter_data(tomo_input, intensities)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="buildTomoInput" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.buildTomoInput</h1>
+    <h3 class="methodSyntax">Tomography.buildTomoInput(tomo_input, intensities)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getNumCoinc" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getNumCoinc</h1>
+    <h3 class="methodSyntax">Tomography.getNumCoinc()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getNumSingles" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getNumSingles</h1>
+    <h3 class="methodSyntax">Tomography.getNumSingles()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getCoincidences" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getCoincidences</h1>
+    <h3 class="methodSyntax">Tomography.getCoincidences()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getSingles" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getSingles</h1>
+    <h3 class="methodSyntax">Tomography.getSingles()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getTimes" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getTimes</h1>
+    <h3 class="methodSyntax">Tomography.getTimes()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getMeasurements" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getMeasurements</h1>
+    <h3 class="methodSyntax">Tomography.getMeasurements()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getNumBits" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getNumBits</h1>
+    <h3 class="methodSyntax">Tomography.getNumBits()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getNumDetPerQubit" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getNumDetPerQubit</h1>
+    <h3 class="methodSyntax">Tomography.getNumDetPerQubit()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getNumOfDetectorsTotal" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getNumOfDetectorsTotal</h1>
+    <h3 class="methodSyntax">Tomography.getNumOfDetectorsTotal()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="numBits" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.numBits</h1>
+    <h3 class="methodSyntax">Tomography.numBits(numBits)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getTomoInputTemplate" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getTomoInputTemplate</h1>
+    <h3 class="methodSyntax">Tomography.getTomoInputTemplate()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getProperties" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getProperties</h1>
+    <h3 class="methodSyntax">Tomography.getProperties(rho, bounds)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="tomography_states_generator" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.tomography_states_generator</h1>
+    <h3 class="methodSyntax">Tomography.tomography_states_generator(n)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="getBellSettings" style="display:inline;">
+    <h1 class="MethodTitle">Tomography.getBellSettings</h1>
+    <h3 class="methodSyntax">Tomography.getBellSettings(rho, bounds = -1)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="Function" style="display:inline;">
+    <h1 class="MethodTitle">Function</h1>
+    <h3 class="methodSyntax">Function()</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="density2tm" style="display:inline;">
+    <h1 class="MethodTitle">density2tm</h1>
+    <h3 class="methodSyntax">density2tm(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="density2t" style="display:inline;">
+    <h1 class="MethodTitle">density2t</h1>
+    <h3 class="methodSyntax">density2t(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="toDensity" style="display:inline;">
+    <h1 class="MethodTitle">toDensity</h1>
+    <h3 class="methodSyntax">toDensity(psiMat)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="t_matrix" style="display:inline;">
+    <h1 class="MethodTitle">t_matrix</h1>
+    <h3 class="methodSyntax">t_matrix(t)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="t_to_density" style="display:inline;">
+    <h1 class="MethodTitle">t_to_density</h1>
+    <h3 class="methodSyntax">t_to_density(t)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="fidelity" style="display:inline;">
+    <h1 class="MethodTitle">fidelity</h1>
+    <h3 class="methodSyntax">fidelity(state1, state2)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="concurrence" style="display:inline;">
+    <h1 class="MethodTitle">concurrence</h1>
+    <h3 class="methodSyntax">concurrence(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="tangle" style="display:inline;">
+    <h1 class="MethodTitle">tangle</h1>
+    <h3 class="methodSyntax">tangle(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="entropy" style="display:inline;">
+    <h1 class="MethodTitle">entropy</h1>
+    <h3 class="methodSyntax">entropy(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="linear_entropy" style="display:inline;">
+    <h1 class="MethodTitle">linear_entropy</h1>
+    <h3 class="methodSyntax">linear_entropy(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="negativity" style="display:inline;">
+    <h1 class="MethodTitle">negativity</h1>
+    <h3 class="methodSyntax">negativity(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="purity" style="display:inline;">
+    <h1 class="MethodTitle">purity</h1>
+    <h3 class="methodSyntax">purity(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="partial_transpose" style="display:inline;">
+    <h1 class="MethodTitle">partial_transpose</h1>
+    <h3 class="methodSyntax">partial_transpose(rhog)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="performOperation" style="display:inline;">
+    <h1 class="MethodTitle">performOperation</h1>
+    <h3 class="methodSyntax">performOperation(psi, g)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="random_pure_state" style="display:inline;">
+    <h1 class="MethodTitle">random_pure_state</h1>
+    <h3 class="methodSyntax">random_pure_state(N)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="makeRhoImages" style="display:inline;">
+    <h1 class="MethodTitle">makeRhoImages</h1>
+    <h3 class="methodSyntax">makeRhoImages(p, plt_given, customColor)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="saveRhoImages" style="display:inline;">
+    <h1 class="MethodTitle">saveRhoImages</h1>
+    <h3 class="methodSyntax">saveRhoImages(p, pathToDirectory, customColor)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="printLastOutput" style="display:inline;">
+    <h1 class="MethodTitle">printLastOutput</h1>
+    <h3 class="methodSyntax">printLastOutput(tomo, bounds)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="matrixToHTML" style="display:inline;">
+    <h1 class="MethodTitle">matrixToHTML</h1>
+    <h3 class="methodSyntax">matrixToHTML(M)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+  <div class="MethodInfo" id="propertiesToHTML" style="display:inline;">
+    <h1 class="MethodTitle">propertiesToHTML</h1>
+    <h3 class="methodSyntax">propertiesToHTML(vals)</h3>
+    <p class="methodLongDesc">long desc</p>
+  </div>
+</div>
+            </div> <!-- Closing the Methods Div -->
         </div>
     </div>
 </div>
