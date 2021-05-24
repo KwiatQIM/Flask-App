@@ -43,7 +43,7 @@ def test():
 
 # Function that creates a page with only the 9 subplots on it.
 @app.route('/plot/<eps>/<dec>/<bac>')
-def plot_everything(eps='0.5', dec='1', bac='0'):
+def plot_everything(eps='1', dec='1', bac='0'):
     eps = float(eps)
     dec = float(dec)
     bac = float(bac)
@@ -126,7 +126,6 @@ def plot_everything(eps='0.5', dec='1', bac='0'):
 
 
 # Route for documentation page
-# This is function grabs the values from the sliders on the previous page.
 @app.route("/Doc")
 def displayDocumentationPage():
 

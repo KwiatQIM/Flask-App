@@ -16,7 +16,7 @@ def create_page():
     # This scans TomoClass, gets the comments and creates the html needed for the Table of Contents
     TomoClass_bullets = ul()
     TomoClass_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoClass.py')
-    for comment in TomoClass_list[3:]:
+    for comment in TomoClass_list:
         comment = comment.strip()
         if '(' in comment and ')' in comment:
             cur_title = comment[:comment.index("(")].split(" ")[-1]
@@ -24,7 +24,7 @@ def create_page():
 
             TomoClass_bullets += li(comment[:comment.index("(")], onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
 
-            cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+            cur_div = big_methods.add(div(style="display:none;", cls="MethodInfo", id=cur_title))
             cur_div.add(h1('Tomography.'+cur_title, cls="MethodTitle"))
             cur_div.add(h3('Tomography.'+cur_params, cls="methodSyntax"))
             cur_div.add(p('long desc', cls="methodLongDesc"))
@@ -41,7 +41,7 @@ def create_page():
 
             TomoFunctions_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
 
-            cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+            cur_div = big_methods.add(div(style="display:none;", cls="MethodInfo", id=cur_title))
             cur_div.add(h1(cur_title, cls="MethodTitle"))
             cur_div.add(h3(cur_params, cls="methodSyntax"))
             cur_div.add(p('long desc', cls="methodLongDesc"))
@@ -58,7 +58,7 @@ def create_page():
 
             TomoDisplay_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
 
-            cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+            cur_div = big_methods.add(div(style="display:none;", cls="MethodInfo", id=cur_title))
             cur_div.add(h1(cur_title, cls="MethodTitle"))
             cur_div.add(h3(cur_params, cls="methodSyntax"))
             cur_div.add(p('long desc', cls="methodLongDesc"))
@@ -92,8 +92,10 @@ def create_page():
             break
 
     # making sure that all of the necessary indices were found
+    # deleting all of the lines from the previous documentation
+    # adding the new documentation to the doc_lines variable
     if TomoClassind != 0 and TomoFunctionsind != 0 and TomoDisplayind != 0 and big_methods_ind != 0:
-        # deleting the previous documentation so that we don't make double
+        # deleting
         del doc_lines[TomoClassind:TomoFunctionsind - 1]
         TomoClass_deleted = TomoFunctionsind - 1 - TomoClassind
         TomoFunctionsind = TomoFunctionsind - TomoClass_deleted
@@ -102,6 +104,7 @@ def create_page():
         big_methods_ind = big_methods_ind - TomoClass_deleted
         close_big_methods_ind = close_big_methods_ind -TomoClass_deleted
 
+        # deleting all of the TomoFunctions lines in the Table of Contents
         del doc_lines[TomoFunctionsind:TomoDisplayind - 1]
         TomoFunctions_deleted = TomoDisplayind - 1 - TomoFunctionsind
         TomoDisplayind = TomoDisplayind - TomoFunctions_deleted
@@ -109,12 +112,14 @@ def create_page():
         big_methods_ind = big_methods_ind - TomoFunctions_deleted
         close_big_methods_ind = close_big_methods_ind - TomoFunctions_deleted
 
+        # deleting all of the TomoDisplay lines in the Table of Contents
         del doc_lines[TomoDisplayind:OtherFilesind - 1]
         TomoDisplay_deleted = OtherFilesind - 1 - TomoDisplayind
         OtherFilesind = OtherFilesind - TomoDisplay_deleted
         big_methods_ind = big_methods_ind - TomoDisplay_deleted
         close_big_methods_ind = close_big_methods_ind - TomoDisplay_deleted
 
+        # deleting all of the lines for the methods in the html
         del doc_lines[big_methods_ind:close_big_methods_ind - 1]
         big_methods_deleted = close_big_methods_ind - 1 - big_methods_ind
         close_big_methods_ind = close_big_methods_ind - big_methods_deleted
@@ -139,13 +144,16 @@ def create_page():
     else:
         print('The necessary lines in Documentation page are not present')
 
+    # adding newlines to the end of elements in doc_lines so that the html is readable
     for i in range(len(doc_lines)):
         if '\n' not in doc_lines[i]:
             doc_lines[i] += '\n'
 
+    # opening the file agin, and overwriting it with the lines from doc_lines, joined together.
     doc_page = open('templates/DocumentationPage.html', 'w')
     doc_page.write(''.join(doc_lines))
     doc_page.close()
+
 
 def getAllCommentBlocks(filepath):
     # Grab contents of file as string
