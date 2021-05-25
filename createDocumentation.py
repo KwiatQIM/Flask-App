@@ -13,7 +13,7 @@ def create_page():
     # It holds the Title of the function, its parameters currently.
     big_methods = div()
 
-    # This scans TomoClass, gets the comments and creates the html needed for the Table of Contents
+    # This scans the three files and creates the unordered lists that will be filled with the functions
     TomoClass_bullets = ul()
     TomoClass_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoClass.py')
     TomoClass_count = len(TomoClass_list)
@@ -28,11 +28,12 @@ def create_page():
 
     combined_list = TomoClass_list + TomoFunctions_list + TomoDisplay_list
 
+    # This loops through the big list of comments and adds the html to big_methods and the bullet lists for the three files
     for i in range(len(combined_list)):
         comment = combined_list[i].strip()
         if '(' in comment and ')' in comment:
-            cur_title = comment[:comment.index("(")].split(" ")[-1]
-            cur_params = comment[:comment.index(")") + 1]
+            cur_title = 'Tomography.' + comment[:comment.index("(")].split(" ")[-1] if i < TomoClass_count else comment[:comment.index("(")].split(" ")[-1]
+            cur_params = 'Tomography.' + comment[:comment.index(")") + 1] if i < TomoClass_count else comment[:comment.index(")") + 1]
             comment_lines = comment.splitlines()
 
             if 'Desc:' in comment:
@@ -49,24 +50,67 @@ def create_page():
             else:
                 cur_description = 'Description not currently available'
 
+            paramReturn = True if '-------' in comment or '----------' in comment else False
+            parameters = {}
+            returnValues = {}
+            params, retu = False, False
+            cur_key = ''
+            cur_val = ''
+            for line in comment_lines:
+                if ' : ' in line:
+                    if cur_key != '' and cur_val != '' and params:
+                        parameters[cur_key] = cur_val
+                    elif cur_key != '' and cur_val != '' and retu:
+                        returnValues[cur_key] = cur_val
+                    cur_key = line
+                    cur_val = ''
+                elif '----------' in line or '-------' in line or 'Returns' in line or 'Parameters' in line:
+                    if '----------' in line or 'Parameters' in line:
+                        params = True
+                        retu = False
+                    if '-------' in line or 'Returns' in line:
+                        params = False
+                        retu = True
+
+                else: cur_val = cur_val +  ' ' + line
+
+
+
             if i < TomoClass_count:
                 TomoClass_bullets += li(comment[:comment.index("(")], onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
-                cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
-                cur_div.add(h1('Tomography.' + cur_title, cls="MethodTitle"))
-                cur_div.add(h3('Tomography.' + cur_params, cls="methodSyntax"))
-                cur_div.add(p(cur_description, cls="methodShortDesc"))
             elif i < TomoClass_count + TomoFunctions_count:
                 TomoFunctions_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
-                cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
-                cur_div.add(h1(cur_title, cls="MethodTitle"))
-                cur_div.add(h3(cur_params, cls="methodSyntax"))
-                cur_div.add(p(cur_description, cls="methodShortDesc"))
             else:
                 TomoDisplay_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title + '_li_link')
-                cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
-                cur_div.add(h1(cur_title, cls="MethodTitle"))
-                cur_div.add(h3(cur_params, cls="methodSyntax"))
-                cur_div.add(p(cur_description, cls="methodShortDesc"))
+
+            cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+            cur_div.add(h1(cur_title, cls="MethodTitle"))
+            cur_div.add(h3(cur_params, cls="methodSyntax"))
+            cur_div.add(p(cur_description, cls="methodShortDesc"))
+
+            # finding the comments that have Parameters or Return Values
+            if paramReturn:
+                tab = cur_div.add(table(cls="paramReturn"))
+                inner = tab.add(tr())
+                if '----------' in comment:
+                    head = inner.add(td(cls="header"))
+                    head.add(h6("Parameters:"))
+                    param_list = inner.add(td(cls="list"))
+                    unordered_param_list = param_list.add(ul())
+                    for param, desc in parameters:
+                        list_ele = unordered_param_list.add(li())
+                        list_ele.add(h4(param))
+                        list_ele.add(p(desc))
+                if '-------' in comment:
+                    head = inner.add(td(cls="header"))
+                    head.add(h6("Returns:"))
+                    param_list = inner.add(td(cls="list"))
+                    unordered_param_list = param_list.add(ul())
+                    for returnval, desc in returnValues.items():
+                        list_ele = unordered_param_list.add(li())
+                        list_ele.add(h4(returnval))
+                        list_ele.add(p(desc))
+
 
     # This code splits the html for the table of contents into separate lines
     TomoClass_bullets_lines = TomoClass_bullets.render().split('\n')
