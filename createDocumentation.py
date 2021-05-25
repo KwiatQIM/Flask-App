@@ -16,52 +16,57 @@ def create_page():
     # This scans TomoClass, gets the comments and creates the html needed for the Table of Contents
     TomoClass_bullets = ul()
     TomoClass_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoClass.py')
-    for comment in TomoClass_list:
-        comment = comment.strip()
-        if '(' in comment and ')' in comment:
-            cur_title = comment[:comment.index("(")].split(" ")[-1]
-            cur_params = comment[:comment.index(")") + 1]
+    TomoClass_count = len(TomoClass_list)
 
-            TomoClass_bullets += li(comment[:comment.index("(")], onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
-
-            cur_div = big_methods.add(div(style="display:none;", cls="MethodInfo", id=cur_title))
-            cur_div.add(h1('Tomography.'+cur_title, cls="MethodTitle"))
-            cur_div.add(h3('Tomography.'+cur_params, cls="methodSyntax"))
-            cur_div.add(p('long desc', cls="methodLongDesc"))
-
-
-    # This scans TomoFunctions, gets the comments and creates the html needed for the Table of Contents
     TomoFunctions_bullets = ul()
     TomoFunctions_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoFunctions.py')
-    for comment in TomoFunctions_list:
-        comment = comment.strip()
-        if '(' in comment and ')' in comment:
-            cur_title = comment[:comment.index("(")].split(" ")[-1]
-            cur_params = comment[:comment.index(")") + 1]
+    TomoFunctions_count = len(TomoFunctions_list)
 
-            TomoFunctions_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
-
-            cur_div = big_methods.add(div(style="display:none;", cls="MethodInfo", id=cur_title))
-            cur_div.add(h1(cur_title, cls="MethodTitle"))
-            cur_div.add(h3(cur_params, cls="methodSyntax"))
-            cur_div.add(p('long desc', cls="methodLongDesc"))
-
-
-    # This scans TomoDisplay, gets the comments and creates the html needed for the Table of Contents
     TomoDisplay_bullets = ul()
     TomoDisplay_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoDisplay.py')
-    for comment in TomoDisplay_list:
-        comment = comment.strip()
+    TomoDisplay_count = len(TomoDisplay_list)
+
+    combined_list = TomoClass_list + TomoFunctions_list + TomoDisplay_list
+
+    for i in range(len(combined_list)):
+        comment = combined_list[i].strip()
         if '(' in comment and ')' in comment:
             cur_title = comment[:comment.index("(")].split(" ")[-1]
             cur_params = comment[:comment.index(")") + 1]
+            comment_lines = comment.splitlines()
 
-            TomoDisplay_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
+            if 'Desc:' in comment:
+                # this accesses the second line of the comment, trims it, and then removes the Desc: from the front
+                cur_description = ''
+                for line in comment_lines:
+                    if cur_description != '':
+                        if 'todo' in line.lower() or line == '':
+                            break
+                        else:
+                            cur_description += ' ' + line.strip()
+                    if 'Desc:' in line:
+                        cur_description += line.strip()[6:]
+            else:
+                cur_description = 'Description not currently available'
 
-            cur_div = big_methods.add(div(style="display:none;", cls="MethodInfo", id=cur_title))
-            cur_div.add(h1(cur_title, cls="MethodTitle"))
-            cur_div.add(h3(cur_params, cls="methodSyntax"))
-            cur_div.add(p('long desc', cls="methodLongDesc"))
+            if i < TomoClass_count:
+                TomoClass_bullets += li(comment[:comment.index("(")], onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
+                cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+                cur_div.add(h1('Tomography.' + cur_title, cls="MethodTitle"))
+                cur_div.add(h3('Tomography.' + cur_params, cls="methodSyntax"))
+                cur_div.add(p(cur_description, cls="methodShortDesc"))
+            elif i < TomoClass_count + TomoFunctions_count:
+                TomoFunctions_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
+                cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+                cur_div.add(h1(cur_title, cls="MethodTitle"))
+                cur_div.add(h3(cur_params, cls="methodSyntax"))
+                cur_div.add(p(cur_description, cls="methodShortDesc"))
+            else:
+                TomoDisplay_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title + '_li_link')
+                cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+                cur_div.add(h1(cur_title, cls="MethodTitle"))
+                cur_div.add(h3(cur_params, cls="methodSyntax"))
+                cur_div.add(p(cur_description, cls="methodShortDesc"))
 
     # This code splits the html for the table of contents into separate lines
     TomoClass_bullets_lines = TomoClass_bullets.render().split('\n')
@@ -98,31 +103,31 @@ def create_page():
         # deleting
         del doc_lines[TomoClassind:TomoFunctionsind - 1]
         TomoClass_deleted = TomoFunctionsind - 1 - TomoClassind
-        TomoFunctionsind = TomoFunctionsind - TomoClass_deleted
-        TomoDisplayind = TomoDisplayind - TomoClass_deleted
-        OtherFilesind = OtherFilesind - TomoClass_deleted
-        big_methods_ind = big_methods_ind - TomoClass_deleted
-        close_big_methods_ind = close_big_methods_ind -TomoClass_deleted
+        TomoFunctionsind -= TomoClass_deleted
+        TomoDisplayind -= TomoClass_deleted
+        OtherFilesind -= TomoClass_deleted
+        big_methods_ind -= TomoClass_deleted
+        close_big_methods_ind -= TomoClass_deleted
 
         # deleting all of the TomoFunctions lines in the Table of Contents
         del doc_lines[TomoFunctionsind:TomoDisplayind - 1]
         TomoFunctions_deleted = TomoDisplayind - 1 - TomoFunctionsind
-        TomoDisplayind = TomoDisplayind - TomoFunctions_deleted
-        OtherFilesind = OtherFilesind - TomoFunctions_deleted
-        big_methods_ind = big_methods_ind - TomoFunctions_deleted
-        close_big_methods_ind = close_big_methods_ind - TomoFunctions_deleted
+        TomoDisplayind -= TomoFunctions_deleted
+        OtherFilesind -=  TomoFunctions_deleted
+        big_methods_ind -= TomoFunctions_deleted
+        close_big_methods_ind -= TomoFunctions_deleted
 
         # deleting all of the TomoDisplay lines in the Table of Contents
         del doc_lines[TomoDisplayind:OtherFilesind - 1]
         TomoDisplay_deleted = OtherFilesind - 1 - TomoDisplayind
-        OtherFilesind = OtherFilesind - TomoDisplay_deleted
-        big_methods_ind = big_methods_ind - TomoDisplay_deleted
-        close_big_methods_ind = close_big_methods_ind - TomoDisplay_deleted
+        OtherFilesind -= TomoDisplay_deleted
+        big_methods_ind -= TomoDisplay_deleted
+        close_big_methods_ind -= TomoDisplay_deleted
 
         # deleting all of the lines for the methods in the html
         del doc_lines[big_methods_ind:close_big_methods_ind - 1]
         big_methods_deleted = close_big_methods_ind - 1 - big_methods_ind
-        close_big_methods_ind = close_big_methods_ind - big_methods_deleted
+        close_big_methods_ind -= big_methods_deleted
 
         # adding the new documentation
         for k in range(len(TomoClass_bullets_lines)):
