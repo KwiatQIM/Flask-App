@@ -34,57 +34,19 @@ def create_page():
         if '(' in comment and ')' in comment:
             cur_title = 'Tomography.' + comment[:comment.index("(")].split(" ")[-1] if i < TomoClass_count else comment[:comment.index("(")].split(" ")[-1]
             cur_params = 'Tomography.' + comment[:comment.index(")") + 1] if i < TomoClass_count else comment[:comment.index(")") + 1]
-            comment_lines = comment.splitlines()
+
 
             if 'Desc:' in comment:
                 # this accesses the second line of the comment, trims it, and then removes the Desc: from the front
-                cur_description = ''
-                for line in comment_lines:
-                    if cur_description != '':
-                        if 'todo' in line.lower() or line == '':
-                            break
-                        else:
-                            cur_description += ' ' + line.strip()
-                    if 'Desc:' in line:
-                        cur_description += line.strip()[6:]
+                cur_description = getDescription(comment)
             else:
                 cur_description = 'Description not currently available'
 
             paramReturn = True if '-------' in comment or '----------' in comment else False
+            if paramReturn:
+                parameters, returnValues = get_paramReturns(comment)
 
-            parameters = {}
-            returnValues = {}
-            dict_switch = ''
-            cur_key = ''
-            cur_val = ''
-            for line in comment_lines:
-                if ' : ' in line:
-                    if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
-                        parameters[cur_key] = cur_val
-                    elif cur_key != '' and cur_val != '' and dict_switch == 'ReturnValues':
-                        returnValues[cur_key] = cur_val
-                    cur_key = line
-                    cur_val = ''
-                elif '----------' in line or '-------' in line or 'Returns' in line or 'Parameters' in line:
-                    if '----------' in line or 'Parameters' in line:
-                        dict_switch = 'Parameters'
-                    if ('-------' in line and '----------' not in line) or 'Returns' in line:
-                        if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
-                            parameters[cur_key] = cur_val
-                        cur_val = ''
-                        dict_switch = 'ReturnValues'
-
-                elif line == comment_lines[-1]:
-                    cur_val = cur_val + ' ' + line
-                    if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
-                        parameters[cur_key] = cur_val
-                    elif cur_key != '' and cur_val != '' and dict_switch == 'ReturnValues':
-                        returnValues[cur_key] = cur_val
-
-                else:
-                    cur_val = cur_val + ' ' + line
-
-
+            # adding the function to the bulleted list
             if i < TomoClass_count:
                 TomoClass_bullets += li(comment[:comment.index("(")], onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
             elif i < TomoClass_count + TomoFunctions_count:
@@ -124,7 +86,6 @@ def create_page():
                         list_ele.add(h4(returnval))
                         list_ele.add(p(desc))
 
-
     # This code splits the html for the table of contents into separate lines
     TomoClass_bullets_lines = TomoClass_bullets.render().split('\n')
     TomoFunctions_bullets_lines = TomoFunctions_bullets.render().split('\n')
@@ -156,53 +117,27 @@ def create_page():
     # making sure that all of the necessary indices were found
     # deleting all of the lines from the previous documentation
     # adding the new documentation to the doc_lines variable
+    # deleting the lines and adding from the end first so that the indices aren't messed up
     if TomoClassind != 0 and TomoFunctionsind != 0 and TomoDisplayind != 0 and big_methods_ind != 0:
-        # deleting
-        del doc_lines[TomoClassind:TomoFunctionsind - 1]
-        TomoClass_deleted = TomoFunctionsind - 1 - TomoClassind
-        TomoFunctionsind -= TomoClass_deleted
-        TomoDisplayind -= TomoClass_deleted
-        OtherFilesind -= TomoClass_deleted
-        big_methods_ind -= TomoClass_deleted
-        close_big_methods_ind -= TomoClass_deleted
-
-        # deleting all of the TomoFunctions lines in the Table of Contents
-        del doc_lines[TomoFunctionsind:TomoDisplayind - 1]
-        TomoFunctions_deleted = TomoDisplayind - 1 - TomoFunctionsind
-        TomoDisplayind -= TomoFunctions_deleted
-        OtherFilesind -=  TomoFunctions_deleted
-        big_methods_ind -= TomoFunctions_deleted
-        close_big_methods_ind -= TomoFunctions_deleted
-
-        # deleting all of the TomoDisplay lines in the Table of Contents
-        del doc_lines[TomoDisplayind:OtherFilesind - 1]
-        TomoDisplay_deleted = OtherFilesind - 1 - TomoDisplayind
-        OtherFilesind -= TomoDisplay_deleted
-        big_methods_ind -= TomoDisplay_deleted
-        close_big_methods_ind -= TomoDisplay_deleted
-
-        # deleting all of the lines for the methods in the html
+        # doing the methods list first
         del doc_lines[big_methods_ind:close_big_methods_ind - 1]
-        big_methods_deleted = close_big_methods_ind - 1 - big_methods_ind
-        close_big_methods_ind -= big_methods_deleted
+        for k in range(len(big_methods_lines)):
+            doc_lines.insert(big_methods_ind + k, big_methods_lines[k])
 
-        # adding the new documentation
+        # deleting old and adding new TomoDisplay
+        del doc_lines[TomoDisplayind:OtherFilesind - 1]
+        for k in range(len(TomoDisplay_bullets_lines)):
+            doc_lines.insert(TomoDisplayind + k, TomoDisplay_bullets_lines[k])
+
+        # deleting old and adding new TomoFunctions
+        del doc_lines[TomoFunctionsind:TomoDisplayind - 1]
+        for k in range(len(TomoFunctions_bullets_lines)):
+            doc_lines.insert(TomoFunctionsind + k, TomoFunctions_bullets_lines[k])
+
+        # deleting old and adding new TomoClass
+        del doc_lines[TomoClassind:TomoFunctionsind - 1]
         for k in range(len(TomoClass_bullets_lines)):
             doc_lines.insert(TomoClassind + k, TomoClass_bullets_lines[k])
-        for k in range(len(TomoFunctions_bullets_lines)):
-            doc_lines.insert(TomoFunctionsind
-                             + len(TomoClass_bullets_lines)
-                             + k, TomoFunctions_bullets_lines[k])
-        for k in range(len(TomoDisplay_bullets_lines)):
-            doc_lines.insert(TomoDisplayind
-                             + len(TomoClass_bullets_lines)
-                             + len(TomoFunctions_bullets_lines)
-                             + k, TomoDisplay_bullets_lines[k])
-        for k in range(len(big_methods_lines)):
-            doc_lines.insert(big_methods_ind
-                             + len(TomoClass_bullets_lines)
-                             + len(TomoFunctions_bullets_lines)
-                             + len(TomoDisplay_bullets_lines) + k, big_methods_lines[k])
     else:
         print('The necessary lines in Documentation page are not present')
 
@@ -224,6 +159,77 @@ def getAllCommentBlocks(filepath):
     # find everything wrapped in triple quotes
     return re.findall(r'"""(.+?)"""', txt,re.DOTALL)
 
+'''
+getDescription(lines)
+    This function is given a list of lines from a comment, and returns the Description listed after 'Desc:' in comment
+'''
+def getDescription(comment):
+    lines = comment.splitlines()
+    description = ''
+    for line in lines:
+        if description != '':
+            if 'todo' in line.lower() or line == '':
+                break
+            else:
+                description += ' ' + line.strip()
+        if 'Desc:' in line:
+            description += line.strip()[6:]
+    return description
+
+
+'''
+get_paramReturns(lines)
+    This function is given a list of lines from a comment, and returns two dictionaries
+    
+    parameters:
+        keys: list of the parameters to the passed function and their types
+        values: descriptions for each parameter
+    returnValues:
+        keys: the value returned and its type
+        values: descriptions for each return value
+'''
+def get_paramReturns(comment):
+    lines = comment.splitlines()
+    parameters = {}
+    returnValues = {}
+    dict_switch = ''
+    cur_key = ''
+    cur_val = ''
+    for line in lines:
+        if ' : ' in line:
+            if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
+                parameters[cur_key] = cur_val
+            elif cur_key != '' and cur_val != '' and dict_switch == 'ReturnValues':
+                returnValues[cur_key] = cur_val
+            cur_key = line
+            cur_val = ''
+        elif '----------' in line or '-------' in line or 'Returns' in line or 'Parameters' in line:
+            if '----------' in line or 'Parameters' in line:
+                dict_switch = 'Parameters'
+            if ('-------' in line and '----------' not in line) or 'Returns' in line:
+                if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
+                    parameters[cur_key] = cur_val
+                cur_val = ''
+                dict_switch = 'ReturnValues'
+
+        elif line == lines[-1]:
+            cur_val = cur_val + ' ' + line
+            if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
+                parameters[cur_key] = cur_val
+            elif cur_key != '' and cur_val != '' and dict_switch == 'ReturnValues':
+                returnValues[cur_key] = cur_val
+
+        else:
+            cur_val = cur_val + ' ' + line
+    return parameters, returnValues
+
+def testing():
+    x = 4
+    y = 7
+    x, y = [v - 1 for v in (x, y)]
+
+    print(x)
 
 if __name__ == '__main__':
     create_page()
+    testing()
