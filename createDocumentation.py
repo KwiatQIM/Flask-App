@@ -51,29 +51,38 @@ def create_page():
                 cur_description = 'Description not currently available'
 
             paramReturn = True if '-------' in comment or '----------' in comment else False
+
             parameters = {}
             returnValues = {}
-            params, retu = False, False
+            dict_switch = ''
             cur_key = ''
             cur_val = ''
             for line in comment_lines:
                 if ' : ' in line:
-                    if cur_key != '' and cur_val != '' and params:
+                    if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
                         parameters[cur_key] = cur_val
-                    elif cur_key != '' and cur_val != '' and retu:
+                    elif cur_key != '' and cur_val != '' and dict_switch == 'ReturnValues':
                         returnValues[cur_key] = cur_val
                     cur_key = line
                     cur_val = ''
                 elif '----------' in line or '-------' in line or 'Returns' in line or 'Parameters' in line:
                     if '----------' in line or 'Parameters' in line:
-                        params = True
-                        retu = False
-                    if '-------' in line or 'Returns' in line:
-                        params = False
-                        retu = True
+                        dict_switch = 'Parameters'
+                    if ('-------' in line and '----------' not in line) or 'Returns' in line:
+                        if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
+                            parameters[cur_key] = cur_val
+                        cur_val = ''
+                        dict_switch = 'ReturnValues'
 
-                else: cur_val = cur_val +  ' ' + line
+                elif line == comment_lines[-1]:
+                    cur_val = cur_val + ' ' + line
+                    if cur_key != '' and cur_val != '' and dict_switch == 'Parameters':
+                        parameters[cur_key] = cur_val
+                    elif cur_key != '' and cur_val != '' and dict_switch == 'ReturnValues':
+                        returnValues[cur_key] = cur_val
 
+                else:
+                    cur_val = cur_val + ' ' + line
 
 
             if i < TomoClass_count:
@@ -85,23 +94,27 @@ def create_page():
 
             cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
             cur_div.add(h1(cur_title, cls="MethodTitle"))
-            cur_div.add(h3(cur_params, cls="methodSyntax"))
+            cur_div.add(h3(cur_params, cls="MethodInfo"))
             cur_div.add(p(cur_description, cls="methodShortDesc"))
 
             # finding the comments that have Parameters or Return Values
             if paramReturn:
-                tab = cur_div.add(table(cls="paramReturn"))
-                inner = tab.add(tr())
+
                 if '----------' in comment:
+                    tab = cur_div.add(table(cls="paramReturn"))
+                    inner = tab.add(tr())
                     head = inner.add(td(cls="header"))
                     head.add(h6("Parameters:"))
                     param_list = inner.add(td(cls="list"))
                     unordered_param_list = param_list.add(ul())
-                    for param, desc in parameters:
+                    comment_noParams = comment[comment.index('----------')+11:]
+                    for param, desc in parameters.items():
                         list_ele = unordered_param_list.add(li())
                         list_ele.add(h4(param))
                         list_ele.add(p(desc))
-                if '-------' in comment:
+                if '-------' in comment_noParams:
+                    tab = cur_div.add(table(cls="paramReturn"))
+                    inner = tab.add(tr())
                     head = inner.add(td(cls="header"))
                     head.add(h6("Returns:"))
                     param_list = inner.add(td(cls="list"))
@@ -210,6 +223,7 @@ def getAllCommentBlocks(filepath):
         txt = f.read()
     # find everything wrapped in triple quotes
     return re.findall(r'"""(.+?)"""', txt,re.DOTALL)
+
 
 if __name__ == '__main__':
     create_page()
