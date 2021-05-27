@@ -3,6 +3,19 @@ from dominate.tags import *
 import re
 
 def create_page():
+    TomoClassfunctions = []
+    TomoFunctionsfunctions = []
+    TomoDisplayfunctions = []
+    functions = []
+    titles = []
+    function_parameters = []
+    descriptions = []
+    param_bools = []
+    return_bools = []
+    param_dicts = []
+    return_dicts = []
+    count = 0
+
 
     # accessing the documentation page
     doc_page = open('templates/DocumentationPage.html', 'r')
@@ -32,29 +45,54 @@ def create_page():
     for i in range(len(combined_list)):
         comment = combined_list[i].strip()
         if '(' in comment and ')' in comment:
-            cur_title = 'Tomography.' + comment[:comment.index("(")].split(" ")[-1] if i < TomoClass_count else comment[:comment.index("(")].split(" ")[-1]
+            count += 1
+            function_title = comment[:comment.index("(")].split(" ")[-1]
+            functions.append(function_title)
+
+
+            cur_title = 'Tomography.' + function_title if i < TomoClass_count else function_title
+            titles.append(cur_title)
+
             cur_params = 'Tomography.' + comment[:comment.index(")") + 1] if i < TomoClass_count else comment[:comment.index(")") + 1]
+            function_parameters.append(cur_params)
 
+            # style={% if disp == 'tomography' %}"display:inline;" {% else %} "display:none;" {% endif %}
+            display = "{% if disp == '" + function_title.lower() + "' %}'display:inline;' {% else %} 'display:none;' {% endif %} "
 
-            if 'Desc:' in comment:
-                # this accesses the second line of the comment, trims it, and then removes the Desc: from the front
-                cur_description = getDescription(comment)
+            cur_description = getDescription(comment)
+            descriptions.append(cur_description)
+
+            if 'Parameters' in comment and '----------' in comment:
+                param_bools.append(True)
             else:
-                cur_description = 'Description not currently available'
+                param_bools.append(False)
+
+            if 'Returns' in comment and '-------' in comment:
+                return_bools.append(True)
+            else:
+                return_bools.append(False)
 
             paramReturn = True if '-------' in comment or '----------' in comment else False
             if paramReturn:
                 parameters, returnValues = get_paramReturns(comment)
+            else:
+                parameters, returnValues = {}, {}
+            param_dicts.append(parameters)
+            return_dicts.append(returnValues)
+
 
             # adding the function to the bulleted list
             if i < TomoClass_count:
-                TomoClass_bullets += li(comment[:comment.index("(")], onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
+                TomoClassfunctions.append(function_title)
+                TomoClass_bullets += li(a(function_title, href="{{ url_for('displayDocumentationPage',display='" + function_title.lower() + "') }}"), __pretty=False)
             elif i < TomoClass_count + TomoFunctions_count:
-                TomoFunctions_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title+'_li_link')
+                TomoFunctionsfunctions.append(function_title)
+                TomoFunctions_bullets += li(a(function_title, href="{{ url_for('displayDocumentationPage',display='" + function_title.lower() + "') }}"), __pretty=False)
             else:
-                TomoDisplay_bullets += li(cur_title, onclick="displayMethod(this.innerHTML); this.style.fontWeight = 'bold'", id=cur_title + '_li_link')
+                TomoDisplayfunctions.append(function_title)
+                TomoDisplay_bullets += li(a(function_title, href="{{ url_for('displayDocumentationPage',display='" + function_title.lower() + "') }}"), __pretty=False)
 
-            cur_div = big_methods.add(div(style="display:inline;", cls="MethodInfo", id=cur_title))
+            cur_div = big_methods.add(div(style=display, cls="MethodInfo", id=cur_title))
             cur_div.add(h1(cur_title, cls="MethodTitle"))
             cur_div.add(h3(cur_params, cls="MethodInfo"))
             cur_div.add(p(cur_description, cls="methodShortDesc"))
@@ -151,6 +189,8 @@ def create_page():
     doc_page.write(''.join(doc_lines))
     doc_page.close()
 
+    return TomoClassfunctions, TomoFunctionsfunctions, TomoDisplayfunctions, functions, titles, \
+           function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, count
 
 def getAllCommentBlocks(filepath):
     # Grab contents of file as string
@@ -166,14 +206,17 @@ getDescription(lines)
 def getDescription(comment):
     lines = comment.splitlines()
     description = ''
-    for line in lines:
-        if description != '':
-            if 'todo' in line.lower() or line == '':
-                break
-            else:
-                description += ' ' + line.strip()
-        if 'Desc:' in line:
-            description += line.strip()[6:]
+    if 'Desc:' in comment:
+        for line in lines:
+            if description != '':
+                if 'todo' in line.lower() or line == '':
+                    break
+                else:
+                    description += ' ' + line.strip()
+            if 'Desc:' in line:
+                description += line.strip()[6:]
+    else:
+        description = 'Description not currently available'
     return description
 
 
@@ -223,13 +266,6 @@ def get_paramReturns(comment):
             cur_val = cur_val + ' ' + line
     return parameters, returnValues
 
-def testing():
-    x = 4
-    y = 7
-    x, y = [v - 1 for v in (x, y)]
-
-    print(x)
 
 if __name__ == '__main__':
     create_page()
-    testing()

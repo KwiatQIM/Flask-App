@@ -12,7 +12,7 @@ div#BodyContent {
     padding:15px 10%;
 }
 
-.lib_Ref div#TableOfContents li{
+.lib_Ref div#TableOfContents li a{
     color:rebeccapurple;
     text-decoration: underline;
     cursor: pointer;

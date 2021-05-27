@@ -5,6 +5,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import numpy as np
 from StateDiagnosisApplication import StateDiagnosis
+from createDocumentation import create_page
 
 app = Flask(__name__)
 
@@ -125,11 +126,17 @@ def plot_everything(eps='1', dec='1', bac='0'):
     return response
 
 
+TomoClassFunctions, TomoFunctionsFunctions, TomoDisplayFunctions, functions, titles, function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, count = create_page()
 # Route for documentation page
 @app.route("/Doc")
-def displayDocumentationPage():
+@app.route("/Doc/<display>")
+def displayDocumentationPage(display='Tomography'):
 
-    return render_template("DocumentationPage.html")
+    return render_template("DocumentationPage2.html", disp=display, TomoClassFunctions=TomoClassFunctions,
+                           TomoFunctionsFunctions=TomoFunctionsFunctions, TomoDisplayFunctions=TomoDisplayFunctions,
+                           functions=functions, titles=titles, function_parameters=function_parameters,
+                           descriptions=descriptions, param_bools=param_bools, return_bools=return_bools,
+                           param_dicts=param_dicts, return_dicts=return_dicts, count=count)
 
 
 if __name__ == "__main__":
