@@ -126,13 +126,14 @@ def plot_everything(eps='1', dec='1', bac='0'):
     return response
 
 
-TomoClassFunctions, TomoFunctionsFunctions, TomoDisplayFunctions, functions, titles, function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, count = create_page()
+TomoClassFunctions, TomoFunctionsFunctions, TomoDisplayFunctions, functions, \
+    titles, function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, count = create_page()
 # Route for documentation page
-@app.route("/Doc")
+@app.route("/Doc/")
 @app.route("/Doc/<display>")
 def displayDocumentationPage(display='Tomography'):
 
-    return render_template("DocumentationPage2.html", disp=display, TomoClassFunctions=TomoClassFunctions,
+    return render_template("DocumentationPage.html", disp=display, TomoClassFunctions=TomoClassFunctions,
                            TomoFunctionsFunctions=TomoFunctionsFunctions, TomoDisplayFunctions=TomoDisplayFunctions,
                            functions=functions, titles=titles, function_parameters=function_parameters,
                            descriptions=descriptions, param_bools=param_bools, return_bools=return_bools,

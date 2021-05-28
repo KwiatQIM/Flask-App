@@ -1,20 +1,4 @@
 {% extends 'base.html' %}
-
-<!-- This is how the base file for this page (no automation) should look:-->
-<!-- <div class="container"> -->
-<!--    <div class="row"> -->
-<!--        <div class="col-md-3" id="TableOfContents"> -->
-<!--            <h3 style="text-align:center;">Table of Contents</h3> -->
-<!--            <h4>TomoClass</h4>  comment(TomoClass)  -->
-<!--            <h4>TomoFunctions</h4> comment(TomoFunctions) -->
-<!--            <h4>TomoDisplay</h4> comment(TomoDisplay) -->
-<!--            <h4>Other Files</h4> comment(Other Files) -->
-<!--         </div> -->
-<!--        <div class='col-md-9' id='Methods'> comment(Open Methods Div) -->
-<!--        </div> comment(Closing the Methods Div)  -->
-<!--    </div> -->
-<!--</div >-->
-
 {% block head %}
 {% endblock %}
 
@@ -25,1467 +9,294 @@
             <div class="col-md-3" id="TableOfContents">
                 <h3 style="text-align:center;">Table of Contents</h3>
                 <h4>TomoClass</h4> <!-- TomoClass -->
-<ul>
-  <li><a href="{{ url_for('displayDocumentationPage',display='tomography') }}">Tomography</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='setconfsetting') }}">setConfSetting</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='importconf') }}">importConf</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='importdata') }}">importData</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='importeval') }}">importEval</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='standardizeconf') }}">standardizeConf</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='state_tomography') }}">state_tomography</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='state_tomo') }}">state_tomo</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='maximum_likelihood_tomography') }}">maximum_likelihood_tomography</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='maxlike_fitness') }}">maxlike_fitness</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='maxlike_fitness_hedged') }}">maxlike_fitness_hedged</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='linear_tomography') }}">linear_tomography</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='filter_data') }}">filter_data</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='buildtomoinput') }}">buildTomoInput</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getnumcoinc') }}">getNumCoinc</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getnumsingles') }}">getNumSingles</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getcoincidences') }}">getCoincidences</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getsingles') }}">getSingles</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='gettimes') }}">getTimes</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getmeasurements') }}">getMeasurements</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getnumbits') }}">getNumBits</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getnumdetperqubit') }}">getNumDetPerQubit</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getnumofdetectorstotal') }}">getNumOfDetectorsTotal</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='numbits') }}">numBits</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='gettomoinputtemplate') }}">getTomoInputTemplate</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getproperties') }}">getProperties</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='tomography_states_generator') }}">tomography_states_generator</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='getbellsettings') }}">getBellSettings</a></li>
-</ul>
+                <ul>
+                    <li><a href="{{url_for('displayDocumentationPage', display = 'Tomography') }}">Tomography</a></li>
+                    {% for function in TomoClassFunctions %}
+                    <li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
+                    {% endfor %}
+                </ul>
                 <h4>TomoFunctions</h4> <!-- TomoFunctions -->
-<ul>
-  <li><a href="{{ url_for('displayDocumentationPage',display='function') }}">Function</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='density2tm') }}">density2tm</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='density2t') }}">density2t</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='todensity') }}">toDensity</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='t_matrix') }}">t_matrix</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='t_to_density') }}">t_to_density</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='fidelity') }}">fidelity</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='concurrence') }}">concurrence</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='tangle') }}">tangle</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='entropy') }}">entropy</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='linear_entropy') }}">linear_entropy</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='negativity') }}">negativity</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='purity') }}">purity</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='partial_transpose') }}">partial_transpose</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='performoperation') }}">performOperation</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='random_pure_state') }}">random_pure_state</a></li>
-</ul>
+                <ul>
+                    {% for function in TomoFunctionsFunctions %}
+                    <li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
+                    {% endfor %}
+                </ul>
                 <h4>TomoDisplay</h4> <!-- TomoDisplay -->
-<ul>
-  <li><a href="{{ url_for('displayDocumentationPage',display='makerhoimages') }}">makeRhoImages</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='saverhoimages') }}">saveRhoImages</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='printlastoutput') }}">printLastOutput</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='matrixtohtml') }}">matrixToHTML</a></li>
-  <li><a href="{{ url_for('displayDocumentationPage',display='propertiestohtml') }}">propertiesToHTML</a></li>
-</ul>
+                <ul>
+                    {% for function in TomoDisplayFunctions %}
+                    <li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
+                    {% endfor %}
+                </ul>
                 <h4>Other Files</h4> <!-- Other Files -->
+                <ul>
+                    <li><a href="{{url_for('displayDocumentationPage', display='Conf File') }}">Conf File</a></li>
+                    <li><a href="{{url_for('displayDocumentationPage', display='Data File') }}">Data File</a></li>
+                    <li><a href="{{url_for('displayDocumentationPage', display='Eval File') }}">Eval File</a></li>
+                </ul>
             </div>
-            <div class='col-md-9' id='Methods'> <!-- Open Methods Div -->
-<div>
-  <div class="MethodInfo" id="Tomography.Tomography" style="{% if disp == 'tomography' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.Tomography</h1>
-    <h3 class="MethodInfo">Tomography.class Tomography()</h3>
-    <p class="methodShortDesc">This is the main tomography object that the library is built around. The goal is to only have one tomography object and edit the configuration settings as you go.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.setConfSetting" style="{% if disp == 'setconfsetting' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.setConfSetting</h1>
-    <h3 class="MethodInfo">Tomography.setConfSetting(setting, val)</h3>
-    <p class="methodShortDesc">Sets a specific self.conf setting</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    setting : string</h4>
-              <p>         The setting you want to update.         Possible values are ['NQubits', 'NDetectors', 'Crosstalk', 'Bellstate', 'DoDriftCorrection', 'DoAccidentalCorrection', 'DoErrorEstimation', 'Window', 'Efficiency', 'RhoStart', 'Beta']</p>
-            </li>
-            <li>
-              <h4>    val : ndarray, int, or string</h4>
-              <p>             The new value you want to the setting to be.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.importConf" style="{% if disp == 'importconf' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.importConf</h1>
-    <h3 class="MethodInfo">Tomography.importConf(conftxt)</h3>
-    <p class="methodShortDesc">Import a text file containing the configuration settings.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    conftxt : string</h4>
-              <p>         path to configuration file</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.importData" style="{% if disp == 'importdata' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.importData</h1>
-    <h3 class="MethodInfo">Tomography.importData(datatxt)</h3>
-    <p class="methodShortDesc">Import a text file containing the tomography data and run tomography.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>   datatxt : string</h4>
-              <p>        path to data file</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The predicted density matrix.</p>
-            </li>
-            <li>
-              <h4>    intensity : float</h4>
-              <p>         The predicted overall intensity used to normalize the state.</p>
-            </li>
-            <li>
-              <h4>    fvalp : float</h4>
-              <p>         Final value of the internal optimization function. Values greater than the number         of measurements indicate poor agreement with a quantum state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.importEval" style="{% if disp == 'importeval' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.importEval</h1>
-    <h3 class="MethodInfo">Tomography.importEval(evaltxt)</h3>
-    <p class="methodShortDesc">Import a eval file containing the tomography data and the configuration setting, then run tomography.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    evaltxt : string</h4>
-              <p>         path to eval file</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The predicted density matrix.</p>
-            </li>
-            <li>
-              <h4>    intensity : float</h4>
-              <p>         The predicted overall intensity used to normalize the state.</p>
-            </li>
-            <li>
-              <h4>    fvalp : float</h4>
-              <p>         Final value of the internal optimization function. Values greater than the number         of measurements indicate poor agreement with a quantum state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.standardizeConf" style="{% if disp == 'standardizeconf' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.standardizeConf</h1>
-    <h3 class="MethodInfo">Tomography.standardizeConf()</h3>
-    <p class="methodShortDesc">Helper function to handle different cases of conf inputs.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.state_tomography" style="{% if disp == 'state_tomography' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.state_tomography</h1>
-    <h3 class="MethodInfo">Tomography.state_tomography(tomo_input, intensities)</h3>
-    <p class="methodShortDesc">Main function that runs tomography.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    tomo_input : ndarray</h4>
-              <p>         The input data for the current tomography. This is what tomo_input will be set to. Example can be seen at top of page.          See getTomoInputTemplate() to get a template for this input.</p>
-            </li>
-            <li>
-              <h4>    intensities : 1darray with length = number of measurements</h4>
-              <p>         Relative pump power (arb. units) during measurement; used for drift correction. Default will be an array of ones</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The predicted density matrix.</p>
-            </li>
-            <li>
-              <h4>    intensity : The predicted overall intensity used to normalize the state.</h4>
-              <p>         The predicted overall intensity used to normalize the state. </p>
-            </li>
-            <li>
-              <h4>    fvalp : float</h4>
-              <p>         Final value of the internal optimization function. Values greater than the number         of measurements indicate poor agreement with a quantum state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.state_tomo" style="{% if disp == 'state_tomo' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.state_tomo</h1>
-    <h3 class="MethodInfo">Tomography.state_tomo(measurements, counts)</h3>
-    <p class="methodShortDesc">Description not currently available</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.maximum_likelihood_tomography" style="{% if disp == 'maximum_likelihood_tomography' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.maximum_likelihood_tomography</h1>
-    <h3 class="MethodInfo">Tomography.maximum_likelihood_tomography(starting_matrix, coincidences, m, acc)</h3>
-    <p class="methodShortDesc">Calculates the most likely state given the data.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    starting_matrix : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The starting predicted state found with linear tomography.</p>
-            </li>
-            <li>
-              <h4>    coincidences : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The counts of the tomography.</p>
-            </li>
-            <li>
-              <h4>    m : ndarray with shape = (2^numQubits, 2^numQubits, number of measurements)</h4>
-              <p>         The measurements of the tomography in density matrix form.</p>
-            </li>
-            <li>
-              <h4>    acc : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The singles values of the tomography. Used for accidental correction.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The predicted density matrix.</p>
-            </li>
-            <li>
-              <h4>    intensity : float</h4>
-              <p>         The predicted overall intensity used to normalize the state.</p>
-            </li>
-            <li>
-              <h4>    fvalp : float</h4>
-              <p>         Final value of the internal optimization function. Values greater than the number         of measurements indicate poor agreement with a quantum state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.maxlike_fitness" style="{% if disp == 'maxlike_fitness' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.maxlike_fitness</h1>
-    <h3 class="MethodInfo">Tomography.maxlike_fitness(t, coincidences, accidentals, m, prediction)</h3>
-    <p class="methodShortDesc">Calculates the diffrence between the current predicted state data and the actual data.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    t : ndarray</h4>
-              <p>         T values of the current predicted state.</p>
-            </li>
-            <li>
-              <h4>    coincidences : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The counts of the tomography.</p>
-            </li>
-            <li>
-              <h4>    accidentals : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The singles values of the tomography. Used for accidental correction.</p>
-            </li>
-            <li>
-              <h4>    m : ndarray with shape = (2^numQubits, 2^numQubits, number of measurements)</h4>
-              <p>         The measurements of the tomography in density matrix form.</p>
-            </li>
-            <li>
-              <h4>    prediction : ndarray</h4>
-              <p>         Predicted counts from the predicted state. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         value of the optimization function.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.maxlike_fitness_hedged" style="{% if disp == 'maxlike_fitness_hedged' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.maxlike_fitness_hedged</h1>
-    <h3 class="MethodInfo">Tomography.maxlike_fitness_hedged(t, coincidences, accidentals, m, prediction, bet)</h3>
-    <p class="methodShortDesc">Calculates the diffrence between the current predicted state data and the actual data using hedged maximum likelihood.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    t : ndarray</h4>
-              <p>         T values of the current predicted state.</p>
-            </li>
-            <li>
-              <h4>    coincidences : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The counts of the tomography.</p>
-            </li>
-            <li>
-              <h4>    accidentals : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The singles values of the tomography. Used for accidental correction.</p>
-            </li>
-            <li>
-              <h4>    m : ndarray with shape = (2^numQubits, 2^numQubits, number of measurements)</h4>
-              <p>         The measurements of the tomography in density matrix form .</p>
-            </li>
-            <li>
-              <h4>    prediction : ndarray</h4>
-              <p>         Predicted counts from the predicted state.</p>
-            </li>
-            <li>
-              <h4>    bet : float 0 to .5</h4>
-              <p>         The beta value used. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         value of the optimization function.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.linear_tomography" style="{% if disp == 'linear_tomography' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.linear_tomography</h1>
-    <h3 class="MethodInfo">Tomography.linear_tomography(coincidences, measurements)</h3>
-    <p class="methodShortDesc">Uses linear techniques to find a starting state for maximum likelihood estimation.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    coincidences : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The counts of the tomography.</p>
-            </li>
-            <li>
-              <h4>    measurements : ndarray with shape = (number of measurements, 2*numQubits)</h4>
-              <p>         The measurements of the tomography in pure state form . </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The starting predicted state.</p>
-            </li>
-            <li>
-              <h4>    intensity : float</h4>
-              <p>         The predicted overall intensity used to normalize the state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.filter_data" style="{% if disp == 'filter_data' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.filter_data</h1>
-    <h3 class="MethodInfo">Tomography.filter_data(tomo_input, intensities)</h3>
-    <p class="methodShortDesc">Filters the data into separate arrays.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    tomo_input : ndarray</h4>
-              <p>         The input data for the current tomography. This is what self.tomo_input will be set to. Example can be seen at top of page.          See getTomoInputTemplate() to get a template for this input.</p>
-            </li>
-            <li>
-              <h4>    intensities : 1darray with length = number of measurements</h4>
-              <p>         Relative pump power (arb. units) during measurement; used for drift correction. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    data : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The counts/coincidences of the tomography.</p>
-            </li>
-            <li>
-              <h4>    measurements_densities : ndarray with shape = (2^numQubits, 2^numQubits, number of measurements)</h4>
-              <p>         The measurements of the tomography in density matrix form.</p>
-            </li>
-            <li>
-              <h4>    measurements_pures : ndarray with shape = (number of measurements, 2*numQubits)</h4>
-              <p>         The measurements of the tomography in pure state form.</p>
-            </li>
-            <li>
-              <h4>    acc : ndarray with length = number of measurements or shape = (number of measurements, 2^numQubits) for 2 det/qubit</h4>
-              <p>         The singles values of the tomography. Used for accidental correction.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.buildTomoInput" style="{% if disp == 'buildtomoinput' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.buildTomoInput</h1>
-    <h3 class="MethodInfo">Tomography.buildTomoInput(tomo_input, intensities)</h3>
-    <p class="methodShortDesc">Description not currently available</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getNumCoinc" style="{% if disp == 'getnumcoinc' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getNumCoinc</h1>
-    <h3 class="MethodInfo">Tomography.getNumCoinc()</h3>
-    <p class="methodShortDesc">Returns the number of coincidences per measurement for the current configurations.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getNumSingles" style="{% if disp == 'getnumsingles' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getNumSingles</h1>
-    <h3 class="MethodInfo">Tomography.getNumSingles()</h3>
-    <p class="methodShortDesc">Returns the number of singles per measurement for the current configurations.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getCoincidences" style="{% if disp == 'getcoincidences' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getCoincidences</h1>
-    <h3 class="MethodInfo">Tomography.getCoincidences()</h3>
-    <p class="methodShortDesc">Returns an array of counts for all the measurments.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getSingles" style="{% if disp == 'getsingles' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getSingles</h1>
-    <h3 class="MethodInfo">Tomography.getSingles()</h3>
-    <p class="methodShortDesc">Returns an array of singles for all the measurments.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getTimes" style="{% if disp == 'gettimes' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getTimes</h1>
-    <h3 class="MethodInfo">Tomography.getTimes()</h3>
-    <p class="methodShortDesc">Returns an array of times for all the measurments.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getMeasurements" style="{% if disp == 'getmeasurements' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getMeasurements</h1>
-    <h3 class="MethodInfo">Tomography.getMeasurements()</h3>
-    <p class="methodShortDesc">Returns an array of measurements in pure state form for all the measurments.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getNumBits" style="{% if disp == 'getnumbits' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getNumBits</h1>
-    <h3 class="MethodInfo">Tomography.getNumBits()</h3>
-    <p class="methodShortDesc">returns the number of qubits for the current configurations.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getNumDetPerQubit" style="{% if disp == 'getnumdetperqubit' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getNumDetPerQubit</h1>
-    <h3 class="MethodInfo">Tomography.getNumDetPerQubit()</h3>
-    <p class="methodShortDesc">returns the number of detectors per qubit for the current configurations.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.getNumOfDetectorsTotal" style="{% if disp == 'getnumofdetectorstotal' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getNumOfDetectorsTotal</h1>
-    <h3 class="MethodInfo">Tomography.getNumOfDetectorsTotal()</h3>
-    <p class="methodShortDesc">Returns the total number of detectors for the current configurations.</p>
-  </div>
-  <div class="MethodInfo" id="Tomography.numBits" style="{% if disp == 'numbits' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.numBits</h1>
-    <h3 class="MethodInfo">Tomography.numBits(numBits)</h3>
-    <p class="methodShortDesc">Returns an array of standard measurments in pure state form for the given number of qubits.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    numBits : int</h4>
-              <p>         number of qubits you want for each measurement. Default will use the number of qubits in the current configurations.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.getTomoInputTemplate" style="{% if disp == 'gettomoinputtemplate' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getTomoInputTemplate</h1>
-    <h3 class="MethodInfo">Tomography.getTomoInputTemplate()</h3>
-    <p class="methodShortDesc">returns a standard template for tomo_input for the given number of qubits.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    numBits : int</h4>
-              <p>         number of qubits you want for each measurement. Default will use the number of qubits in the current configurations. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    Tomoinput : ndarray</h4>
-              <p>         The input data for the current tomography. This is what tomo_input will be set to. Example can be seen at top of page.          See getTomoInputTemplate() to get a template for this input.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.getProperties" style="{% if disp == 'getproperties' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getProperties</h1>
-    <h3 class="MethodInfo">Tomography.getProperties(rho, bounds)</h3>
-    <p class="methodShortDesc">Returns all the properties of the given density matrix. Using bounds will not change the conf settings. The calculated properties are determined by self.err_functions.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rho : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The density matrix you would like to know the properties of.</p>
-            </li>
-            <li>
-              <h4>    bounds : boolean</h4>
-              <p>         Set this to true if you want error bounds on your estimated property values. Default is False.         These are determined with monte carlo simulation and the states are saved under self.mont_carl_states </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    vals : ndarray with shape = (length of self.err_functions, 2)</h4>
-              <p>         The first col is the name of the property.         The second col is the value of the property.         The third col is the error bound on the property.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.tomography_states_generator" style="{% if disp == 'tomography_states_generator' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.tomography_states_generator</h1>
-    <h3 class="MethodInfo">Tomography.tomography_states_generator(n)</h3>
-    <p class="methodShortDesc">Uses monte carlo simulation to create random states similar to the estimated state. The states are also saved under self.mont_carl_states</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    n : int</h4>
-              <p>         Number of approximate states you want to create.         If no value is given it will use the conf settings.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhop : ndarray with shape = (n, 2^numQubits, 2^numQubits)</h4>
-              <p>         The approximate density matrices.</p>
-            </li>
-            <li>
-              <h4>    intenp : ndarray with length = n</h4>
-              <p>         The intensity of each approximate density matrices.</p>
-            </li>
-            <li>
-              <h4>    fvalp : ndarray with length = n</h4>
-              <p>         The fval of the regression associated with each approximate density matrices.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Tomography.getBellSettings" style="{% if disp == 'getbellsettings' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Tomography.getBellSettings</h1>
-    <h3 class="MethodInfo">Tomography.getBellSettings(rho, bounds = -1)</h3>
-    <p class="methodShortDesc">Returns the optimal measurment settings for the CHSH bell inequality. Using bounds will not change the conf settings.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>        DISCLAIMER : In Progress, have not checked.</h4>
-              <p> </p>
-            </li>
-            <li>
-              <h4>        rho : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>             The density matrix you would like to know the optimal bell measurment settings of.</p>
-            </li>
-            <li>
-              <h4>        bounds : boolean</h4>
-              <p>             Set this to true if you want error bounds on your estimated measurment settings. Default will use the conf settings.             These are determined with monte carlo simulation and the states are saved under self.mont_carl_states </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>        vals : ndarray with shape = (length of self.err_functions, 2 or 3)</h4>
-              <p>             The first col is the associated side             The second col is the detector settings on the associated side.             The third col is the error bound on the detector settings.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="Function" style="{% if disp == 'function' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">Function</h1>
-    <h3 class="MethodInfo">Function()</h3>
-    <p class="methodShortDesc">short desc</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    x1, x2 : ndarray</h4>
-              <p>         Input arrays to be multiplied. If ``x1.shape != x2.shape``, they must be broadcastable to a common shape (which becomes the shape of the output). </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    y : ndarray</h4>
-              <p>         The product of `x1` and `x2`, element-wise.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="density2tm" style="{% if disp == 'density2tm' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">density2tm</h1>
-    <h3 class="MethodInfo">density2tm(rhog)</h3>
-    <p class="methodShortDesc">Converts a density matrix into a lower t matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Array to be converted. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    tm : ndarray</h4>
-              <p>         Lower t matrix defining the input matrix.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="density2t" style="{% if disp == 'density2t' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">density2t</h1>
-    <h3 class="MethodInfo">density2t(rhog)</h3>
-    <p class="methodShortDesc">Converts a density matrix into a list of t values</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Array to be converted. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    t : ndarray</h4>
-              <p>         List of t values defining the input matrix.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="toDensity" style="{% if disp == 'todensity' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">toDensity</h1>
-    <h3 class="MethodInfo">toDensity(psiMat)</h3>
-    <p class="methodShortDesc">Converts a pure state into a density matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    psiMat : ndarray</h4>
-              <p>         Pure state to be converted. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    psiMat : ndarray</h4>
-              <p>     rhog: ndarray         Density Matrix of the input state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="t_matrix" style="{% if disp == 't_matrix' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">t_matrix</h1>
-    <h3 class="MethodInfo">t_matrix(t)</h3>
-    <p class="methodShortDesc">Converts a list of t values to an lower t matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    t : ndarray</h4>
-              <p>         List of t values converted. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    tm : ndarray</h4>
-              <p>         Lower t matrix.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="t_to_density" style="{% if disp == 't_to_density' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">t_to_density</h1>
-    <h3 class="MethodInfo">t_to_density(t)</h3>
-    <p class="methodShortDesc">Converts a list of t values to a density matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    t : ndarray</h4>
-              <p>         List of t values converted. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Density Matrix.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="fidelity" style="{% if disp == 'fidelity' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">fidelity</h1>
-    <h3 class="MethodInfo">fidelity(state1, state2)</h3>
-    <p class="methodShortDesc">Calculates the fidelity between the two input states.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    state1, state2 : ndarray</h4>
-              <p>         Input arrays to calculate the fidelity between. Can be pure states or density matrices. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         The calculated fidelity.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="concurrence" style="{% if disp == 'concurrence' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">concurrence</h1>
-    <h3 class="MethodInfo">concurrence(rhog)</h3>
-    <p class="methodShortDesc">Calculates the concurrence of the input state.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Density Matrix of the desired state. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         The calculated concurrence.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="tangle" style="{% if disp == 'tangle' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">tangle</h1>
-    <h3 class="MethodInfo">tangle(rhog)</h3>
-    <p class="methodShortDesc">Calculates the tangle of the input state.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Density Matrix of the desired state. Tangle is calculated by squaring the concurrence. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         The calculated tangle.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="entropy" style="{% if disp == 'entropy' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">entropy</h1>
-    <h3 class="MethodInfo">entropy(rhog)</h3>
-    <p class="methodShortDesc">Calculates the Von Neumann Entropy of the input state.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Density Matrix of the desired state. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         The calculated entropy.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="linear_entropy" style="{% if disp == 'linear_entropy' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">linear_entropy</h1>
-    <h3 class="MethodInfo">linear_entropy(rhog)</h3>
-    <p class="methodShortDesc">Calculates the linear entropy of the input state.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Density Matrix of the desired state. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         The calculated linear entropy ranging from 0 to 1/(2^numQubits).         A value of zero corresponds to a completly pure state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="negativity" style="{% if disp == 'negativity' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">negativity</h1>
-    <h3 class="MethodInfo">negativity(rhog)</h3>
-    <p class="methodShortDesc">Calculates the negativity of the input state.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Density Matrix of the desired state. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         The calculated negativity.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="purity" style="{% if disp == 'purity' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">purity</h1>
-    <h3 class="MethodInfo">purity(rhog)</h3>
-    <p class="methodShortDesc">Calculates the purity of the input state.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Density Matrix of the desired state. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    val : float</h4>
-              <p>         The calculated purity ranging from 1/(2^numQubits) to 1.         A value of one corresponds to a completly pure state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="partial_transpose" style="{% if disp == 'partial_transpose' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">partial_transpose</h1>
-    <h3 class="MethodInfo">partial_transpose(rhog)</h3>
-    <p class="methodShortDesc">Returns the partial transpose of the input density matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    DISCLAIMER : In Progress, not checked.</h4>
-              <p> </p>
-            </li>
-            <li>
-              <h4>    rhog : ndarray</h4>
-              <p>         Input arrays find the partial transpose of. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    rv : ndarray</h4>
-              <p>         Partial transpose of rhog.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="performOperation" style="{% if disp == 'performoperation' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">performOperation</h1>
-    <h3 class="MethodInfo">performOperation(psi, g)</h3>
-    <p class="methodShortDesc">Performs the operations on the input State.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    psi : ndarray</h4>
-              <p>         The input state to do the operation on. Can be a pure state or a density matrix.</p>
-            </li>
-            <li>
-              <h4>    g : ndarray with shape = (num operations, 2^numQubits, 2^numQubits)</h4>
-              <p>         The operations you would like to be done. Can be one operation or an array of operations. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    p : ndarray</h4>
-              <p>         The output state after the operations. Will retain the input form.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="random_pure_state" style="{% if disp == 'random_pure_state' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">random_pure_state</h1>
-    <h3 class="MethodInfo">random_pure_state(N)</h3>
-    <p class="methodShortDesc">Returns a random quantum state from a uniform distribution across the space.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    N : int</h4>
-              <p>         The dimension of the quantum state </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    pure_state : ndarray with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         The random quantum state.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="makeRhoImages" style="{% if disp == 'makerhoimages' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">makeRhoImages</h1>
-    <h3 class="MethodInfo">makeRhoImages(p, plt_given, customColor)</h3>
-    <p class="methodShortDesc">Creates matlab plots of the density matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    p : ndarray with shape = (n, 2^numQubits, 2^numQubits)</h4>
-              <p>         The density matrix you want to create plots of.</p>
-            </li>
-            <li>
-              <h4>    plt_given : matplotlib.pyplot</h4>
-              <p>         Input pyplot for which the figures will be saved on to.</p>
-            </li>
-            <li>
-              <h4>    customColor : boolean</h4>
-              <p>         Specify if you want our custom colorMap. Default is true</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="saveRhoImages" style="{% if disp == 'saverhoimages' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">saveRhoImages</h1>
-    <h3 class="MethodInfo">saveRhoImages(p, pathToDirectory, customColor)</h3>
-    <p class="methodShortDesc">Creates and saves matlab plots of the density matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    p : ndarray with shape = (n, 2^numQubits, 2^numQubits)</h4>
-              <p>         The density matrix you want to create plots of.</p>
-            </li>
-            <li>
-              <h4>    pathToDirectory : string</h4>
-              <p>         Path to where you want your images to be saved.</p>
-            </li>
-            <li>
-              <h4>    customColor : boolean</h4>
-              <p>         Specify if you want our custom colorMap. Default is true.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="printLastOutput" style="{% if disp == 'printlastoutput' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">printLastOutput</h1>
-    <h3 class="MethodInfo">printLastOutput(tomo, bounds)</h3>
-    <p class="methodShortDesc">Prints the properties of the last tomography to the console. Properties are defined in tomography conf settings. Using bounds will not change the conf settings. The calculated properties are determined by self.err_functions.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    tomo : Tomography() Object</h4>
-              <p>         This is the main tomography object. It will get the data from it's last tomography and print it.</p>
-            </li>
-            <li>
-              <h4>    bounds : boolean</h4>
-              <p>         Set this to true if you want error bounds on your estimated property values. Default is False.         These are determined with monte carlo simulation and the states are saved under self.mont_carl_states</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="matrixToHTML" style="{% if disp == 'matrixtohtml' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">matrixToHTML</h1>
-    <h3 class="MethodInfo">matrixToHTML(M)</h3>
-    <p class="methodShortDesc">Creates an HTML table based on the given matrix.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    M : 2d numpy array with shape = (2^numQubits, 2^numQubits)</h4>
-              <p>         Matrix you would like to display on your html page.</p>
-            </li>
-            <li>
-              <h4>    printEigenVals : boolean</h4>
-              <p>         Specify if you want eigen values to be calculated and displayed at the bottom of the table.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    res : string</h4>
-              <p>         HTML code of the created table.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="MethodInfo" id="propertiesToHTML" style="{% if disp == 'propertiestohtml' %}'display:inline;' {% else %} 'display:none;' {% endif %} ">
-    <h1 class="MethodTitle">propertiesToHTML</h1>
-    <h3 class="MethodInfo">propertiesToHTML(vals)</h3>
-    <p class="methodShortDesc">Creates an HTML table based on the given property values.</p>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Parameters:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    vals : ndarray with shape = (length of self.err_functions, 2)</h4>
-              <p>         The first col is the name of the property.         The second col is the value of the property.         The third col is the error bound on the property. </p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <table class="paramReturn">
-      <tr>
-        <td class="header">
-          <h6>Returns:</h6>
-        </td>
-        <td class="list">
-          <ul>
-            <li>
-              <h4>    res : string</h4>
-              <p>         HTML code of the created table.</p>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+            <div class='col-md-9'> <!-- Open Methods Div -->
+                <div id="Methods">
+                    <div class="MethodInfo" id="Tomography" style={% if disp == 'Tomography' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+                        <h3 class="methodSyntax" style="display:inline;">Class </h3>
+						<h1 style="display:inline;" class="MethodTitle">Tomography</h1>
+						<h3 class="methodSyntax">Tomography()</h3>
+						<p class="methodShortDesc">This is the main tomography object that the library is built around. The goal is to only have one tomography object and edit the
+							configuration settings as you go.<br>The constructor initializes the conf settings and error functions with the default values below:
+						</p>
+						<code>
+							self.conf = {'NQubits': 2,<br>
+							'NDetectors': 1,<br>
+							'Crosstalk': np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]),<br>
+							'Bellstate': 0,<br>
+							'DoDriftCorrection': 0,<br>
+							'DoAccidentalCorrection' : 1,<br>
+							'DoErrorEstimation': 0,<br>
+							'Window': 0,<br>
+							'Efficiency': 0,<br>
+							'RhoStart': [],<br>
+							'IntensityMap': [[1]],<br>
+							'Beta': 0}<br>
+							self.err_functions = ['concurrence','tangle','entropy','linear_entropy','negativity','purity']
+						</code>
+						<div id="TableOfContents" style="padding-top:15px;">
+							<h4>See Also:</h4>
+							<ul>
+								<li><a href="{{url_for('displayDocumentationPage', display='importEval') }}">importEval</a></li>
+								<li><a href="{{url_for('displayDocumentationPage', display='importConf') }}">importConf</a></li>
+								<li><a href="{{url_for('displayDocumentationPage', display='importData') }}">importData</a></li>
+							</ul>
+						</div>
+                    </div>
+                    {% for i in range(count) %}
+                    <div class="MethodInfo" id="{{ titles[i] }}" style={% if disp == functions[i] %}"display:inline;" {% else %} "display:none;" {% endif %}>
+                        <h1 class="MethodTitle">{{ titles[i] }}</h1>
+                        <h3 class="MethodInfo">{{ function_parameters[i] }}</h3>
+                        <p class="methodShortDesc">{{ descriptions[i] }}</p>
+                        {% if param_bools[i] %}
+                        <table class="paramReturn">
+                            <tr>
+                                <td class="header">
+                                    <h6>Parameters:</h6>
+                                </td>
+                                <td class="list">
+                                    <ul>
+                                        {% for param, desc in param_dicts[i].items() %}
+                                            <li>
+                                                <h4>{{param}}</h4>
+                                                <p>{{desc}}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                        {% endif %}
+                        {% if return_bools[i] %}
+                        <table class="paramReturn">
+                            <tr>
+                                <td class="header">
+                                    <h6>Returns:</h6>
+                                </td>
+                                <td class="list">
+                                    <ul>
+                                        {% for returnVal, desc in return_dicts[i].items() %}
+                                            <li>
+                                                <h4>{{returnVal}}</h4>
+                                                <p>{{desc}}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+
+                    <div class="MethodInfo" id="Conf File" style={% if disp == 'Conf File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+						<h1 class="MethodTitle">Conf File</h1>
+						<p class="methodShortDesc">This file states the configurations of the tomography. The syntax of the txt file is python. You write the
+							conf settings just like you would set a python dictionary.</p>
+						<p>These are the following configuration settings:</p>
+						<ul>
+							<li>'NQubits'<ul>
+									<li>Values : &gt;= 1</li>
+									<li>Desc : The number of qubits the quantum state has. It will take exponentially more time for more qubits.</li>
+									<li>Default : 2</li>
+								</ul>
+							</li>
+							<li>'NDetectors'<ul>
+									<li>Values : 1 or 2</li>
+									<li>Desc : The number of detectors per qubit used during the physical tomography of the quantum state.</li>
+									<li>Default : 1</li>
+								</ul>
+							</li>
+							<li>'ctalk'<ul>
+									<li>Values : matrix that is (2^NQubits) by (2^NQubits)</li>
+									<li>Desc : Cross talk Matrix of the setup.</li>
+									<li>Default : identity matrix with appropriate size</li>
+								</ul>
+							</li>
+							<li>'Bellstate'<ul>
+									<li>Values : 'no' or 'yes'</li>
+									<li>Desc : Give the optimal measurement settings for a CHSH bell inequality for the estimated density matrix.
+										These settings are found through a numerical search over all possible measurement settings.</li>
+									<li>Default : 'no'</li>
+								</ul>
+							</li>
+							<li>'DoDriftCorrection'<ul>
+									<li>Values : 'no' or 'yes'</li>
+									<li>Desc : Whether of not you want to perform drift correction on the state</li>
+									<li>Default : 'no'</li>
+								</ul>
+							</li>
+							<li>'DoAccidentalCorrection'<ul>
+									<li>Values : 'no' or 'yes'</li>
+									<li>Desc : Whether of not you want to perform accidental corrections on the state.</li>
+									<li>Default : 'no'</li>
+								</ul>
+							</li>
+							<li>'Window'<ul>
+									<li>Values : 0 or array like, dimension = 1</li>
+									<li>Desc : Coincidence window durations (in nanoseconds) to calculate the accidental rates. The
+										four windows should be entered in the order of the detector pairs 1-2, 1-4, 3-2, 3-4, where A-B
+										corresponds to a coincidence measurement between detector A and detector B.</li>
+									<li>Default : '0'</li>
+								</ul>
+							</li>
+							<li>'Efficiency'<ul>
+									<li>Values : 0 or array like, dimension = 1</li>
+									<li>Desc : vector that lists the relative coincidence efficiencies of detector pairs when using 2 detectors per
+										qubit. The order is detector 1-2, 1-4, 3-2, 3-4.</li>
+									<li>Default : 0</li>
+								</ul>
+						</ul>
+
+						<h3 class="Example">Example:</h3>
+						<code>conf['NQubits'] = 2
+							<br>conf['NDetectors'] = 1
+							<br>conf['Crosstalk'] = [[0.9842,0.0049,0.0049,0],[0.0079,0.9871,0,0.0050],[0.0079,0,0.9871,0.0050],[0.001,0.0079,0.0079,0.9901]]
+							<br>conf['UseDerivative'] = 0
+							<br>conf['Bellstate'] = 1
+							<br>conf['DoErrorEstimation'] = 3
+							<br>conf['DoDriftCorrection'] = 'no'
+							<br>conf['Window'] = 0
+							<br>conf['Efficiency'] = [0.9998,1.0146,0.9195,0.9265]
+						</code>
+						<div id="TableOfContents" style="padding-top:15px;">
+							<h4>See Also:</h4>
+							<ul>
+								<li><a href="{{url_for('displayDocumentationPage', display='Data File') }}">Data File</a></li>
+                                <li><a href="{{url_for('displayDocumentationPage', display='Eval File') }}">Eval File</a></li>
+							</ul>
+						</div>
+					</div>
+                    <div class="MethodInfo" id="Data File" style={% if disp == 'Data File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+						<h1 class="MethodTitle">Data File</h1>
+						<p class="methodShortDesc">This file states the data of the measurements.Both tomo_input the intensity must be specified. The syntax of the txt file is python. You write the
+							data settings just like you would set a python matrix.</p>
+						<p>This is the following layout of the tomo_input matrix:</p>
+						<ul>
+							<li>
+								<p>tomo_input</p>
+								<ul>
+									<li>Values : 2d numpy array</li>
+									<li>Desc : Relative pump power (arb. units) during measurement; used for drift correction.</li>
+									<h4 id="for-n-detectors-">For n detectors:</h4>
+									<li>tomo_input[ :, 0 ]: times</li>
+									<li>tomo_input[ :, 1 : n_qubit + 1) ]: singles</li>
+									<li>tomo_input[ :, n_qubit + 1 ]: coincidences</li>
+									<li>tomo_input[ :, n_qubit + 2 : 3 * n_qubit + 2) ]: measurements</li>
+									<h4 id="for-2n-detectors-">For 2n detectors:</h4>
+									<li>tomo_input[ :, 0 ]: times</li>
+									<li>tomo_input[ :, 1 : 2 * n_qubit + 1 ]: singles</li>
+									<li>tomo_input[ :, 2 * n_qubit + 1 : 2 ** n_qubit + 2 * n_qubit + 1 ]: coincidences</li>
+									<li>tomo_input[ :, 2 ** n_qubit + 2 * n_qubit + 1 : 2 ** n_qubit + 4 * n_qubit + 1 ]: measurements</li>
+								</ul>
+							</li>
+							<li>intensity<ul>
+									<li>Values : 1d numpy array</li>
+									<li>Desc : Relative pump power (arb. units) during measurement; used for drift correction. </li>
+								</ul>
+							</li>
+						</ul>
+						<h5 id="example-">Example:</h5>
+						<p>This example is for 2 qubits using 1 detector.</p>
+						<code>
+							tomo_input = np.array(<br>
+																		[[1,0,0,3708,1,0,1,0],<br>
+																		[1,0,0,77,1,0,0,1],<br>
+																		[1,0,0,1791,1,0,0.7071,0.7071],<br>
+																		[1,0,0,2048,1,0,0.7071,0.7071j],<br>
+																		[1,0,0,51,0,1,1,0],<br>
+																		[1,0,0,3642,0,1,0,1],<br>
+																		[1,0,0,2096,0,1,0.7071,0.7071],<br>
+																		[1,0,0,1926,0,1,0.7071,0.7071j],<br>
+																		[1,0,0,1766,0.7071,0.7071,1,0],<br>
+																		[1,0,0,1914,0.7071,0.7071,0,1],<br>
+																		[1,0,0,1713,0.7071,0.7071,0.7071,0.7071],<br>
+																		[1,0,0,3729,0.7071,0.7071,0.7071,0.7071j],<br>
+																		[1,0,0,2017,0.7071,0.7071j,1,0],<br>
+																		[1,0,0,1709,0.7071,0.7071j,0,1],<br>
+																		[1,0,0,3686,0.7071,0.7071j,0.7071,0.7071],<br>
+																		[1,0,0,2404,0.7071,0.7071j,0.7071,0.7071j]])<br>
+						intensity = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+						</code>
+						<div id="TableOfContents" style="padding-top:15px;">
+							<h4>See Also:</h4>
+							<ul>
+								<li><a href="{{url_for('displayDocumentationPage', display='Conf File') }}">Conf File</a></li>
+                                <li><a href="{{url_for('displayDocumentationPage', display='Eval File') }}">Eval File</a></li>
+							</ul>
+						</div>
+					</div>
+                    <div class="MethodInfo" id="Eval File" style={% if disp == 'Eval File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+						<h1 class="MethodTitle">Eval File</h1>
+						<p class="methodShortDesc">This text file contains all the information for a tomography. It is essentially a conf file and a data file combined into one file.</p>
+						<h5 id="example-">Example:</h5>
+						<p>This example is for 2 qubits using 1 detector.</p>
+						<code>
+							conf['NQubits'] = 2<br>conf['NDetectors'] = 1
+								<br>conf['Crosstalk'] = [[0.9842,0.0049,0.0049,0],[0.0079,0.9871,0,0.0050],[0.0079,0,0.9871,0.0050],[0.001,0.0079,0.0079,0.9901]]
+								<br>conf['UseDerivative'] = 0
+								<br>conf['Bellstate'] = 1
+								<br>conf['DoErrorEstimation'] = 3
+								<br>conf['DoDriftCorrection'] = 'no'
+								<br>conf['Window'] = 0
+								<br>conf['Efficiency'] = [0.9998,1.0146,0.9195,0.9265]<br>
+							tomo_input = np.array(<br>
+																		[[1,0,0,3708,1,0,1,0],<br>
+																		[1,0,0,77,1,0,0,1],<br>
+																		[1,0,0,1791,1,0,0.7071,0.7071],<br>
+																		[1,0,0,2048,1,0,0.7071,0.7071j],<br>
+																		[1,0,0,51,0,1,1,0],<br>
+																		[1,0,0,3642,0,1,0,1],<br>
+																		[1,0,0,2096,0,1,0.7071,0.7071],<br>
+																		[1,0,0,1926,0,1,0.7071,0.7071j],<br>
+																		[1,0,0,1766,0.7071,0.7071,1,0],<br>
+																		[1,0,0,1914,0.7071,0.7071,0,1],<br>
+																		[1,0,0,1713,0.7071,0.7071,0.7071,0.7071],<br>
+																		[1,0,0,3729,0.7071,0.7071,0.7071,0.7071j],<br>
+																		[1,0,0,2017,0.7071,0.7071j,1,0],<br>
+																		[1,0,0,1709,0.7071,0.7071j,0,1],<br>
+																		[1,0,0,3686,0.7071,0.7071j,0.7071,0.7071],<br>
+																		[1,0,0,2404,0.7071,0.7071j,0.7071,0.7071j]])<br>
+						intensity = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+						</code>
+						<div id="TableOfContents" style="padding-top:15px;">
+							<h4>See Also:</h4>
+							<ul>
+								<li><a href="{{url_for('displayDocumentationPage', display='Conf File') }}">Conf File</a></li>
+                                <li><a href="{{url_for('displayDocumentationPage', display='Data File') }}">Data File</a></li>
+							</ul>
+						</div>
+					</div>
+                </div>
+                <h3>Contact</h3>
+				<p>
+					In case you have any further questions about the Python code, you should direct them
+					to <a href="mailto://turroscott@gmail.com">Scott Turro</a>.
+				</p>
             </div> <!-- Closing the Methods Div -->
         </div>
     </div>
