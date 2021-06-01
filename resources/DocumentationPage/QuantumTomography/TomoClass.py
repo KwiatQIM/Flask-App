@@ -91,9 +91,7 @@ class Tomography():
         Possible values are ['NQubits', 'NDetectors', 'Crosstalk', 'Bellstate', 'DoDriftCorrection', 'DoAccidentalCorrection', 'DoErrorEstimation', 'Window', 'Efficiency', 'RhoStart', 'Beta']
     val : ndarray, int, or string
             The new value you want to the setting to be.
-    See Also
-    --------
-    Conf File;Data File;
+    
     """
     def setConfSetting(self, setting, val):
         try:

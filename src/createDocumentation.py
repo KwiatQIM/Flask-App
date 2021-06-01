@@ -1,6 +1,17 @@
-import dominate as dom
-from dominate.tags import *
 import re
+
+""" 
+the see also is formatted like this:
+
+See Also
+ ------ 
+
+and other properties is formatted like this:
+
+Other Properties
+ -------------- 
+ 
+"""
 
 def create_page():
     TomoClassfunctions = []
@@ -17,13 +28,13 @@ def create_page():
     count = 0
 
     # This scans the three files and creates the unordered lists that will be filled with the functions
-    TomoClass_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoClass.py')
+    TomoClass_list = getAllCommentBlocks('../resources/Quantum-Tomography/src/QuantumTomography/TomoClass.py')
     TomoClass_count = len(TomoClass_list)
 
-    TomoFunctions_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoFunctions.py')
+    TomoFunctions_list = getAllCommentBlocks('../resources/Quantum-Tomography/src/QuantumTomography/TomoFunctions.py')
     TomoFunctions_count = len(TomoFunctions_list)
 
-    TomoDisplay_list = getAllCommentBlocks('DocumentationPage/QuantumTomography/TomoDisplay.py')
+    TomoDisplay_list = getAllCommentBlocks('../resources/Quantum-Tomography/src/QuantumTomography/TomoDisplay.py')
     TomoDisplay_count = len(TomoDisplay_list)
 
     combined_list = TomoClass_list + TomoFunctions_list + TomoDisplay_list

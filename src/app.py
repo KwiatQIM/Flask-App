@@ -1,11 +1,10 @@
-from flask import Flask, make_response, redirect, request, jsonify, render_template, flash
-import matplotlib.pyplot as plt
+from flask import Flask, make_response, request, render_template
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import numpy as np
-from StateDiagnosisApplication import StateDiagnosis
-from createDocumentation import create_page
+from src.StateDiagnosisApplication import StateDiagnosis
+from src.createDocumentation import create_page
 
 app = Flask(__name__)
 
