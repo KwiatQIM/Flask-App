@@ -25,16 +25,17 @@ def create_page():
     return_bools = []
     param_dicts = []
     return_dicts = []
+    see_also = []
     count = 0
 
     # This scans the three files and creates the unordered lists that will be filled with the functions
-    TomoClass_list = getAllCommentBlocks('../resources/Quantum-Tomography/src/QuantumTomography/TomoClass.py')
+    TomoClass_list = getAllCommentBlocks('resources/Quantum-Tomography/src/QuantumTomography/TomoClass.py')
     TomoClass_count = len(TomoClass_list)
 
-    TomoFunctions_list = getAllCommentBlocks('../resources/Quantum-Tomography/src/QuantumTomography/TomoFunctions.py')
+    TomoFunctions_list = getAllCommentBlocks('resources/Quantum-Tomography/src/QuantumTomography/TomoFunctions.py')
     TomoFunctions_count = len(TomoFunctions_list)
 
-    TomoDisplay_list = getAllCommentBlocks('../resources/Quantum-Tomography/src/QuantumTomography/TomoDisplay.py')
+    TomoDisplay_list = getAllCommentBlocks('resources/Quantum-Tomography/src/QuantumTomography/TomoDisplay.py')
     TomoDisplay_count = len(TomoDisplay_list)
 
     combined_list = TomoClass_list + TomoFunctions_list + TomoDisplay_list
@@ -76,6 +77,10 @@ def create_page():
             param_dicts.append(parameters)
             return_dicts.append(returnValues)
 
+            cur_see_also = get_see_also(comment)
+            see_also.append(cur_see_also)
+
+
             # adding the function to the bulleted list
             if i < TomoClass_count:
                 TomoClassfunctions.append(function_title)
@@ -85,7 +90,7 @@ def create_page():
                 TomoDisplayfunctions.append(function_title)
 
     return TomoClassfunctions, TomoFunctionsfunctions, TomoDisplayfunctions, functions, titles, \
-           function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, count
+           function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, see_also, count
 
 def getAllCommentBlocks(filepath):
     # Grab contents of file as string
@@ -161,6 +166,23 @@ def get_paramReturns(comment):
             cur_val = cur_val + ' ' + line
     return parameters, returnValues
 
+def get_see_also(comment):
+    comment_lines = comment.splitlines()
+    functions = []
+    see_also_bool = False
+
+    if ' ------ ' in comment:
+        functions = []
+    else:
+        functions = '0'
+
+    for line in comment_lines:
+        if see_also_bool:
+            functions = line.split(';')
+        if ' ------ ' in line:
+            see_also_bool = True
+    return functions
 
 if __name__ == '__main__':
     create_page()
+

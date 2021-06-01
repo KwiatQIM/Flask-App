@@ -126,7 +126,7 @@ def plot_everything(eps='1', dec='1', bac='0'):
 
 
 TomoClassFunctions, TomoFunctionsFunctions, TomoDisplayFunctions, functions, \
-    titles, function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, count = create_page()
+    titles, function_parameters, descriptions, param_bools, return_bools, param_dicts, return_dicts, see_also, count = create_page()
 # Route for documentation page
 @app.route("/Doc/")
 @app.route("/Doc/<display>")
@@ -136,7 +136,7 @@ def displayDocumentationPage(display='Tomography'):
                            TomoFunctionsFunctions=TomoFunctionsFunctions, TomoDisplayFunctions=TomoDisplayFunctions,
                            functions=functions, titles=titles, function_parameters=function_parameters,
                            descriptions=descriptions, param_bools=param_bools, return_bools=return_bools,
-                           param_dicts=param_dicts, return_dicts=return_dicts, count=count)
+                           param_dicts=param_dicts, return_dicts=return_dicts, see_also=see_also, count=count)
 
 
 if __name__ == "__main__":

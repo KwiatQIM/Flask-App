@@ -110,6 +110,16 @@
                             </tr>
                         </table>
                         {% endif %}
+						{% if see_also[i] != '0' %}
+						<div id="TableOfContents" style="padding-top:15px;">
+							<h4>See Also:</h4>
+							<ul>
+								{% for func in see_also[i] %}
+								<li><a href="{{url_for('displayDocumentationPage', display=func) }}">{{func}}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+						{% endif %}
                     </div>
                     {% endfor %}
 
