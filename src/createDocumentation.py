@@ -179,8 +179,10 @@ def get_see_also(comment):
     for line in comment_lines:
         if see_also_bool:
             functions = line.split(';')
+            functions[0] = functions[0].strip() # to get rid of the white space before the list of see also functions
         if ' ------ ' in line:
             see_also_bool = True
+    print(functions)
     return functions
 
 if __name__ == '__main__':
