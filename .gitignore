@@ -5,3 +5,6 @@ __pycache__
 .DS_Store
 
 /resources/Quantum-Tomography/
+src/passenger_wsgi.py
+src/tmp/
+
