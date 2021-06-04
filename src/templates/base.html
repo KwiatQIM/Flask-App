@@ -19,20 +19,7 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
 
 
-    <style>
-        .row {
-            width:100%;
-        }
-        .column {
-            width:50%;
-            height:200px;
-            float:left;
-        }
-        .row:after {
-            clear:both;
-        }
 
-    </style>
 
         {% block head %}{% endblock %}
 
@@ -52,6 +39,11 @@
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
                 <a class="nav-link" href="http://research.physics.illinois.edu/QI/Photonics/">Group Page</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('displayDocumentationPage')}}">Tomography Documentation</a>
               </li>
             </ul>
         </div>
