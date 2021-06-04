@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/quantumtomo/Flask_App/Flask_App_git_repo/src/templates
+    - /bin/cp FrontPage.html $DEPLOYPATH
