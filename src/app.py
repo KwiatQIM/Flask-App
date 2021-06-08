@@ -3,14 +3,14 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import numpy as np
-from src.StateDiagnosisApplication import StateDiagnosis
-from src.createDocumentation import create_page
+from StateDiagnosisApplication import StateDiagnosis
+from createDocumentation import create_page
 
 app = Flask(__name__)
 
 # NOTE: in this code, epsilon refers to Term Imbalance
 
-# Default home page. This is the page the user first sees when visting the site
+# Default home page. This is the page the user first sees when visiting the site
 @app.route('/')
 def index():
     epsilon = 1
