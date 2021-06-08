@@ -32,8 +32,10 @@ For best results [install this version of python](https://www.python.org/downloa
         cd C:/path/to/local/repo/resources
         git clone (Quantum-Tomography HTTPS link) your_folder_name
 
+## Note
+- The *main* branch of this repository is for use on the server and might not work perfectly on all IDEs. To run this application from an IDE, use the *development* branch
 
-#### Troubleshooting
+## Troubleshooting
 
 - *'py' is not recognized*. 
   - Depending on how you downloaded python your PATH variable for python (the _py_ in this walkthrough) may be diffrent.
