@@ -1,0 +1,3 @@
+[submodule "resources\\Quantum-Tomography"]
+	path = resources\\Quantum-Tomography
+	url = https://github.com/KwiatQIM/Quantum-Tomography.git
