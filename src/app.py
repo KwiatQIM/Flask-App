@@ -13,6 +13,11 @@ app = Flask(__name__)
 # Default home page. This is the page the user first sees when visiting the site
 @app.route('/')
 def index():
+    return render_template('FrontPage.html')
+
+# Default home page. This is the page the user first sees when visiting the site
+@app.route('/stateCharacterization')
+def state_characterization():
     epsilon = 1
     decoherence = 1
     background = 0
@@ -20,12 +25,12 @@ def index():
     daVis = myState.DA_visibility()
     concurrence = myState.concurrence()
     tograph = '/plot/' + str(epsilon) + '/' + str(decoherence) + '/' + str(background)
-    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
+    return render_template("stateCharacterization.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
 
 
 # This is function grabs the values from the sliders on the previous page.
-@app.route("/test", methods=["POST"])
-def test():
+@app.route("/stateCharacterization2", methods=["POST"])
+def state_characterization2():
     epsilon = float(request.form["amountInputEps"])
     decoherence = float(request.form["amountInputDco"])
     background = float(request.form["amountInputBgd"])
@@ -38,7 +43,7 @@ def test():
     concurrence = myState.concurrence()
     daVis = myState.DA_visibility()
 
-    return render_template("FrontPage.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
+    return render_template("stateCharacterization.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
 
 
 # Function that creates a page with only the 9 subplots on it.

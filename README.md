@@ -30,8 +30,7 @@ For best results [install this version of python](https://www.python.org/downloa
 6. You can add the virtual environment to pycharm by going to File->Settings->Project->python interpreter. 
    Click the drop down for interpreter and click show all. Click the + button, and add a new existing interpreter using the path:
    _C:\path\to\local\repo\src\venv\Scripts\python.exe_
-
-
+   
 ## Note
 - The *main* branch of this repository is for use on the server and might not work perfectly on all IDEs. To run this application from an IDE, use the *development* branch
 
@@ -45,5 +44,5 @@ Other common names are _python_ or _python3_. Its whatever you type into the com
 
 - *'pip' is not recognized*. 
   - pip is not defined as a PATH variable. Instead of just using *pip*
-use *py -m pip*. It is rare but if you downloaded python in a weird way you may not have pip installed. You'll have to search for how to install pip on your computer.
-  The process differs depending on if you're using PC/mac/ubuntu.
+use *py -m pip*. It is rare but if you downloaded python in a weird way you may not have pip installed. You'll have to search for how to install pip on your computer. 
+The process differs depending on if you're using PC/mac/ubuntu.
