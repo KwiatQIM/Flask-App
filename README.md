@@ -18,19 +18,19 @@ For best results [install this version of python](https://www.python.org/downloa
 
 3. **Create a virtual environment** by typing the following in the command prompt. Make sure you are at the top most level of the repo.
 
-         py -m venv venv
+         py -m venv src\venv
 4. **Activate virtual environment**
 
-        venv\Scripts\activate.bat
+        src\venv\Scripts\activate.bat
 
 5. Install the **requirements**. Don't upgrade pip, this might cause an error and you'll be left without pip. If this happens then just delete the venv folder and start over
 
-         pip install -r requirements.txt
+         pip install -r src\requirements.txt
          
-6. Clone the Quantum-Tomography python library into the resources folder
-        
-        cd C:/path/to/local/repo/resources
-        git clone (Quantum-Tomography HTTPS link) your_folder_name
+6. You can add the virtual environment to pycharm by going to File->Settings->Project->python interpreter. 
+   Click the drop down for interpreter and click show all. Click the + button, and add a new existing interpreter using the path:
+   _C:\path\to\local\repo\src\venv\Scripts\python.exe_
+
 
 ## Note
 - The *main* branch of this repository is for use on the server and might not work perfectly on all IDEs. To run this application from an IDE, use the *development* branch
