@@ -11,10 +11,14 @@ For best results [install this version of python](https://www.python.org/downloa
 
 1. **Clone** the repo to your local computer
 
-2. Open **command line as administrator** 
-   - if you go to the repo location using file explorer you can type in 'cmd' in the file address bar 
+2. **Fetch** data and files from **Quantum-Tomography** submodule ([Quantum-Tomography](https://github.com/KwiatQIM/Quantum-Tomography))
+   - Open **command line as administrator** 
+     - if you go to the repo location using file explorer you can type in 'cmd' in the file address bar 
    and this will pop up the command line at that location.
-   - Or Navigate to the repo using the command _cd C:/path/to/local/repo_ 
+     - Or Navigate to the repo using the command _cd C:/path/to/local/repo_ 
+   - In the topmost level of your repository:
+        
+         git clone --recurse-submodules (Quantum-Tomography HTTPS link)
 
 3. **Create a virtual environment** by typing the following in the command prompt. Make sure you are at the top most level of the repo.
 
@@ -31,9 +35,6 @@ For best results [install this version of python](https://www.python.org/downloa
    Click the drop down for interpreter and click show all. Click the + button, and add a new existing interpreter using the path:
    _C:\path\to\local\repo\src\venv\Scripts\python.exe_
    
-## Note
-- The *main* branch of this repository is for use on the server and might not work perfectly on all IDEs. To run this application from an IDE, use the *development* branch
-
 ## Troubleshooting
 
 - *'py' is not recognized*. 

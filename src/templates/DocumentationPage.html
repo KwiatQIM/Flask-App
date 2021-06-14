@@ -29,9 +29,9 @@
                 </ul>
                 <h4>Other Files</h4> <!-- Other Files -->
                 <ul>
-                    <li><a href="{{url_for('displayDocumentationPage', display='Conf File') }}">Conf File</a></li>
-                    <li><a href="{{url_for('displayDocumentationPage', display='Data File') }}">Data File</a></li>
-                    <li><a href="{{url_for('displayDocumentationPage', display='Eval File') }}">Eval File</a></li>
+                    <li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}">Conf File</a></li>
+                    <li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}">Data File</a></li>
+                    <li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}">Eval File</a></li>
                 </ul>
             </div>
             <div class='col-md-9'> <!-- Open Methods Div -->
@@ -123,7 +123,7 @@
                     </div>
                     {% endfor %}
 
-                    <div class="MethodInfo" id="Conf File" style={% if disp == 'Conf%20File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+                    <div class="MethodInfo" id="Conf File" style={% if disp == 'Conf_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
 						<h1 class="MethodTitle">Conf File</h1>
 						<p class="methodShortDesc">This file states the configurations of the tomography. The syntax of the txt file is python. You write the
 							conf settings just like you would set a python dictionary.</p>
@@ -196,12 +196,12 @@
 						<div id="TableOfContents" style="padding-top:15px;">
 							<h4>See Also:</h4>
 							<ul>
-								<li><a href="{{url_for('displayDocumentationPage', display='Data File') }}">Data File</a></li>
-                                <li><a href="{{url_for('displayDocumentationPage', display='Eval File') }}">Eval File</a></li>
+								<li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}">Data File</a></li>
+                                <li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}">Eval File</a></li>
 							</ul>
 						</div>
 					</div>
-                    <div class="MethodInfo" id="Data File" style={% if disp == 'Data%20File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+                    <div class="MethodInfo" id="Data File" style={% if disp == 'Data_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
 						<h1 class="MethodTitle">Data File</h1>
 						<p class="methodShortDesc">This file states the data of the measurements.Both tomo_input the intensity must be specified. The syntax of the txt file is python. You write the
 							data settings just like you would set a python matrix.</p>
@@ -255,12 +255,12 @@
 						<div id="TableOfContents" style="padding-top:15px;">
 							<h4>See Also:</h4>
 							<ul>
-								<li><a href="{{url_for('displayDocumentationPage', display='Conf File') }}">Conf File</a></li>
-                                <li><a href="{{url_for('displayDocumentationPage', display='Eval File') }}">Eval File</a></li>
+								<li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}">Conf File</a></li>
+                                <li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}">Eval File</a></li>
 							</ul>
 						</div>
 					</div>
-                    <div class="MethodInfo" id="Eval File" style={% if disp == 'Eval%20File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+                    <div class="MethodInfo" id="Eval File" style={% if disp == 'Eval_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
 						<h1 class="MethodTitle">Eval File</h1>
 						<p class="methodShortDesc">This text file contains all the information for a tomography. It is essentially a conf file and a data file combined into one file.</p>
 						<h5 id="example-">Example:</h5>
@@ -296,8 +296,8 @@
 						<div id="TableOfContents" style="padding-top:15px;">
 							<h4>See Also:</h4>
 							<ul>
-								<li><a href="{{url_for('displayDocumentationPage', display='Conf File') }}">Conf File</a></li>
-                                <li><a href="{{url_for('displayDocumentationPage', display='Data File') }}">Data File</a></li>
+								<li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}">Conf File</a></li>
+                                <li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}">Data File</a></li>
 							</ul>
 						</div>
 					</div>
