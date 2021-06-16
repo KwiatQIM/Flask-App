@@ -96,19 +96,46 @@ input[type=range]:focus::-ms-fill-upper {
 
 .btn-primary,
  .btn-primary:hover {
-background-color:#663399;
-border-color: #663399;
-color:#FFFFFF;
+    background-color:#663399;
+    border-color: #663399;
+    color:#FFFFFF;
 }
 
 .gray-background {
-background-color:#EEEEEE;
-border-radius:15px;
+    background-color:#EEEEEE;
+    border-radius:15px;
+}
 
+.purpleHeader {
+color:#663399;
 }
 
 .link {
 color:#663399;
+}
+
+.link:hover {
+color:#000000;
+}
+
+.centerText {
+    text-align:center;
+}
+
+.row.vertical-divider {
+  overflow: hidden;
+}
+.row.vertical-divider > div[class^="col-"] {
+  padding-bottom: 100px;
+  margin-bottom: -100px;
+  border-left: 2px dashed #663399;
+  border-right: 2px dashed #663399;
+}
+.row.vertical-divider div[class^="col-"]:first-child {
+  border-left: none;
+}
+.row.vertical-divider div[class^="col-"]:last-child {
+  border-right: none;
 }
 
 
