@@ -28,31 +28,46 @@
                     <a href="https://github.com/KwiatQIM/Quantum-Tomography" target="_blank" class="link"><img src="https://logos-world.net/wp-content/uploads/2020/11/GitHub-Emblem.png" alt="github logo" width="50%"></a>
                 </div>
             </div>
-            <hr><br>
-            <div class="text-center">
-                <p>We also have an online interface for State Tomography, where you don't have to interact with the code at all!</p>
-                <p>Try it out here:</p>
-                <a href="http://tomography.web.engr.illinois.edu/TomographyDemo.php" target="_blank" class="btn btn-primary btn-lg">Open Tomography Interface</a>
+            <hr>
+
+            <p class="mt-2">We also have an <strong>online interface</strong> for State Tomography, where you don't have to interact with the code at all! Our <strong>State Characterization app</strong> gives gives useful plots and state attributes for two-qubit states.</p>
+            <br>
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <a href="http://tomography.web.engr.illinois.edu/TomographyDemo.php" target="_blank" class="btn btn-primary btn-lg">Open Tomography Interface</a>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <a href="{{url_for('state_characterization')}}" target="_blank" class="btn btn-primary btn-lg">Open State Characterization App</a>
+                </div>
+            </div>
+            <br>
+
+            <p class="mt-3">Want to learn more about the library? Check out our <a href="{{url_for('displayDocumentationPage')}}" class="link">Documentation</a> or how our library functions.</p>
+
+            <hr>
+            <h3>Our Research Group:</h3>
+            <hr>
+            <p class="mt-2">This python library is created and maintained by the Kwiat Quantum Information research group at the
+            University of Illinois at Urbana-Champaign. Contact <a class="link" href="mailto://shallat3@illinois.edu">Joey Shallat</a> or <a class="link" href="mailto://turroscott@gmail.com">Scott Turro</a> with questions regarding the library.
+            </p>
+            <div class="text-center mt-5">
+                <img src="https://kclsed.org/wp-content/uploads/2020/02/UIUC_Logo_University_of_Illinois_at_Urbana-Champaign-1024x280-1.png" alt="University of Illinois" width="50%">
             </div>
         </div>
+
+
+
+
+
+
+
+
+
         <div class="col-md-4">
             <h2><strong>Resources:</strong></h2>
             <div class="gray-background">
                 <div class="text-center">
-                    <h3 class="purpleHeader">Tomography:</h3>
-                </div>
-                <h4>Papers:</h4>
-                <h4>Videos:</h4>
-                <ul>
-                    <li class="link"><a href="https://youtu.be/-T_GiHE4VGg" target="_blank" class="link">State Tomography</a></li>
-                    <li class="link"><a href="https://youtu.be/-T_GiHE4VGg" target="_blank" class="link">Process Tomography</a></li>
-                    <ul>
-                        <li>By Spencer Johnson</li>
-                        <li>These videos cover the basic theory of Quantum Tomography and the application of the tomography of photon polarization qubits.</li>
-                    </ul>
-                </ul>
-                <div class="text-center">
-                    <h3 class="purpleHeader">Python Library:</h3>
+                    <h3><strong>Python Library:</strong></h3>
                 </div>
                 <h4>Videos:</h4>
                 <ul>
@@ -61,6 +76,42 @@
                 </ul>
                 <h4>Algorithm:</h4>
                 <a class="link" href="{{url_for('displayDocumentationPage')}}"><h4>Documentation</h4></a>
+
+                <div class="text-center">
+                    <h3><strong>Tomography:</strong></h3>
+                </div>
+                <h4>Videos:</h4>
+                <ul>
+                    <li class="link"><a href="https://youtu.be/-T_GiHE4VGg" target="_blank" class="link">State Tomography</a></li>
+                    <li class="link"><a href="https://youtu.be/-T_GiHE4VGg" target="_blank" class="link">Process Tomography</a></li>
+                    <ul>
+                        <li class="small">By Spencer Johnson</li>
+                        <li class="small">These videos cover the basic theory of Quantum Tomography and the application of the tomography of photon polarization qubits.</li>
+                    </ul>
+                </ul>
+                <h4>Books/Book Chapters:</h4>
+                <ul>
+                    <li class="link"><a href="http://research.physics.illinois.edu/QI/Photonics/tomography-files/amo_tomo_chapter.pdf" target="_blank" class="link">Photonic State Tomography</a></li>
+                    <ul><li class="small">This chapter from <em>Advances in Atomic, Molecular and Optical Physics </em>(published by Elsevier in 2005) summarizes both the theoretical foundations of our quantum tomography system and the experimental techiniques used to actually implement that system on photonic qubits.</li></ul>
+                    <li class="link"><a href="http://research.physics.illinois.edu/QI/Photonics/tomography-files/tomo_chapter_2004.pdf" target="_blank" class="link">Qubit Quantum State Tomography</a></li>
+                    <ul><li class="small">This chapter from <em>Quantum State Estimation</em> (published by Springer in 2004 as part of the Lecture Notes in Physics series) is a shorter version of the chapter above, written to emphasize usefulness for any type of qubit implementation with less emphasis on experimental considerations.</li></ul>
+                    <li class="link"><a href="https://www.springer.com/gp/book/9783540223290" target="_blank" class="link">Quantum State Estimation</a></li>
+                    <ul><li class="small">A book containing tomography articles from groups around the world, including the second book chapter presented above. It is fairly long, and contains articles from a variety of points of view.</li></ul>
+
+                </ul>
+                <h4>Journal Articles:</h4>
+                <ul>
+                    <li class="small link"><a href="http://research.physics.illinois.edu/QI/Photonics/papers/My%20Collection.Data/PDF/Ancilla-assisted%20quantum%20process%20tomography.pdf" target="_blank" class="link">Ancilla-assisted quantum process tomography</a></li>
+                    <ul><li class="small">J. B. Altepeter, D. Branning, E. R. Jeffrey, T. C. Wei, P. G. Kwiat, R. Thew, J. L. O'Brien, M. Nielsen, and A. G. White. <em> Physical Review Letters</em>, 2003.</li></ul>
+                    <li class="small link"><a href="http://research.physics.illinois.edu/QI/Photonics/papers/My%20Collection.Data/PDF/Precise%20creation,%20characterization,%20and%20manipulation%20of%20single%20optical%20qubits.pdf" target="_blank" class="link">Precise creation, characterization and manipulation of single optical qubits</a></li>
+                    <ul><li class="small">N. A. Peters, J. B. Altepeter, and E. R. Jeffrey. 2005.</li></ul>
+                    <li class="small link"><a href="http://research.physics.illinois.edu/QI/Photonics/papers/My%20Collection.Data/PDF/Measurement%20of%20qubits.pdf" target="_blank" class="link">Measurement of qubits</a></li>
+                    <ul><li class="small">D. F. V. James, P. G. Kwiat, W. J. Munro, and A. G. White. Physical Review A, 2001.</li></ul>
+                    <li class="small link"><a href="http://research.physics.illinois.edu/QI/Photonics/theses/altepeter-thesis.pdf" target="_blank" class="link">Testing the Limits of Nonlocality</a></li>
+                    <ul><li class="small">J. B. Altepeter. <em>PHD Thesis UIUC</em>, 2006.</li></ul>
+                    <li class="small link"><a href="https://arxiv.org/pdf/quant-ph/0302028.pdf" target="_blank" class="link">Quantum Tomography</a></li>
+                    <ul><li class="small">A large (90 page) review article published by D'Ariano, Paris, and Sacchi. 2008</li></ul>
+                </ul>
             </div>
         </div>
     </div>

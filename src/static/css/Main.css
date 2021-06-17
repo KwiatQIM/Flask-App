@@ -128,8 +128,8 @@ color:#000000;
 .row.vertical-divider > div[class^="col-"] {
   padding-bottom: 100px;
   margin-bottom: -100px;
-  border-left: 2px dashed #663399;
-  border-right: 2px dashed #663399;
+  border-left: 1px dashed #663399;
+  border-right: 1px dashed #663399;
 }
 .row.vertical-divider div[class^="col-"]:first-child {
   border-left: none;
