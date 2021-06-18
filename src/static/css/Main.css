@@ -1,5 +1,5 @@
 body {
-    overflow-x:hidden;
+    /*! overflow-x:scroll; */
     font-family:'Roboto', sans-serif;
 
 }
@@ -138,28 +138,93 @@ color:#000000;
   border-right: none;
 }
 
+/* CSS for Documentation page */
+
+#InputRow h4 {
+  width: 100%;
+  text-align:center;
+}
 
 
+#InputRow div p {
+  font-size:12px;
+}
+
+#InputRow input {
+    margin: auto;
+    width: 80%;
+    display: block;
+    margin-bottom: 11px;
+}
+
+.slidecontainer input {
+  margin-bottom: 20px;
+}
+
+#ResultsRow p {
+  font-size:12px;
+  width: max-content;
+  margin: auto;
+}
+
+#ResultsRow div.row {
+  width: 100%
+}
 
 
-.lib_Ref div#TableOfContents li a{
+#ResultsRow div.row div {
+
+}
+
+/* CSS for Documentation page */
+.lib_Ref div#TableOfContents{
+    width: min-content;
+    border-right:solid 2px rebeccapurple;
+}
+
+.lib_Ref a{
     color:rebeccapurple;
     text-decoration: underline;
     cursor: pointer;
+    font-size:15px;
 }
+.lib_Ref div#TableOfContents h3{
+	font-size:26px;
+	font-weight:bold;
+	padding-bottom:10px;
+	border-bottom:solid 2px rebeccapurple;
+}
+
 .lib_Ref div#Methods
 {
 	padding-bottom:70px;
-	border-bottom:solid lightgrey;
+	padding-left:50px;
+	padding-right: 0px;
+    width: max-content%;
+    max-width: 71%;
+
+
 }
 .lib_Ref div.MethodInfo h1
 {
 	font-weight:bold;
 	color:rebeccapurple;
 }
+.lib_Ref div.MethodInfo p
+{
+	font-size: 13px;
+}
 .lib_Ref div.MethodInfo p.methodShortDesc
 {
 	padding-left:40px;
+  font-size: 16px;
+}
+.lib_Ref div.MethodInfo h4
+{
+
+  font-size: 16px;
+  margin: 0px;
+  text-decoration: underline;
 }
 .lib_Ref div.MethodInfo table
 {
@@ -176,15 +241,10 @@ color:#000000;
 	padding-right:10px;
 	border-top-right-radius:10px;
 	border-bottom-right-radius:10px;
+	font-size: 14px;
 }
 .lib_Ref div.MethodInfo td.header
 {
 	display:table-caption;
 	width: 100px;
-}
-.lib_Ref div#TableOfContents h3{
-	font-size:26px;
-	font-weight:bold;
-	padding-bottom:10px;
-	border-bottom:solid 2px rebeccapurple;
 }

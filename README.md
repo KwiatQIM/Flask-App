@@ -35,6 +35,13 @@ For best results [install this version of python](https://www.python.org/downloa
    Click the drop down for interpreter and click show all. Click the + button, and add a new existing interpreter using the path:
    _C:\path\to\local\repo\src\venv\Scripts\python.exe_
    
+
+7. **Clone the Submodules**. This code uses the quantum-tomography python code as a submodule. You will need to update this when
+you first clone this repo.
+
+        git submodule update --init
+
+
 ## Troubleshooting
 
 - *'py' is not recognized*. 
@@ -47,3 +54,4 @@ Other common names are _python_ or _python3_. Its whatever you type into the com
   - pip is not defined as a PATH variable. Instead of just using *pip*
 use *py -m pip*. It is rare but if you downloaded python in a weird way you may not have pip installed. You'll have to search for how to install pip on your computer. 
 The process differs depending on if you're using PC/mac/ubuntu.
+    
