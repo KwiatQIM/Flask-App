@@ -104,6 +104,7 @@ input[type=range]:focus::-ms-fill-upper {
 .gray-background {
     background-color:#EEEEEE;
     border-radius:15px;
+    padding: 10px;
 }
 
 .purpleHeader {
@@ -180,6 +181,7 @@ color:#000000;
 .lib_Ref div#TableOfContents{
     width: min-content;
     border-right:solid 2px rebeccapurple;
+    padding-top:15px;
 }
 
 .lib_Ref a{
@@ -197,13 +199,16 @@ color:#000000;
 
 .lib_Ref div#Methods
 {
+    padding-top:15px;
 	padding-bottom:70px;
 	padding-left:50px;
 	padding-right: 0px;
     width: max-content%;
     max-width: 71%;
-
-
+}
+.lib_Ref div.MethodInfo
+{
+	padding-top:15px;
 }
 .lib_Ref div.MethodInfo h1
 {
