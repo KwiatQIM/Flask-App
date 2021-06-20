@@ -1,315 +1,317 @@
 {% extends 'base.html' %}
 {% block head %}
+<style>
+	div#BodyContent {
+    	padding:0px 5%;
+	}
+</style>
 {% endblock %}
 
 {% block body %}
 <div class="lib_Ref">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3" id="TableOfContents">
-                <h3 style="text-align:center;">Table of Contents</h3>
-                <h4>TomoClass</h4> <!-- TomoClass -->
-                <ul>
-                    <li><a href="{{url_for('displayDocumentationPage', display = 'Tomography') }}">Tomography</a></li>
-                    {% for function in TomoClassFunctions %}
-                    <li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
-                    {% endfor %}
-                </ul>
-                <h4>TomoFunctions</h4> <!-- TomoFunctions -->
-                <ul>
-                    {% for function in TomoFunctionsFunctions %}
-                    <li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
-                    {% endfor %}
-                </ul>
-                <h4>TomoDisplay</h4> <!-- TomoDisplay -->
-                <ul>
-                    {% for function in TomoDisplayFunctions %}
-                    <li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
-                    {% endfor %}
-                </ul>
-                <h4>Other Files</h4> <!-- Other Files -->
-                <ul>
-                    <li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}">Conf File</a></li>
-                    <li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}">Data File</a></li>
-                    <li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}">Eval File</a></li>
-                </ul>
-            </div>
-            <div class='col-md-9'> <!-- Open Methods Div -->
-                <div id="Methods">
-                    <div class="MethodInfo" id="Tomography" style={% if disp == 'Tomography' %}"display:inline;" {% else %} "display:none;" {% endif %}>
-                        <h3 class="methodSyntax" style="display:inline;">Class </h3>
-						<h1 style="display:inline;" class="MethodTitle">Tomography</h1>
-						<h3 class="methodSyntax">Tomography()</h3>
-						<p class="methodShortDesc">This is the main tomography object that the library is built around. The goal is to only have one tomography object and edit the
-							configuration settings as you go.<br>The constructor initializes the conf settings and error functions with the default values below:
-						</p>
-						<code>
-							self.conf = {'NQubits': 2,<br>
-							'NDetectors': 1,<br>
-							'Crosstalk': np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]),<br>
-							'Bellstate': 0,<br>
-							'DoDriftCorrection': 0,<br>
-							'DoAccidentalCorrection' : 1,<br>
-							'DoErrorEstimation': 0,<br>
-							'Window': 0,<br>
-							'Efficiency': 0,<br>
-							'RhoStart': [],<br>
-							'IntensityMap': [[1]],<br>
-							'Beta': 0}<br>
-							self.err_functions = ['concurrence','tangle','entropy','linear_entropy','negativity','purity']
-						</code>
-						<div id="TableOfContents" style="padding-top:15px;">
-							<h4>See Also:</h4>
+	<div class="row">
+		<div class="col-md-3" id="TableOfContents">
+			<h3 style="text-align:center;">Table of Contents</h3>
+			<h4>TomoClass</h4> <!-- TomoClass -->
+			<ul>
+				<li><a href="{{url_for('displayDocumentationPage', display = 'Tomography') }}">Tomography</a></li>
+				{% for function in TomoClassFunctions %}
+				<li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
+				{% endfor %}
+			</ul>
+			<h4>TomoFunctions</h4> <!-- TomoFunctions -->
+			<ul>
+				{% for function in TomoFunctionsFunctions %}
+				<li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
+				{% endfor %}
+			</ul>
+			<h4>TomoDisplay</h4> <!-- TomoDisplay -->
+			<ul>
+				{% for function in TomoDisplayFunctions %}
+				<li><a href="{{url_for('displayDocumentationPage', display = function) }}">{{function}}</a></li>
+				{% endfor %}
+			</ul>
+			<h4>Other Files</h4> <!-- Other Files -->
+			<ul>
+				<li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}">Conf File</a></li>
+				<li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}">Data File</a></li>
+				<li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}">Eval File</a></li>
+			</ul>
+		</div>
+		<div class='col-md-9' id="Methods">
+			<div class="MethodInfo" id="Tomography" style={% if disp == 'Tomography' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+				<h3 class="methodSyntax" style="display:inline;">Class </h3>
+				<h1 style="display:inline;" class="MethodTitle">Tomography</h1>
+				<h3 class="methodSyntax">Tomography()</h3>
+				<p class="methodShortDesc">This is the main tomography object that the library is built around. The goal is to only have one tomography object and edit the
+					configuration settings as you go.<br>The constructor initializes the conf settings and error functions with the default values below:
+				</p>
+				<code>
+					self.conf = {'NQubits': 2,<br>
+					'NDetectors': 1,<br>
+					'Crosstalk': np.array([[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]]),<br>
+					'Bellstate': 0,<br>
+					'DoDriftCorrection': 0,<br>
+					'DoAccidentalCorrection' : 1,<br>
+					'DoErrorEstimation': 0,<br>
+					'Window': 0,<br>
+					'Efficiency': 0,<br>
+					'RhoStart': [],<br>
+					'IntensityMap': [[1]],<br>
+					'Beta': 0}<br>
+					self.err_functions = ['concurrence','tangle','entropy','linear_entropy','negativity','purity']
+				</code>
+				<div style="padding-top:15px;">
+					<h4>See Also:</h4>
+					<ul>
+						<li><a href="{{url_for('displayDocumentationPage', display='importEval') }}" class="link">importEval</a></li>
+						<li><a href="{{url_for('displayDocumentationPage', display='importConf') }}" class="link">importConf</a></li>
+						<li><a href="{{url_for('displayDocumentationPage', display='importData') }}" class="link">importData</a></li>
+					</ul>
+				</div>
+			</div>
+			{% for i in range(count) %}
+			<div class="MethodInfo" id="{{ titles[i] }}" style={% if disp == functions[i] %}"display:inline;" {% else %} "display:none;" {% endif %}>
+				<h1 class="MethodTitle">{{ titles[i] }}</h1>
+				<h3 class="MethodInfo">{{ function_parameters[i] }}</h3>
+				<p class="methodShortDesc">{{ descriptions[i] }}</p>
+				{% if param_bools[i] %}
+				<table class="paramReturn">
+					<tr>
+						<td class="header">
+							<h6>Parameters:</h6>
+						</td>
+						<td class="list">
 							<ul>
-								<li><a href="{{url_for('displayDocumentationPage', display='importEval') }}">importEval</a></li>
-								<li><a href="{{url_for('displayDocumentationPage', display='importConf') }}">importConf</a></li>
-								<li><a href="{{url_for('displayDocumentationPage', display='importData') }}">importData</a></li>
-							</ul>
-						</div>
-                    </div>
-                    {% for i in range(count) %}
-                    <div class="MethodInfo" id="{{ titles[i] }}" style={% if disp == functions[i] %}"display:inline;" {% else %} "display:none;" {% endif %}>
-                        <h1 class="MethodTitle">{{ titles[i] }}</h1>
-                        <h3 class="MethodInfo">{{ function_parameters[i] }}</h3>
-                        <p class="methodShortDesc">{{ descriptions[i] }}</p>
-                        {% if param_bools[i] %}
-                        <table class="paramReturn">
-                            <tr>
-                                <td class="header">
-                                    <h6>Parameters:</h6>
-                                </td>
-                                <td class="list">
-                                    <ul>
-                                        {% for param, desc in param_dicts[i].items() %}
-                                            <li>
-                                                <h4>{{param}}</h4>
-                                                <p>{{desc}}</p>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                        {% endif %}
-                        {% if return_bools[i] %}
-                        <table class="paramReturn">
-                            <tr>
-                                <td class="header">
-                                    <h6>Returns:</h6>
-                                </td>
-                                <td class="list">
-                                    <ul>
-                                        {% for returnVal, desc in return_dicts[i].items() %}
-                                            <li>
-                                                <h4>{{returnVal}}</h4>
-                                                <p>{{desc}}</p>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                        {% endif %}
-						{% if see_also[i] != '0' %}
-						<div id="TableOfContents" style="padding-top:15px;">
-							<h4>See Also:</h4>
-							<ul>
-								{% for func in see_also[i] %}
-								<li><a href="{{url_for('displayDocumentationPage', display=func) }}">{{func}}</a></li>
+								{% for param, desc in param_dicts[i].items() %}
+									<li>
+										<h4>{{param}}</h4>
+										<p>{{desc}}</p>
+									</li>
 								{% endfor %}
 							</ul>
-						</div>
-						{% endif %}
-                    </div>
-                    {% endfor %}
+						</td>
+					</tr>
+				</table>
+				{% endif %}
+				{% if return_bools[i] %}
+				<table class="paramReturn">
+					<tr>
+						<td class="header">
+							<h6>Returns:</h6>
+						</td>
+						<td class="list">
+							<ul>
+								{% for returnVal, desc in return_dicts[i].items() %}
+									<li>
+										<h4>{{returnVal}}</h4>
+										<p>{{desc}}</p>
+									</li>
+								{% endfor %}
+							</ul>
+						</td>
+					</tr>
+				</table>
+				{% endif %}
+				{% if see_also[i] != '0' %}
+				<div style="padding-top:15px;">
+					<h4>See Also:</h4>
+					<ul>
+						{% for func in see_also[i] %}
+						<li><a href="{{url_for('displayDocumentationPage', display=func) }}" class="link">{{func}}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% endif %}
+			</div>
+			{% endfor %}
 
-                    <div class="MethodInfo" id="Conf File" style={% if disp == 'Conf_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
-						<h1 class="MethodTitle">Conf File</h1>
-						<p class="methodShortDesc">This file states the configurations of the tomography. The syntax of the txt file is python. You write the
-							conf settings just like you would set a python dictionary.</p>
-						<p>These are the following configuration settings:</p>
-						<ul>
-							<li>'NQubits'<ul>
-									<li>Values : &gt;= 1</li>
-									<li>Desc : The number of qubits the quantum state has. It will take exponentially more time for more qubits.</li>
-									<li>Default : 2</li>
-								</ul>
-							</li>
-							<li>'NDetectors'<ul>
-									<li>Values : 1 or 2</li>
-									<li>Desc : The number of detectors per qubit used during the physical tomography of the quantum state.</li>
-									<li>Default : 1</li>
-								</ul>
-							</li>
-							<li>'ctalk'<ul>
-									<li>Values : matrix that is (2^NQubits) by (2^NQubits)</li>
-									<li>Desc : Cross talk Matrix of the setup.</li>
-									<li>Default : identity matrix with appropriate size</li>
-								</ul>
-							</li>
-							<li>'Bellstate'<ul>
-									<li>Values : 'no' or 'yes'</li>
-									<li>Desc : Give the optimal measurement settings for a CHSH bell inequality for the estimated density matrix.
-										These settings are found through a numerical search over all possible measurement settings.</li>
-									<li>Default : 'no'</li>
-								</ul>
-							</li>
-							<li>'DoDriftCorrection'<ul>
-									<li>Values : 'no' or 'yes'</li>
-									<li>Desc : Whether of not you want to perform drift correction on the state</li>
-									<li>Default : 'no'</li>
-								</ul>
-							</li>
-							<li>'DoAccidentalCorrection'<ul>
-									<li>Values : 'no' or 'yes'</li>
-									<li>Desc : Whether of not you want to perform accidental corrections on the state.</li>
-									<li>Default : 'no'</li>
-								</ul>
-							</li>
-							<li>'Window'<ul>
-									<li>Values : 0 or array like, dimension = 1</li>
-									<li>Desc : Coincidence window durations (in nanoseconds) to calculate the accidental rates. The
-										four windows should be entered in the order of the detector pairs 1-2, 1-4, 3-2, 3-4, where A-B
-										corresponds to a coincidence measurement between detector A and detector B.</li>
-									<li>Default : '0'</li>
-								</ul>
-							</li>
-							<li>'Efficiency'<ul>
-									<li>Values : 0 or array like, dimension = 1</li>
-									<li>Desc : vector that lists the relative coincidence efficiencies of detector pairs when using 2 detectors per
-										qubit. The order is detector 1-2, 1-4, 3-2, 3-4.</li>
-									<li>Default : 0</li>
-								</ul>
+			<div class="MethodInfo" id="Conf File" style={% if disp == 'Conf_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+				<h1 class="MethodTitle">Conf File</h1>
+				<p class="methodShortDesc">This file states the configurations of the tomography. The syntax of the txt file is python. You write the
+					conf settings just like you would set a python dictionary.</p>
+				<p>These are the following configuration settings:</p>
+				<ul>
+					<li>'NQubits'<ul>
+							<li>Values : &gt;= 1</li>
+							<li>Desc : The number of qubits the quantum state has. It will take exponentially more time for more qubits.</li>
+							<li>Default : 2</li>
 						</ul>
+					</li>
+					<li>'NDetectors'<ul>
+							<li>Values : 1 or 2</li>
+							<li>Desc : The number of detectors per qubit used during the physical tomography of the quantum state.</li>
+							<li>Default : 1</li>
+						</ul>
+					</li>
+					<li>'ctalk'<ul>
+							<li>Values : matrix that is (2^NQubits) by (2^NQubits)</li>
+							<li>Desc : Cross talk Matrix of the setup.</li>
+							<li>Default : identity matrix with appropriate size</li>
+						</ul>
+					</li>
+					<li>'Bellstate'<ul>
+							<li>Values : 'no' or 'yes'</li>
+							<li>Desc : Give the optimal measurement settings for a CHSH bell inequality for the estimated density matrix.
+								These settings are found through a numerical search over all possible measurement settings.</li>
+							<li>Default : 'no'</li>
+						</ul>
+					</li>
+					<li>'DoDriftCorrection'<ul>
+							<li>Values : 'no' or 'yes'</li>
+							<li>Desc : Whether of not you want to perform drift correction on the state</li>
+							<li>Default : 'no'</li>
+						</ul>
+					</li>
+					<li>'DoAccidentalCorrection'<ul>
+							<li>Values : 'no' or 'yes'</li>
+							<li>Desc : Whether of not you want to perform accidental corrections on the state.</li>
+							<li>Default : 'no'</li>
+						</ul>
+					</li>
+					<li>'Window'<ul>
+							<li>Values : 0 or array like, dimension = 1</li>
+							<li>Desc : Coincidence window durations (in nanoseconds) to calculate the accidental rates. The
+								four windows should be entered in the order of the detector pairs 1-2, 1-4, 3-2, 3-4, where A-B
+								corresponds to a coincidence measurement between detector A and detector B.</li>
+							<li>Default : '0'</li>
+						</ul>
+					</li>
+					<li>'Efficiency'<ul>
+							<li>Values : 0 or array like, dimension = 1</li>
+							<li>Desc : vector that lists the relative coincidence efficiencies of detector pairs when using 2 detectors per
+								qubit. The order is detector 1-2, 1-4, 3-2, 3-4.</li>
+							<li>Default : 0</li>
+						</ul>
+				</ul>
 
-						<h3 class="Example">Example:</h3>
-						<code>conf['NQubits'] = 2
-							<br>conf['NDetectors'] = 1
-							<br>conf['Crosstalk'] = [[0.9842,0.0049,0.0049,0],[0.0079,0.9871,0,0.0050],[0.0079,0,0.9871,0.0050],[0.001,0.0079,0.0079,0.9901]]
-							<br>conf['UseDerivative'] = 0
-							<br>conf['Bellstate'] = 1
-							<br>conf['DoErrorEstimation'] = 3
-							<br>conf['DoDriftCorrection'] = 'no'
-							<br>conf['Window'] = 0
-							<br>conf['Efficiency'] = [0.9998,1.0146,0.9195,0.9265]
-						</code>
-						<div id="TableOfContents" style="padding-top:15px;">
-							<h4>See Also:</h4>
-							<ul>
-								<li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}">Data File</a></li>
-                                <li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}">Eval File</a></li>
-							</ul>
-						</div>
-					</div>
-                    <div class="MethodInfo" id="Data File" style={% if disp == 'Data_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
-						<h1 class="MethodTitle">Data File</h1>
-						<p class="methodShortDesc">This file states the data of the measurements.Both tomo_input the intensity must be specified. The syntax of the txt file is python. You write the
-							data settings just like you would set a python matrix.</p>
-						<p>This is the following layout of the tomo_input matrix:</p>
+				<h3 class="Example">Example:</h3>
+				<code>conf['NQubits'] = 2
+					<br>conf['NDetectors'] = 1
+					<br>conf['Crosstalk'] = [[0.9842,0.0049,0.0049,0],[0.0079,0.9871,0,0.0050],[0.0079,0,0.9871,0.0050],[0.001,0.0079,0.0079,0.9901]]
+					<br>conf['UseDerivative'] = 0
+					<br>conf['Bellstate'] = 1
+					<br>conf['DoErrorEstimation'] = 3
+					<br>conf['DoDriftCorrection'] = 'no'
+					<br>conf['Window'] = 0
+					<br>conf['Efficiency'] = [0.9998,1.0146,0.9195,0.9265]
+				</code>
+				<div style="padding-top:15px;">
+					<h4>See Also:</h4>
+					<ul>
+						<li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}" class="link">Data File</a></li>
+						<li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}" class="link">Eval File</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="MethodInfo" id="Data File" style={% if disp == 'Data_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+				<h1 class="MethodTitle">Data File</h1>
+				<p class="methodShortDesc">This file states the data of the measurements.Both tomo_input the intensity must be specified. The syntax of the txt file is python. You write the
+					data settings just like you would set a python matrix.</p>
+				<p>This is the following layout of the tomo_input matrix:</p>
+				<ul>
+					<li>
+						<p>tomo_input</p>
 						<ul>
-							<li>
-								<p>tomo_input</p>
-								<ul>
-									<li>Values : 2d numpy array</li>
-									<li>Desc : Relative pump power (arb. units) during measurement; used for drift correction.</li>
-									<h4 id="for-n-detectors-">For n detectors:</h4>
-									<li>tomo_input[ :, 0 ]: times</li>
-									<li>tomo_input[ :, 1 : n_qubit + 1) ]: singles</li>
-									<li>tomo_input[ :, n_qubit + 1 ]: coincidences</li>
-									<li>tomo_input[ :, n_qubit + 2 : 3 * n_qubit + 2) ]: measurements</li>
-									<h4 id="for-2n-detectors-">For 2n detectors:</h4>
-									<li>tomo_input[ :, 0 ]: times</li>
-									<li>tomo_input[ :, 1 : 2 * n_qubit + 1 ]: singles</li>
-									<li>tomo_input[ :, 2 * n_qubit + 1 : 2 ** n_qubit + 2 * n_qubit + 1 ]: coincidences</li>
-									<li>tomo_input[ :, 2 ** n_qubit + 2 * n_qubit + 1 : 2 ** n_qubit + 4 * n_qubit + 1 ]: measurements</li>
-								</ul>
-							</li>
-							<li>intensity<ul>
-									<li>Values : 1d numpy array</li>
-									<li>Desc : Relative pump power (arb. units) during measurement; used for drift correction. </li>
-								</ul>
-							</li>
+							<li>Values : 2d numpy array</li>
+							<li>Desc : Relative pump power (arb. units) during measurement; used for drift correction.</li>
+							<h4 id="for-n-detectors-">For n detectors:</h4>
+							<li>tomo_input[ :, 0 ]: times</li>
+							<li>tomo_input[ :, 1 : n_qubit + 1) ]: singles</li>
+							<li>tomo_input[ :, n_qubit + 1 ]: coincidences</li>
+							<li>tomo_input[ :, n_qubit + 2 : 3 * n_qubit + 2) ]: measurements</li>
+							<h4 id="for-2n-detectors-">For 2n detectors:</h4>
+							<li>tomo_input[ :, 0 ]: times</li>
+							<li>tomo_input[ :, 1 : 2 * n_qubit + 1 ]: singles</li>
+							<li>tomo_input[ :, 2 * n_qubit + 1 : 2 ** n_qubit + 2 * n_qubit + 1 ]: coincidences</li>
+							<li>tomo_input[ :, 2 ** n_qubit + 2 * n_qubit + 1 : 2 ** n_qubit + 4 * n_qubit + 1 ]: measurements</li>
 						</ul>
-						<h5 id="example-">Example:</h5>
-						<p>This example is for 2 qubits using 1 detector.</p>
-						<code>
-							tomo_input = np.array(<br>
-																		[[1,0,0,3708,1,0,1,0],<br>
-																		[1,0,0,77,1,0,0,1],<br>
-																		[1,0,0,1791,1,0,0.7071,0.7071],<br>
-																		[1,0,0,2048,1,0,0.7071,0.7071j],<br>
-																		[1,0,0,51,0,1,1,0],<br>
-																		[1,0,0,3642,0,1,0,1],<br>
-																		[1,0,0,2096,0,1,0.7071,0.7071],<br>
-																		[1,0,0,1926,0,1,0.7071,0.7071j],<br>
-																		[1,0,0,1766,0.7071,0.7071,1,0],<br>
-																		[1,0,0,1914,0.7071,0.7071,0,1],<br>
-																		[1,0,0,1713,0.7071,0.7071,0.7071,0.7071],<br>
-																		[1,0,0,3729,0.7071,0.7071,0.7071,0.7071j],<br>
-																		[1,0,0,2017,0.7071,0.7071j,1,0],<br>
-																		[1,0,0,1709,0.7071,0.7071j,0,1],<br>
-																		[1,0,0,3686,0.7071,0.7071j,0.7071,0.7071],<br>
-																		[1,0,0,2404,0.7071,0.7071j,0.7071,0.7071j]])<br>
-						intensity = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-						</code>
-						<div id="TableOfContents" style="padding-top:15px;">
-							<h4>See Also:</h4>
-							<ul>
-								<li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}">Conf File</a></li>
-                                <li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}">Eval File</a></li>
-							</ul>
-						</div>
-					</div>
-                    <div class="MethodInfo" id="Eval File" style={% if disp == 'Eval_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
-						<h1 class="MethodTitle">Eval File</h1>
-						<p class="methodShortDesc">This text file contains all the information for a tomography. It is essentially a conf file and a data file combined into one file.</p>
-						<h5 id="example-">Example:</h5>
-						<p>This example is for 2 qubits using 1 detector.</p>
-						<code>
-							conf['NQubits'] = 2<br>conf['NDetectors'] = 1
-								<br>conf['Crosstalk'] = [[0.9842,0.0049,0.0049,0],[0.0079,0.9871,0,0.0050],[0.0079,0,0.9871,0.0050],[0.001,0.0079,0.0079,0.9901]]
-								<br>conf['UseDerivative'] = 0
-								<br>conf['Bellstate'] = 1
-								<br>conf['DoErrorEstimation'] = 3
-								<br>conf['DoDriftCorrection'] = 'no'
-								<br>conf['Window'] = 0
-								<br>conf['Efficiency'] = [0.9998,1.0146,0.9195,0.9265]<br>
-							tomo_input = np.array(<br>
-																		[[1,0,0,3708,1,0,1,0],<br>
-																		[1,0,0,77,1,0,0,1],<br>
-																		[1,0,0,1791,1,0,0.7071,0.7071],<br>
-																		[1,0,0,2048,1,0,0.7071,0.7071j],<br>
-																		[1,0,0,51,0,1,1,0],<br>
-																		[1,0,0,3642,0,1,0,1],<br>
-																		[1,0,0,2096,0,1,0.7071,0.7071],<br>
-																		[1,0,0,1926,0,1,0.7071,0.7071j],<br>
-																		[1,0,0,1766,0.7071,0.7071,1,0],<br>
-																		[1,0,0,1914,0.7071,0.7071,0,1],<br>
-																		[1,0,0,1713,0.7071,0.7071,0.7071,0.7071],<br>
-																		[1,0,0,3729,0.7071,0.7071,0.7071,0.7071j],<br>
-																		[1,0,0,2017,0.7071,0.7071j,1,0],<br>
-																		[1,0,0,1709,0.7071,0.7071j,0,1],<br>
-																		[1,0,0,3686,0.7071,0.7071j,0.7071,0.7071],<br>
-																		[1,0,0,2404,0.7071,0.7071j,0.7071,0.7071j]])<br>
-						intensity = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
-						</code>
-						<div id="TableOfContents" style="padding-top:15px;">
-							<h4>See Also:</h4>
-							<ul>
-								<li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}">Conf File</a></li>
-                                <li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}">Data File</a></li>
-							</ul>
-						</div>
-					</div>
-                </div>
-                <h3>Contact</h3>
-				<p>
-					In case you have any further questions about the Python code, you should direct them
-					to <a href="mailto://turroscott@gmail.com">Scott Turro</a>.
-				</p>
-            </div> <!-- Closing the Methods Div -->
-        </div>
-    </div>
+					</li>
+					<li>intensity<ul>
+							<li>Values : 1d numpy array</li>
+							<li>Desc : Relative pump power (arb. units) during measurement; used for drift correction. </li>
+						</ul>
+					</li>
+				</ul>
+				<h5 id="example-">Example:</h5>
+				<p>This example is for 2 qubits using 1 detector.</p>
+				<code>
+					tomo_input = np.array(<br>
+																[[1,0,0,3708,1,0,1,0],<br>
+																[1,0,0,77,1,0,0,1],<br>
+																[1,0,0,1791,1,0,0.7071,0.7071],<br>
+																[1,0,0,2048,1,0,0.7071,0.7071j],<br>
+																[1,0,0,51,0,1,1,0],<br>
+																[1,0,0,3642,0,1,0,1],<br>
+																[1,0,0,2096,0,1,0.7071,0.7071],<br>
+																[1,0,0,1926,0,1,0.7071,0.7071j],<br>
+																[1,0,0,1766,0.7071,0.7071,1,0],<br>
+																[1,0,0,1914,0.7071,0.7071,0,1],<br>
+																[1,0,0,1713,0.7071,0.7071,0.7071,0.7071],<br>
+																[1,0,0,3729,0.7071,0.7071,0.7071,0.7071j],<br>
+																[1,0,0,2017,0.7071,0.7071j,1,0],<br>
+																[1,0,0,1709,0.7071,0.7071j,0,1],<br>
+																[1,0,0,3686,0.7071,0.7071j,0.7071,0.7071],<br>
+																[1,0,0,2404,0.7071,0.7071j,0.7071,0.7071j]])<br>
+				intensity = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+				</code>
+				<div style="padding-top:15px;">
+					<h4>See Also:</h4>
+					<ul>
+						<li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}" class="link">Conf File</a></li>
+						<li><a href="{{url_for('displayDocumentationPage', display='Eval_File') }}" class="link">Eval File</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="MethodInfo" id="Eval File" style={% if disp == 'Eval_File' %}"display:inline;" {% else %} "display:none;" {% endif %}>
+				<h1 class="MethodTitle">Eval File</h1>
+				<p class="methodShortDesc">This text file contains all the information for a tomography. It is essentially a conf file and a data file combined into one file.</p>
+				<h5 id="example-">Example:</h5>
+				<p>This example is for 2 qubits using 1 detector.</p>
+				<code>
+					conf['NQubits'] = 2<br>conf['NDetectors'] = 1
+						<br>conf['Crosstalk'] = [[0.9842,0.0049,0.0049,0],[0.0079,0.9871,0,0.0050],[0.0079,0,0.9871,0.0050],[0.001,0.0079,0.0079,0.9901]]
+						<br>conf['UseDerivative'] = 0
+						<br>conf['Bellstate'] = 1
+						<br>conf['DoErrorEstimation'] = 3
+						<br>conf['DoDriftCorrection'] = 'no'
+						<br>conf['Window'] = 0
+						<br>conf['Efficiency'] = [0.9998,1.0146,0.9195,0.9265]<br>
+					tomo_input = np.array(<br>
+																[[1,0,0,3708,1,0,1,0],<br>
+																[1,0,0,77,1,0,0,1],<br>
+																[1,0,0,1791,1,0,0.7071,0.7071],<br>
+																[1,0,0,2048,1,0,0.7071,0.7071j],<br>
+																[1,0,0,51,0,1,1,0],<br>
+																[1,0,0,3642,0,1,0,1],<br>
+																[1,0,0,2096,0,1,0.7071,0.7071],<br>
+																[1,0,0,1926,0,1,0.7071,0.7071j],<br>
+																[1,0,0,1766,0.7071,0.7071,1,0],<br>
+																[1,0,0,1914,0.7071,0.7071,0,1],<br>
+																[1,0,0,1713,0.7071,0.7071,0.7071,0.7071],<br>
+																[1,0,0,3729,0.7071,0.7071,0.7071,0.7071j],<br>
+																[1,0,0,2017,0.7071,0.7071j,1,0],<br>
+																[1,0,0,1709,0.7071,0.7071j,0,1],<br>
+																[1,0,0,3686,0.7071,0.7071j,0.7071,0.7071],<br>
+																[1,0,0,2404,0.7071,0.7071j,0.7071,0.7071j]])<br>
+				intensity = np.array([1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+				</code>
+				<div style="padding-top:15px;">
+					<h4>See Also:</h4>
+					<ul>
+						<li><a href="{{url_for('displayDocumentationPage', display='Conf_File') }}" class="link">Conf File</a></li>
+						<li><a href="{{url_for('displayDocumentationPage', display='Data_File') }}" class="link">Data File</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr>
+			<h3>Contact</h3>
+			<p>
+				In case you have any further questions about the Python code, you should direct them
+				to <a href="mailto://turroscott@gmail.com">Scott Turro</a>.
+			</p>
+		</div> <!-- Closing the Methods Div -->
+	</div>
 </div>
 
 {% endblock %}

@@ -17,6 +17,8 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/Main.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/NavBar.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 
@@ -29,27 +31,27 @@
     <!--Nav Bar START-->
     <!--#############-->
     <nav class="navbar navbar-expand-lg" id="MainNav">
-        <div class="navbar-header">Quantum Tomography</div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-header"><a class="nav-link" href="{{url_for('index')}}">Quantum Tomography</a></div>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('index')}}">Home</a>
-              </li>
+                <li class="nav-item btn">
+                    <a class="nav-link" href="{{url_for('index')}}">Home</a>
+                </li>
+                <li class="nav-item btn">
+                    <a class="nav-link" href="http://research.physics.illinois.edu/QI/Photonics/">Group Page</a>
+                </li>
+                <li class="nav-item btn">
+                    <a class="nav-link" href="{{url_for('state_characterization')}}">State Characterization</a>
+                </li>
+                <li class="nav-item btn">
+                    <a class="nav-link" href="{{url_for('displayDocumentationPage')}}">Documentation</a>
+                </li>
             </ul>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="http://research.physics.illinois.edu/QI/Photonics/">Group Page</a>
-              </li>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning" href="https://pypi.org/project/Quantum-Tomography/" target="_blank">Download</a>
+                </li>
             </ul>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('state_characterization')}}">State Characterization</a>
-              </li>
-            </ul>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('displayDocumentationPage')}}">Documentation</a>
-              </li>
             </ul>
         </div>
     </nav>
