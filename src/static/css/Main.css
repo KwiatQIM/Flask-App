@@ -178,26 +178,26 @@ color:#000000;
 }
 
 /* CSS for Documentation page */
-.lib_Ref div#TableOfContents{
+.wiki div#TableOfContents{
     width: min-content;
     border-right:solid 2px rebeccapurple;
     padding-top:15px;
 }
 
-.lib_Ref a{
+.wiki a{
     color:rebeccapurple;
     text-decoration: underline;
     cursor: pointer;
     font-size:15px;
 }
-.lib_Ref div#TableOfContents h3{
+.wiki div#TableOfContents h3{
 	font-size:26px;
 	font-weight:bold;
 	padding-bottom:10px;
 	border-bottom:solid 2px rebeccapurple;
 }
 
-.lib_Ref div#Methods
+.wiki div#Methods
 {
     padding-top:15px;
 	padding-bottom:70px;
@@ -206,39 +206,39 @@ color:#000000;
     width: max-content%;
     max-width: 71%;
 }
-.lib_Ref div.MethodInfo
+.wiki div.MethodInfo
 {
 	padding-top:15px;
 }
-.lib_Ref div.MethodInfo h1
+.wiki div.MethodInfo h1
 {
 	font-weight:bold;
 	color:rebeccapurple;
 }
-.lib_Ref div.MethodInfo p
+.wiki div.MethodInfo p
 {
 	font-size: 13px;
 }
-.lib_Ref div.MethodInfo p.methodShortDesc
+.wiki div.MethodInfo p.methodShortDesc
 {
 	padding-left:40px;
   font-size: 16px;
 }
-.lib_Ref div.MethodInfo h4
+.wiki div.MethodInfo h4
 {
 
   font-size: 16px;
   margin: 0px;
   text-decoration: underline;
 }
-.lib_Ref div.MethodInfo table
+.wiki div.MethodInfo table
 {
 	border-left:5px lightgrey solid;
 	border-radius:15px;
 	margin:10px;
 	table-layout: fixed;
 }
-.lib_Ref div.MethodInfo td.header h6
+.wiki div.MethodInfo td.header h6
 {
 	background-color:lightgrey;
 	margin-top:0px;
@@ -248,8 +248,33 @@ color:#000000;
 	border-bottom-right-radius:10px;
 	font-size: 14px;
 }
-.lib_Ref div.MethodInfo td.header
+.wiki div.MethodInfo td.header
 {
 	display:table-caption;
 	width: 100px;
+}
+
+.wiki div.AlgFunction h1
+{
+    text-align:center;
+    font-weight:bold;
+    color:rebeccapurple;
+}
+
+.wiki div.AlgFunction .stepnumber
+{
+font-weight:bold;
+color:rebeccapurple;
+}
+
+.wiki div.AlgFunction .stepdesc
+{
+padding-left: 30px;
+padding-top: 4px;
+
+}
+
+.wiki div.AlgFunction div.steprow
+{
+padding-top: 10px;
 }

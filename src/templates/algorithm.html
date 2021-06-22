@@ -1,12 +1,36 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<style>
+	div#BodyContent {
+    	padding:0px 5%;
+	}
+
+
+</style>
 {% endblock %}
 
 {% block body %}
 
-<div class="container">
-
+<div class="wiki">
+    <div class="row">
+        <div class="col-md-2" id="TableOfContents">
+            <h3 style="text-align:center;">Table Of Contents</h3>
+            <ul>
+                <li><a href="{{url_for('displayAlgorithmPage', function='state_tomography')}}"><h5>state_tomography</h5></a></li>
+                <li><a href="{{url_for('displayAlgorithmPage', function='filter_data')}}"><h5>filter_data</h5></a></li>
+                <li><a href="{{url_for('displayAlgorithmPage', function='linear_tomography')}}"><h5>linear_tomography</h5></a></li>
+                <li><a href="{{url_for('displayAlgorithmPage', function='maximum_likelihood_tomography')}}"><h5>maximum_likelihood_tomography</h5></a></li>
+                <li><a href="{{url_for('displayAlgorithmPage', function='bayesian_tomography')}}"><h5>bayesian_tomography</h5></a></li>
+            </ul>
+        </div>
+        <div class="col-md-10" id="Methods">
+            <div class="method">
+                {% block function %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
