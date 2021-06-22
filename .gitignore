@@ -3,7 +3,7 @@ venv
 _pycache_
 __pycache__
 .DS_Store
-
+.vscode
 src/passenger_wsgi.py
 src/tmp/
 
