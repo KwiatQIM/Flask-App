@@ -147,7 +147,8 @@ def displayDocumentationPage(display='Tomography'):
 @app.route("/Algorithm/")
 @app.route("/Algorithm/<function>")
 def displayAlgorithmPage(function="state_tomography"):
-    return render_template("algorithm.html", function=function)
+    todisplay = 'algorithm_pages/wiki_' + function + '.html'
+    return render_template(todisplay, function=function)
 
 
 if __name__ == "__main__":

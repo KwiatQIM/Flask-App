@@ -253,3 +253,28 @@ color:#000000;
 	display:table-caption;
 	width: 100px;
 }
+
+.wiki div.AlgFunction h1
+{
+    text-align:center;
+    font-weight:bold;
+    color:rebeccapurple;
+}
+
+.wiki div.AlgFunction .stepnumber
+{
+font-weight:bold;
+color:rebeccapurple;
+}
+
+.wiki div.AlgFunction .stepdesc
+{
+padding-left: 30px;
+padding-top: 4px;
+
+}
+
+.wiki div.AlgFunction div.steprow
+{
+padding-top: 10px;
+}
