@@ -144,5 +144,11 @@ def displayDocumentationPage(display='Tomography'):
                            param_dicts=param_dicts, return_dicts=return_dicts, see_also=see_also, count=count)
 
 
+@app.route("/Algorithm/")
+@app.route("/Algorithm/<function>")
+def displayAlgorithmPage(function="state_tomography"):
+    return render_template("algorithm.html", function=function)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

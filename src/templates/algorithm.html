@@ -1,12 +1,28 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<style>
+	div#BodyContent {
+    	padding:0px 5%;
+	}
+</style>
 {% endblock %}
 
 {% block body %}
 
-<div class="container">
-
+<div class="wiki">
+    <div class="row">
+        <div class="col-md-3 text-align:center" id="TableOfContents">
+            <h3>state_tomography</h3>
+            <h3>filter_data</h3>
+            <h3>linear-tomography</h3>
+            <h3>maximum_likelihood_tomography</h3>
+            <h3>bayesian_tomography</h3>
+        </div>
+        <div class="col-md-9" id="Methods">
+            
+        </div>
+    </div>
 </div>
 
 {% endblock %}
