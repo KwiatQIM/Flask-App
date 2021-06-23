@@ -29,8 +29,8 @@ def state_characterization():
 
 
 # This is function grabs the values from the sliders on the previous page.
-@app.route("/stateCharacterization2", methods=["POST"])
-def state_characterization2():
+@app.route("/stateCharacterizationResults", methods=["POST"])
+def state_characterization_results():
     epsilon = float(request.form["amountInputEps"])
     decoherence = float(request.form["amountInputDco"])
     background = float(request.form["amountInputBgd"])
@@ -43,7 +43,7 @@ def state_characterization2():
     concurrence = myState.concurrence()
     daVis = myState.DA_visibility()
 
-    return render_template("stateCharacterization.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
+    return render_template("stateCharacterizationResults.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
 
 
 # Function that creates a page with only the 9 subplots on it.

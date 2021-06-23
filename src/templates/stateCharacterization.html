@@ -5,7 +5,7 @@
 
 {% block body %}
 
-<form method="POST" action="stateCharacterization2">
+<form method="POST" action="stateCharacterizationResults">
     <fieldset>
         <div class="row" id="InputRow">
             <h1>Input Parameters</h1>
@@ -43,25 +43,7 @@
         </div>
     </fieldset>
 </form>
-<div class="row" id="ResultsRow">
-    <h1>Results</h1>
-    <hr>
-    <div class="col-md-8">
-        <div class="text-center">
-            <img src="{{grph}}" alt="Image Placeholder" width = "450" height="400" class="center">
-        </div>
-    </div>
-    <div class="col-md-4" style="margin: auto;">
-        <h5>Parameters and Characteristics</h5>
-        <hr>
-        <ul>
-            <li><b>Term Imbalance</b> : {{eps}}</li>
-            <li><b>Decoherence</b> : {{dec}}</li>
-            <li><b>Background</b> : {{bac}}</li>
-            <li>Concurrence : {{concRND}}</li>
-            <li>DA visibility : {{daVisRND}}</li>
-        </ul>
-    </div>
-</div>
+{% block results %}
+{% endblock %}
 
 {% endblock %}
