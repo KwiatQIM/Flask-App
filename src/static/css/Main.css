@@ -278,3 +278,7 @@ padding-top: 4px;
 {
 padding-top: 10px;
 }
+
+img.latex {
+    image-rendering: crisp-edges;
+}

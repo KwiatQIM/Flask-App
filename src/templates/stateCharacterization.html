@@ -5,7 +5,7 @@
 
 {% block body %}
 
-<form method="POST" action="stateCharacterization2">
+<form method="POST" action="stateCharacterizationResults">
     <fieldset>
         <div class="row" id="InputRow">
             <h1>Input Parameters</h1>
@@ -16,7 +16,7 @@
                 <h4>Term Imbalance:</h4>
                 <!--<input type="range" name="amountRangeEps" min="0" max="1" value="{{eps}}" step=".01" oninput="this.form.amountInputEps.value=this.value" id="epsilonRng" />-->
                 <input type="number" name="amountInputEps" min="0" max="1" value="{{eps}}" step=".01" oninput="this.form.amountRangeEps.value=this.value"id="epsilonInp"/>
-                <p>Defined as (|b/a|)<sup>2</sup> in the equation &psi; = a|HH> + b|VV>, assuming b &leq; a.</p>
+                <p>Defined as <img class="latex" src="../static/latex/b_over_a_squared.PNG"> in the equation <img class="latex" src="../static/latex/State_characterization_state.PNG">, assuming b &leq; a.</p>
             </div>
 
             <!--Slider 2 -->
@@ -43,25 +43,7 @@
         </div>
     </fieldset>
 </form>
-<div class="row" id="ResultsRow">
-    <h1>Results</h1>
-    <hr>
-    <div class="col-md-8">
-        <div class="text-center">
-            <img src="{{grph}}" alt="Image Placeholder" width = "450" height="400" class="center">
-        </div>
-    </div>
-    <div class="col-md-4" style="margin: auto;">
-        <h5>Parameters and Characteristics</h5>
-        <hr>
-        <ul>
-            <li><b>Term Imbalance</b> : {{eps}}</li>
-            <li><b>Decoherence</b> : {{dec}}</li>
-            <li><b>Background</b> : {{bac}}</li>
-            <li>Concurrence : {{concRND}}</li>
-            <li>DA visibility : {{daVisRND}}</li>
-        </ul>
-    </div>
-</div>
+{% block results %}
+{% endblock %}
 
 {% endblock %}

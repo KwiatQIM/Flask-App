@@ -8,7 +8,55 @@
 
 {% block function %}
 <div class="AlgFunction" id="filter_data">
-    <h1>Page being developed</h1>
+    <h1>filter_data</h1>
+    <p>The main purpose of this function is to generate useful data structures
+        from the single <strong>tomo_input</strong> matrix. The structures are then used to perform the tomography later in the algorithm.</p>
+    <div class="row">
+        <div class="col-md-5">
+            <h3><strong>Inputs:</strong></h3>
+            <div class="gray-background">
+                <ul>
+                    <li><strong>tomo_input</strong></li>
+                    <ul><li>The same input from the <a href="{{url_for('displayAlgorithmPage',function='state_tomography')}}">state_tomography</a>
+                    function. The format for the input can be found <a href="{{url_for('displayDocumentationPage',display='Data_File')}}">here.</a></li></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h4 class="stepnumber">Step 1:</h4>
+            <p>The function extracts the time values, singles, and coincidences from the <strong>tomo_input</strong> matrix.</p>
+            <p class="stepdesc">Since these are just columns in the tomo_input matrix, this process is relatively simple.</p>
+        </div>
+
+        <div class="steprow">
+            <h4 class="stepnumber">Step 2:</h4>
+            <p>If the accidental correction setting in the <a href="{{url_for('displayDocumentationPage',display='Conf_File')}}">Conf Settings</a> is set to 1,
+                <strong>filter_data</strong> uses the <strong>window</strong> and <strong>efficiency</strong> settings to calculate the accidental counts.</p>
+        </div>
+
+        <div class="row steprow">
+            <div class="col-md-7">
+                <h4 class="stepnumber">Step 3:</h4>
+                <p>filter_data uses the <strong>crosstalk</strong> setting and the <strong>measurements</strong> to
+                generate the matrices representing the measurement pure states and the measurement density matrices.</p>
+            </div>
+            <div class="col-md-5">
+                <h3>Return Values:</h3>
+                <div class="gray-background">
+                    <ul>
+                        <li><strong>Coincidences</strong></li>
+                        <ul><li>The array of coincidence counts measured.</li></ul>
+                        <li><strong>Measurement Density Matrices</strong></li>
+                        <ul><li>A three dimensional matrix representing the Density matrices of the states used to take measurements.</li></ul>
+                        <li><strong>Measurement Pure States</strong></li>
+                        <ul><li>A two dimensional matrix housing the pure state representations of the measurement states.</li></ul>
+                        <li><strong>Accidental Counts</strong></li>
+                        <ul><li>An array that holds the numbers of projected accidental counts for each measurement state.</li></ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 {% endblock %}
