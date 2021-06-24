@@ -150,6 +150,10 @@ def displayAlgorithmPage(function="state_tomography"):
     todisplay = 'algorithm_pages/wiki_' + function + '.html'
     return render_template(todisplay, function=function)
 
+@app.route("/performance/")
+def performance():
+    return render_template('performance.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
