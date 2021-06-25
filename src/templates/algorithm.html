@@ -17,11 +17,14 @@
         <div class="col-md-2" id="TableOfContents">
             <h3 style="text-align:center;">Table Of Contents</h3>
             <ul>
-                <li><a href="{{url_for('displayAlgorithmPage', function='state_tomography')}}"><h5>state_tomography</h5></a></li>
-                <li><a href="{{url_for('displayAlgorithmPage', function='filter_data')}}"><h5>filter_data</h5></a></li>
-                <li><a href="{{url_for('displayAlgorithmPage', function='linear_tomography')}}"><h5>linear_tomography</h5></a></li>
-                <li><a href="{{url_for('displayAlgorithmPage', function='maximum_likelihood_tomography')}}"><h5>maximum_likelihood_tomography</h5></a></li>
-                <li><a href="{{url_for('displayAlgorithmPage', function='bayesian_tomography')}}"><h5>bayesian_tomography</h5></a></li>
+                <li><a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}"><h5>StateTomography</h5></a></li>
+                <ul>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='filter_data')}}"><h5>filter_data</h5></a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}"><h5>tomography_LINEAR</h5></a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}"><h5>tomography_MLE</h5></a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_HMLE')}}"><h5>tomography_HMLE</h5></a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_BME')}}"><h5>tomography_BME</h5></a></li>
+                </ul>
             </ul>
         </div>
         <div class="col-md-10" id="Methods">

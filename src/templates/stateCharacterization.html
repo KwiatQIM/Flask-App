@@ -16,6 +16,7 @@
                 <h4>Term Imbalance:</h4>
                 <!--<input type="range" name="amountRangeEps" min="0" max="1" value="{{eps}}" step=".01" oninput="this.form.amountInputEps.value=this.value" id="epsilonRng" />-->
                 <input type="number" name="amountInputEps" min="0" max="1" value="{{eps}}" step=".01" oninput="this.form.amountRangeEps.value=this.value"id="epsilonInp"/>
+                <input type="range" name="amountRangeEps" min="0" max="1" value="{{eps}}" step=".01" oninput="this.form.amountInputEps.value=this.value" id="epsilonRng"/>
                 <p>Defined as <img class="latex" src="../static/latex/b_over_a_squared.PNG"> in the equation <img class="latex" src="../static/latex/State_characterization_state.PNG">, assuming b &leq; a.</p>
             </div>
 
@@ -24,6 +25,7 @@
                 <h4>Decoherence:</h4>
                 <!--<input type="range" name="amountRangeDco" min="0" max="1" value="{{dec}}" step=".01" oninput="this.form.amountInputDco.value=this.value" id="decoherenceRng" />-->
                 <input type="number" name="amountInputDco" min="0" max="1" value="{{dec}}" step=".01" oninput="this.form.amountRangeDco.value=this.value"id="decoherenceInp" />
+                <input type="range" name="amountRangeDco" min="0" max="1" value="{{dec}}" step=".01" oninput="this.form.amountInputDco.value=this.value" id="decoherenceRng"/>
                 <p>The fraction of the maximum off-diagonal elements in the state's density matrix</p>
             </div>
 
@@ -32,6 +34,7 @@
                 <h4>Background:</h4>
                 <!-- <input type="range" name="amountRangeBgd" min="0" max="1" value="{{bac}}" step=".01" oninput="this.form.amountInputBgd.value=this.value" id="backgroundRng" />-->
                 <input type="number" name="amountInputBgd" min="0" max="1" value="{{bac}}" step=".01" oninput="this.form.amountRangeBgd.value=this.value" id="backgroundInp"/>
+                <input type="range" name="amountRangeBgd" min="0" max="1" value="{{bac}}" step=".01" oninput="this.form.amountInputBgd.value=this.value" id="backgroundRng"/>
                 <p>The proportion of the background density that is measured (background density is the 4x4 identity matrix for a 2 qubit state)</p>
             </div>
         </div>
