@@ -1,0 +1,62 @@
+{% extends 'algorithm.html' %}
+
+{% block head %}{%endblock%}
+
+{% block body %}
+    {{ super() }}
+{% endblock %}
+
+{% block function %}
+<div class="AlgFunction" id="tomography_MLE">
+    <h1>tomography_MLE</h1>
+    <p>This Maximum Likelihood Estimation approach to quantum state tomography calculates the state that has the
+        highest probability of producing the observed measurements</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-5">
+            <h3><strong>Inputs:</strong></h3>
+            <div class="gray-background">
+                <ul>
+                    <li><strong>Starting Density matrix</strong></li>
+                    <ul><li>The Density Matrix that is used to start the Maximum Likelihood Estimation</li></ul>
+                    <li><strong>Coincidences</strong></li>
+                    <ul><li>The array of coincidence counts for each measurement basis.</li></ul>
+                    <li><strong>Measurement Density Matrices</strong></li>
+                    <ul><li>A 3-D array containing the Density Matrices for each measurement basis.</li></ul>
+                    <li><strong>Accidentals</strong></li>
+                    <ul><li>An array containing the predicted amount of accidental counts for each measurement state.</li></ul>
+                    <li><strong>Overall Norms</strong></li>
+                    <ul><li>An array containing the relative weights for each measurement, used for drift correction.</li></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h4 class="stepnumber">Step 1:</h4>
+            <p>The starting density matrix is converted to its corresponding <strong>T values</strong></p>
+            <p class="stepdesc">The T values are used in to adjust the state to obtain the most likely option.</p>
+            <div class="steprow">
+                <h4 class="stepnumber">Step 2:</h4>
+                <p>The function loops through different t values, and uses least squares regression to find the
+                    T values that are most likely to have produced the observed output.</p>
+            </div>
+            <div class="steprow">
+                <h4 class="stepnumber">Step 3:</h4>
+                <p>The <strong>density matrix</strong> of the most likely state is reconstructed from the T values.</p>
+            </div>
+            <hr>
+            <h3><strong>Return Values:</strong></h3>
+            <div class="gray-background">
+                <ul>
+                    <li><strong>Final Density Matrix</strong></li>
+                    <ul><li>The Density Matrix corresponding the the state most likely to have produced the observed measurements.</li></ul>
+                    <li><strong>Intensity</strong></li>
+                    <ul><li>The value used to normalize the state to trace 1 after optimization.</li></ul>
+                    <li><strong>Final Optimization Value</strong></li>
+                    <ul><li>The final value of the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.leastsq.html" target="_blank">internal optimization function</a></li></ul>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

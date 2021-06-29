@@ -1,0 +1,59 @@
+{% extends 'algorithm.html' %}
+
+{% block head %}{%endblock%}
+
+{% block body %}
+    {{ super() }}
+{% endblock %}
+
+{% block function %}
+<div class="AlgFunction" id="tomography_LINEAR">
+    <h1>tomography_LINEAR</h1>
+    <p>This function performs linear tomography, a set of simple calculations to find a state relatively close to the state of interest. For the purpose of this library,
+        linear tomography is generally used to find the starting state for the more rigorous <a href="{{url_for('displayAlgorithmPage',function='tomography_MLE')}}">Maximum Likelihood</a>
+        and <a href="{{url_for('displayAlgorithmPage',function='tomography_BME')}}">Bayesian</a> methods.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-5">
+            <h3><strong>Inputs:</strong></h3>
+            <div class="gray-background">
+                <ul>
+                    <li><strong>coincidences</strong></li>
+                    <ul><li>An array of the coincidence counts for each measurement basis.</li></ul>
+                    <li><strong>measurements</strong></li>
+                    <ul><li>A matrix containing the states used to take measurements</li></ul>
+                    <li><strong>overall_norms</strong></li>
+                    <ul><li>An array with the same size as the coincidences array. Holds the relative weights of each measurement, used for drift correction.</li></ul>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h4 class="stepnumber">Step 1:</h4>
+            <p>The <strong>tomography_LINEAR</strong> function first ensures that the measurement states you are using are a minimal spanning set. If not, it transforms them into a minimal spanning set.</p>
+            <p class="stepdesc">The <strong>coincidences</strong> and <strong>measurements</strong> are then transformed so that only those corresponding to the measurements needed to create an independent set are used.</p>
+        </div>
+    </div>
+    <div class="steprow">
+        <h4 class="stepnumber">Step 2:</h4>
+        <p>The function uses the independent sets of coincidences and measurements to add measurement density matrices
+            to the estimated state, weighted by their corresponding coincidence counts.</p>
+    </div>
+    <div class="row steprow">
+        <div class="col-md-7">
+            <h4 class="stepnumber">Step 3:</h4>
+            <p>The state is normalized by its trace to transform into a valid density matrix and is returned.</p>
+        </div>
+        <div class="col-md-5">
+            <h3><strong>Return Values:</strong></h3>
+            <div class="gray-background">
+                <ul>
+                    <li><strong>Density Matrix</strong></li>
+                    <ul><li>The estimated Density Matrix from the linear tomography</li></ul>
+                    <li><strong>intensity</strong></li>
+                    <ul><li>The intensity used to normalize the Density matrix's trace to 1.</li></ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
