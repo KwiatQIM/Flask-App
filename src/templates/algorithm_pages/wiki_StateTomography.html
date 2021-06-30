@@ -72,11 +72,11 @@
         <div class="row steprow">
             <div class="col-md-7">
                 <h4 class="stepnumber">Step 4:</h4>
-                <p>If 'MLE' is the specified method, the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">maximum_likelihood_tomography</a>
+                <p>If 'MLE' is the specified method or there is no specified method, the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">maximum_likelihood_tomography</a>
                     function performs maximum likelihood estimation to find the state that corresponds to the maximum probability that the
                     observed measurements occured.</p>
                 <br>
-                <p>If 'HMLE' is the specified method, the <a href="{{url_for('displayAlgorithmPage', function='tomography_HMLE')}}">tomography_HMLE</a> function uses hedged maximum likelihood estimation to find desired density matrix.</p>
+                <p>If 'HMLE' is the specified method, the <a href="{{url_for('displayDocumentationPage', display='tomography_HMLE')}}" target="_blank">tomography_HMLE</a> function uses hedged maximum likelihood estimation to find desired density matrix.</p>
                 <br>
                 <p>If 'BME' is the specified method, the <a href="{{url_for('displayAlgorithmPage', function='tomography_BME')}}">tomography_BME</a> function uses bayesian methods to find the desired density matrix.</p>
                 <p class="stepdesc">These functions are all passed the <strong>starting matrix</strong>, <strong>coincidences</strong>,
