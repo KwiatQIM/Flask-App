@@ -5,11 +5,6 @@ the see also is formatted like this:
 
 See Also
  ------ 
-
-and other properties is formatted like this:
-
-Other Properties
- -------------- 
  
 """
 
