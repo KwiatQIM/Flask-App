@@ -16,6 +16,7 @@
       <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/Main.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/NavBar.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -54,6 +55,10 @@
                 <li class="nav-item">
                     <a class="btn btn-outline-warning" href="https://pypi.org/project/Quantum-Tomography/" target="_blank">Download</a>
                 </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning" href="https://github.com/KwiatQIM/Flask-App/issues" target="_blank">Report an Issue</a>
+                </li>
+
             </ul>
             </ul>
         </div>
@@ -71,4 +76,18 @@
     <!--#################-->
 
 </body>
+
+{% block footer %}
+<footer>
+
+    <div class="footer">
+        <p class="small text-center">The Quantum Tomography library is created and maintained by the <a class="link" href="http://research.physics.illinois.edu/QI/Photonics/" target="_blank"> Kwiat Quantum Information Group</a>
+            at the University of Illinois Urbana-Champaign
+        <span style="float:right;"><img src="../static/images/Illinois_Block_I.png" style="object-fit:scale-down; height:30px; img-rendering:pixelated; padding-right: 10px; padding-bottom:10px;" class="my-auto"></span>
+        </p>
+    </div>
+</footer>
+
+{% endblock %}
+
 </html>
