@@ -1,7 +1,6 @@
 body {
     /*! overflow-x:scroll; */
     font-family:'Roboto', sans-serif;
-
 }
 
 :root {
@@ -10,6 +9,7 @@ body {
 
 div#BodyContent {
     padding:15px 10%;
+    padding-bottom: 30px;
 }
 
 input[type=range] {
@@ -46,11 +46,16 @@ input[type=range]::-webkit-slider-thumb {
 
 
 
-.btn-primary,
- .btn-primary:hover {
+.btn-primary{
     background-color:#663399;
     border-color: #663399;
     color:#FFFFFF;
+}
+
+.btn-primary:hover {
+background-color:#663399;
+    border-color: #663399;
+    color: #f0ad4e;
 }
 
 .gray-background {

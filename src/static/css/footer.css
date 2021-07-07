@@ -1,0 +1,33 @@
+/* footer at the bottom of the page */
+
+
+footer {
+    padding-top:50px;
+}
+.footer {
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #f5f5f5;
+    color: #494949;
+    width: 100%;
+
+}
+
+footer .logo {
+    float:right;
+    padding-right: 10px;
+}
+
+
+footer p {
+    margin-bottom: 0;
+}
+
+footer a.link {
+    color: #663399;
+}
+
+footer a.link:hover {
+    color: #f0ad4e;
+}
