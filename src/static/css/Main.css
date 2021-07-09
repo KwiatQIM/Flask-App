@@ -136,7 +136,6 @@ color:#000000;
 
 /* CSS for Documentation page */
 .wiki div#TableOfContents{
-    width: min-content;
     border-right:solid 2px rebeccapurple;
     padding-top:15px;
 }

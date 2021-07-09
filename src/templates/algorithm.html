@@ -11,18 +11,18 @@
 </style>
 <div class="wiki">
     <div class="row">
-        <div class="col-md-2" id="TableOfContents">
-            <h3 style="text-align:center;">Table Of Contents</h3>
+        <div class="col-md-3" id="TableOfContents">
+            <h3 style="text-align:center;">Table of Contents</h3>
             <ul>
-                <li><a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}"><h5>StateTomography</h5></a></li>
+                <li><a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}">StateTomography</a></li>
                 <ul>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='filter_data')}}"><h5>filter_data</h5></a></li>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}"><h5>tomography_LINEAR</h5></a></li>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}"><h5>tomography_MLE</h5></a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='filter_data')}}">filter_data</a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">tomography_LINEAR</a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">tomography_MLE</a></li>
                 </ul>
             </ul>
         </div>
-        <div class="col-md-10" id="Methods">
+        <div class="col-md-9" id="Methods">
             <div class="method">
                 {% block function %}
                 {% endblock %}
