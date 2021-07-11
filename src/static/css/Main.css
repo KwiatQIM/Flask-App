@@ -166,7 +166,7 @@ color:#000000;
 {
 	padding-top:15px;
 }
-.wiki div.MethodInfo h1
+.wiki div.MethodInfo h1,
 {
 	font-weight:bold;
 	color:rebeccapurple;
@@ -210,7 +210,7 @@ color:#000000;
 	width: 100px;
 }
 
-.wiki div.AlgFunction h1
+.wiki div.AlgFunction h1,h2
 {
     text-align:center;
     font-weight:bold;
@@ -237,4 +237,16 @@ padding-top: 10px;
 
 img.latex {
     image-rendering: crisp-edges;
+}
+
+
+.wiki img.AlgoEquation {
+    margin:0 auto;
+    width:30%;
+    display:block;
+}
+.wiki img.AlgoDefinition {
+    margin:10px auto;
+    width:75%;
+    display:block;
 }
