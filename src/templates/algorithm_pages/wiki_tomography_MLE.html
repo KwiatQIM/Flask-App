@@ -8,60 +8,19 @@
 
 {% block function %}
 <div class="AlgFunction" id="tomography_MLE">
-    <h1>tomography_MLE</h1>
-    <p>This Maximum Likelihood Estimation approach to quantum state tomography calculates the state that has the
-        highest probability of producing the observed measurements</p>
-    <hr>
-    <div class="row">
-        <div class="col-md-5">
-            <h3><strong>Inputs:</strong></h3>
-            <div class="gray-background">
-                <ul>
-                    <li><strong>Starting Density matrix</strong></li>
-                    <ul><li>The Density Matrix that is used to start the Maximum Likelihood Estimation</li></ul>
-                    <li><strong>Coincidences</strong></li>
-                    <ul><li>The array of coincidence counts for each measurement basis.</li></ul>
-                    <li><strong>Measurement Density Matrices</strong></li>
-                    <ul><li>A 3-D array containing the Density Matrices for each measurement basis.</li></ul>
-                    <li><strong>Accidentals</strong></li>
-                    <ul><li>An array containing the predicted amount of accidental counts for each measurement state.</li></ul>
-                    <li><strong>Overall Norms</strong></li>
-                    <ul><li>An array containing the relative weights for each measurement, used for drift correction.</li></ul>
-                </ul>
-            </div>
-            <hr>
-            <h4 class="stepnumber">Note:</h4>
-            <p>We also provide a <strong><em>hedged</em> maximum likelihood estimation</strong> option, which is somewhat similar to this option.
-                More can be read about this option <a href="https://arxiv.org/abs/1001.2029#:~:text=This%20paper%20proposes%20and%20analyzes,the%20%22add%20beta%22%20rule." target="_blank">here</a>
-                and the inputs and outputs can be found <a href="{{url_for('displayDocumentationPage',display='tomography_HMLE')}}" target="_blank">here</a></p>
-        </div>
-        <div class="col-md-7">
-            <h4 class="stepnumber">Step 1:</h4>
-            <p>The starting density matrix is converted to its corresponding <strong>T values</strong></p>
-            <p class="stepdesc">The T values are used in to adjust the state to obtain the most likely option.</p>
-            <div class="steprow">
-                <h4 class="stepnumber">Step 2:</h4>
-                <p>The function loops through different t values, and uses least squares regression to find the
-                    T values that are most likely to have produced the observed output.</p>
-            </div>
-            <div class="steprow">
-                <h4 class="stepnumber">Step 3:</h4>
-                <p>The <strong>density matrix</strong> of the most likely state is reconstructed from the T values.</p>
-            </div>
-            <hr>
-            <h3><strong>Return Values:</strong></h3>
-            <div class="gray-background">
-                <ul>
-                    <li><strong>Final Density Matrix</strong></li>
-                    <ul><li>The Density Matrix corresponding the the state most likely to have produced the observed measurements.</li></ul>
-                    <li><strong>Intensity</strong></li>
-                    <ul><li>The value used to normalize the state to trace 1 after optimization.</li></ul>
-                    <li><strong>Final Optimization Value</strong></li>
-                    <ul><li>The final value of the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.leastsq.html" target="_blank">internal optimization function</a></li></ul>
-                </ul>
-            </div>
-        </div>
-
-    </div>
+    <h1>Maximum Likelihood Estimation (MLE)</h1>
+    <p class="AlgoDescription">The maximum likelihood estimation approach to quantum state tomography calculates the state with the
+highest probability of producing the observed measurements. Simply it is the state which maximizes the likelihood function:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/likelihood.PNG" alt="Likelihood Function">
+    <p class="AlgoDescription">Ignoring the normalization factor, plugging in the variance, and taking the log of this function we get the following:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/loglikelihood_1det.PNG" alt="Log Likelihood Function 1 Det per Qubit">
+    <p class="AlgoDescription">For 2 detectors per qubit:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/loglikelihood_2det.PNG" alt="Log Likelihood Function 2 Det per Qubit">
+    <p class="AlgoDescription">Our predicted state is one that maximizes the log likelihood or equally minimizes negation of this function:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/estimate_MLE.PNG" alt="MLE Estimate">
+    <h2>Hedged Maximum Likelihood Estimation (HMLE)</h2>
+    <p class="AlgoDescription">Hedged maximum likelihood is a simple modification of the maximum likelihood approach. Instead of maximizing the likelihood, the estimate is the one that maximizes the product of the likelihood with the following hedge function:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/estimate_HMLE.PNG" alt="HMLE Estimate">
+    <p class="AlgoDescription">Robin Blume-Kohout covers the hedged likelihood function in more detail in the paper titled <a href="https://arxiv.org/pdf/1001.2029.pdf">Hedged Maximum Likelihood Estimation</a>.</p>
 </div>
 {% endblock %}

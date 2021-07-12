@@ -246,7 +246,13 @@ img.latex {
     display:block;
 }
 .wiki img.AlgoDefinition {
-    margin:10px auto;
+    margin:auto;
+    margin-top:10px;
+    margin-bottom:0px;
     width:75%;
     display:block;
+}
+
+.wiki p.AlgoDescription {
+    margin-bottom:0px;
 }
