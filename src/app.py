@@ -4,6 +4,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import io
 import numpy as np
 from StateDiagnosisApplication import StateDiagnosis
+from blochSphere import blochSphere
 from createDocumentation import create_page
 
 app = Flask(__name__)
@@ -42,6 +43,7 @@ def state_characterization_results():
     daVis = myState.DA_visibility()
 
     return render_template("stateCharacterizationResults.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
+
 
 
 TomoClassFunctions, TomoFunctionsFunctions, TomoDisplayFunctions, functions, \
