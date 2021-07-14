@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
-
 {% block head %}
 {% endblock %}
-
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="text-center">
             <h1>Welcome!</h1>
-            <p>You have found the home page of the Quantum-Tomography python library</p>
+            <p>To the home page of the Quantum-Tomography python library. Created by the <a class="link" href="http://research.physics.illinois.edu/QI/Photonics/">Kwiat Quantum Information Group</a></p>
         </div>
     </div>
     <hr>
@@ -19,7 +17,6 @@
             <p>The package can be downloaded through the pypi link below. The code is stored on github, where you can download the code and make it your own.</p>
             <div class="row ">
                 <div class="col-sm-6 text-center">
-
                     <br>
                     <a href="https://pypi.org/project/Quantum-Tomography/" target="_blank" class="link"><img src="../static/images/pypi_logo.png" alt="pypi logo" width="50%" class="mt-3"></a>
                 </div>
@@ -29,7 +26,6 @@
                 </div>
             </div>
             <hr>
-
             <p class="mt-2">We also have an <strong>online interface</strong> for State Tomography, where you don't have to interact with the code at all! Our <strong>State Characterization app</strong> gives gives useful plots and state attributes for two-qubit states.</p>
             <br>
             <div class="row">
@@ -41,9 +37,7 @@
                 </div>
             </div>
             <br>
-
             <p class="mt-3">Want to learn more about the library? Check out our <a href="{{url_for('displayDocumentationPage')}}" class="link">Documentation</a> or <a href="{{url_for('displayAlgorithmPage')}}" class="link">how our library functions</a>.</p>
-
             <hr>
             <h3>Our Research Group:</h3>
             <hr>
@@ -54,15 +48,6 @@
                 <img src="../static/images/illinois_logo.png" alt="University of Illinois" width="50%">
             </div>
         </div>
-
-
-
-
-
-
-
-
-
         <div class="col-md-4">
             <h2><strong>Resources:</strong></h2>
             <div class="gray-background">
@@ -76,7 +61,6 @@
                 </ul>
                 <a class="link" href="{{url_for('displayAlgorithmPage')}}"><h4>Algorithm</h4></a>
                 <a class="link" href="{{url_for('displayDocumentationPage')}}"><h4>Documentation</h4></a>
-
                 <div class="text-center">
                     <h3><strong>Tomography:</strong></h3>
                 </div>
@@ -97,7 +81,6 @@
                     <ul><li class="small">This chapter from <em>Quantum State Estimation</em> (published by Springer in 2004 as part of the Lecture Notes in Physics series) is a shorter version of the chapter above, written to emphasize usefulness for any type of qubit implementation with less emphasis on experimental considerations.</li></ul>
                     <li class="link"><a href="https://www.springer.com/gp/book/9783540223290" target="_blank" class="link">Quantum State Estimation</a></li>
                     <ul><li class="small">A book containing tomography articles from groups around the world, including the second book chapter presented above. It is fairly long, and contains articles from a variety of points of view.</li></ul>
-
                 </ul>
                 <h4>Journal Articles:</h4>
                 <ul>

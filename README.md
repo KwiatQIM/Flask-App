@@ -11,32 +11,24 @@ For best results [install this version of python](https://www.python.org/downloa
 
 1. **Clone** the repo to your local computer
 
-2. **Fetch** data and files from **Quantum-Tomography** submodule ([Quantum-Tomography](https://github.com/KwiatQIM/Quantum-Tomography))
-   - Open **command line as administrator** 
-     - if you go to the repo location using file explorer you can type in 'cmd' in the file address bar 
-   and this will pop up the command line at that location.
-     - Or Navigate to the repo using the command _cd C:/path/to/local/repo_ 
-   - In the topmost level of your repository:
-        
-         git clone --recurse-submodules (Quantum-Tomography HTTPS link)
 
-3. **Create a virtual environment** by typing the following in the command prompt. Make sure you are at the top most level of the repo.
+2. **Create a virtual environment** by typing the following in the command prompt. Make sure you are at the top most level of the repo.
 
          py -m venv src\venv
-4. **Activate virtual environment**
+3. **Activate virtual environment**
 
         src\venv\Scripts\activate.bat
 
-5. Install the **requirements**. Don't upgrade pip, this might cause an error and you'll be left without pip. If this happens then just delete the venv folder and start over
+4. Install the **requirements**. Don't upgrade pip, this might cause an error and you'll be left without pip. If this happens then just delete the venv folder and start over
 
          pip install -r src\requirements.txt
          
-6. You can add the virtual environment to pycharm by going to File->Settings->Project->python interpreter. 
+5. You can add the virtual environment to pycharm by going to File->Settings->Project->python interpreter. 
    Click the drop down for interpreter and click show all. Click the + button, and add a new existing interpreter using the path:
    _C:\path\to\local\repo\src\venv\Scripts\python.exe_
    
 
-7. **Clone the Submodules**. This code uses the quantum-tomography python code as a submodule. You will need to update this when
+6. **Clone the Submodules**. This code uses the quantum-tomography python code as a submodule. You will need to update this when
 you first clone this repo.
 
         git submodule update --init
