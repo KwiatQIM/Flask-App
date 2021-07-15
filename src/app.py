@@ -1,10 +1,11 @@
 from flask import Flask, make_response, request, render_template
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 import io
 import numpy as np
 from StateDiagnosisApplication import StateDiagnosis
-from blochSphere import blochSphere
+from blochSphere import *
 from createDocumentation import create_page
 
 app = Flask(__name__)
@@ -44,6 +45,17 @@ def state_characterization_results():
 
     return render_template("stateCharacterizationResults.html", concRND=str(round(concurrence,4)), daVisRND=str(round(daVis,4)), eps=epsilon, dec=decoherence, bac=background, grph=tograph)
 
+
+@app.route('/singleQubitVisuals', methods=["GET", "POST"])
+def singleQubitVisuals():
+    if request.method == "POST":
+        state = str(request.form["state_selection"])
+        gate = str(request.form["gate_selection"])
+        sphere_path = f'/bloch/{state}/{gate}'
+        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=state, gate_to_select=gate)
+    else:
+        sphere_path = '/bloch/0/0'
+        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select='H', gate_to_select='X')
 
 
 TomoClassFunctions, TomoFunctionsFunctions, TomoDisplayFunctions, functions, \
@@ -90,6 +102,19 @@ def plot_everything(eps='1', dec='1', bac='0'):
     response.mimetype = 'image/png'
     return response
 
+@app.route('/bloch/<state>/<gate>')
+def bloch(state='H', gate='X'):
+    if state == '0' and gate == '0':
+        fig = blank_bloch()
+    else:
+        fig = bloch_sphere(state, gate)
+
+    canvas = FigureCanvas(fig)
+    output = io.BytesIO()
+    canvas.print_png(output)
+    response = make_response(output.getvalue())
+    response.mimetype = 'image/png'
+    return response
 
 
 if __name__ == "__main__":
