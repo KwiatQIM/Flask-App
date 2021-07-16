@@ -13,6 +13,8 @@ nav#MainNav .navbar-header{
 }
 nav#MainNav .nav-link{
     color:white;
+    vertical-align: middle;
+    display: table-cell;
 }
 
 div#navbarSupportedContent {
@@ -24,6 +26,7 @@ div#navbarSupportedContent {
 div#navbarSupportedContent li{
     padding: 0px;
     margin: 5px 10px;
+    display:inline-table;
 }
 
 div#navbarSupportedContent li:hover{

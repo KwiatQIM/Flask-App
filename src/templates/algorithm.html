@@ -11,18 +11,26 @@
 </style>
 <div class="wiki">
     <div class="row">
-        <div class="col-md-2" id="TableOfContents">
-            <h3 style="text-align:center;">Table Of Contents</h3>
+        <div class="col-md-3" id="TableOfContents">
+            <h3 style="text-align:center;">Table of Contents</h3>
             <ul>
-                <li><a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}"><h5>StateTomography</h5></a></li>
+                <li><a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}">State Tomography</a></li>
                 <ul>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='filter_data')}}"><h5>filter_data</h5></a></li>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}"><h5>tomography_LINEAR</h5></a></li>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}"><h5>tomography_MLE</h5></a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">Linear Tomography</a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">Maximum Likelihood Tomography</a></li>
+                </ul>
+                <li>Error Corrections</li>
+                <ul>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='accidentals')}}">Accidental Correction</a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='crosstalk')}}">Cross Talk</a></li>
+                </ul>
+                <li>Examples</li>
+                <ul>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='example_2qubit4det')}}">2 Qubits 4 Detectors</a></li>
                 </ul>
             </ul>
         </div>
-        <div class="col-md-10" id="Methods">
+        <div class="col-md-9" id="Methods">
             <div class="method">
                 {% block function %}
                 {% endblock %}

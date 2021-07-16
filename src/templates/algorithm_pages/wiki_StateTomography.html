@@ -8,98 +8,56 @@
 
 {% block function %}
 <div class="AlgFunction" id="StateTomography">
-    <h1>StateTomography</h1>
-    <p>The main function that our library is centered around. After initializing a Tomography object
-        with the number of qubits in the constructor, the <strong>StateTomography</strong> function can be called. </p>
+    <h1>State Tomography</h1>
+    <p class="AlgoDescription">State tomography starts with measuring the quantum state on a complete basis of measurements. Given the measurement data we wish to determine
+        the best possible estimate for the quantum state. Using <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem" target="_blank">Bayes’ theorem</a> we can define the probability of the state (<i>&rho;</i>) given the data:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/Bayes_Rule.PNG" alt="Bayes Rule">
+    <p class="AlgoDescription">There is a variety of methods we can use to find an estimate for the state <i>&rho;</i>, one of which is the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">maximum likelihood</a> approach, the
+        default method of our library. </p>
+    <h2 style="padding-top:15px;">Distribution of Counts</h2>
+    <p class="AlgoDescription">The counts of the measurements can be modeled by a <a href="https://en.wikipedia.org/wiki/Poisson_distribution" target="_blank">Poisson Distribution</a>. With high enough counts we can approximate this with a Normal
+        Distribution using the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem" target="_blank">Central Limit Theorem</a>. A important fact of the poisson distribution is the variance is equal to the mean. Derivation
+        of the model used is covered in <a href="http://research.physics.illinois.edu/QI/Photonics/tomography-files/amo_tomo_chapter.pdf" target="_blank">Photonic State Tomography</a> by  Joe Altepeter.
+    </p>
+
+
+    <h3 style="padding-top:15px;">1 Detector per Qubit</h3>
+    <p class="AlgoDescription">For each measurement we have 1 count number. For tomography on a single qubit using one detector the counts are the singles on our detector. For two qubits
+        and two detectors, the counts are the coincidences between our two detectors. The mean number of counts follows:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/1det_counts.PNG" alt="1 detector counts">
+    <img class="AlgoDefinition" src="../static/images/Algorithm/1det_definitions.PNG" alt="1 detector definitions">
+    <h4>Variables</h4>
+    <ul class="AlgoVariables">
+        <li><i>I<sub>0</sub></i> : The overall <b>intensity</b> initially approximated using <a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">linear tomography</a>.</li>
+        <li><i>I<sub>i</sub></i> : The <b>overall_norms</b> of measurement i. For 1 qubit per detector this is simply the <b>intensities</b> which can be given as in input using drift correction. Default is 1.</li>
+        <li><i>M'<sub>i</sub></i> : Measurement i with <a href="{{url_for('displayAlgorithmPage', function='tomography_crosstalk')}}">cross talk correction</a>.</li>
+        <li><i>M<sub>i</sub></i> : Measurement i. The state the target quantum state is projected on. These are given in pure state form but in this equation they are converted to density form.</li>
+        <li><i>a<sub>i</sub></i> : Predicted <b>accidentals</b> counts for measurement i. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='tomography_acc')}}"> accidental correction</a> page.
+    </ul>
+
+
+    <h3>2 Detector per Qubit</h3>
+    <p class="AlgoDescription">For each measurement we have 2<sup>N</sup> count numbers, N being the number of qubits. For tomography on a single qubit using two detectors the counts are the singles on each detector. For two qubits
+        and four detectors, the counts are the coincidences for each detector pair. For more details see the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">2 qubits 4 detectors example</a>. The mean number of counts follows:</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/2det_counts.PNG" alt="2 detector counts">
+    <img class="AlgoDefinition" src="../static/images/Algorithm/2det_definitions.PNG" alt="2 detector definitions">
+    To reach a similar form as 1 detector per qubit we flatten our equation into:
+    <img class="AlgoEquation" src="../static/images/Algorithm/2detFlat_counts.PNG" alt="2 detector counts flattened">
+    <img class="AlgoDefinition" src="../static/images/Algorithm/2detFlat_definitions.PNG" alt="2 detector definitions flattened">
+    <h4>Variables</h4>
+    <ul class="AlgoVariables">
+        <li><i>I<sub>0</sub></i> : The overall <b>intensity</b> initially approximated using <a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">linear tomography</a>.</li>
+        <li><i>I<sub>k</sub></i> : The <b>overall_norms</b> of measurement k. Equal to the <b>intensities</b> of measurement i times the <b>efficiency</b> of pair j.</li>
+        <li><i>M'<sub>k</sub></i> : Measurement k with <a href="{{url_for('displayAlgorithmPage', function='tomography_crosstalk')}}">cross talk correction</a>.</li>
+        <li><i>M<sub>k</sub></i> : Measurement k. The state the target quantum state is projected on for measurement i and detector pair j. These are given in pure state form but in this equation they are presented in density form.</li>
+        <li><i>a<sub>k</sub></i> : Predicted <b>accidentals</b> counts for measurement i and detector pair j. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='tomography_acc')}}"> accidental correction</a> page.
+    </ul>
     <hr>
-    <div class="row">
-        <div class="col-md-5">
-            <h3><strong>Inputs:</strong></h3>
-            <div class="gray-background">
-            <ul>
-                <li><strong>measurements</strong></li>
-                <ul><li>A matrix that stores the states that were used for measurements.</li></ul>
-                <li><strong>counts</strong></li>
-                <ul><li>An array with a length equal to the number of measurements taken.
-                    Each value corresponds to the number of counts measured for the measurement basis in the same row
-                    in the measurements input.</li></ul>
-                <li><strong>(optional)</strong></li>
-                <ul>
-                    <li>crosstalk</li>
-                    <li>efficiency</li>
-                    <li>time</li>
-                    <li>singles</li>
-                    <li>window</li>
-                    <li>error</li>
-                    <li>intensities</li>
-                    <li>method: ['MLE','HMLE','BME','LINEAR']</li>
-                    <ul><li>See <a href="{{url_for('displayDocumentationPage',display='StateTomography')}}">StateTomography</a> for more info</li></ul>
-                </ul>
-            </ul>
-            </div>
-        </div>
-        <div class="col-md-7">
-            <h4 class="stepnumber">Step 1:</h4>
-            <p>The <a href="{{url_for('displayDocumentationPage',display='buildTomoInput')}}">buildTomoInput</a> function is used to make a large tomography input matrix from the measurements, counts, and other optional parameters.</p>
-            <p class="stepdesc">The matrix is then passed into the StateTomography_Matrix Function where the next steps take place.</p>
-            <div class="steprow">
-                <h4 class="stepnumber">Step 2:</h4>
-                <p>The large tomography input matrix is given to the <a href="{{url_for('displayAlgorithmPage', function='filter_data')}}">filter_data</a> function.</p>
-                <div class="stepdesc">
-                    <p>The filter_data function returns <strong>four arrays</strong>:</p>
-                    <ul>
-                        <li>coincidences</li>
-                        <li>measurement state density matrices</li>
-                        <li>measurement pure states</li>
-                        <li>accidentals</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="steprow">
-            <h4 class="stepnumber">Step 3:</h4>
-            <p>If a starting tomography state is not specified in the Conf Settings (See <a href="{{url_for('displayDocumentationPage', display='Conf_File')}}">Conf_File</a>,
-            <a href="{{url_for('displayDocumentationPage', display='setConfSetting')}}">setConfSetting</a>,
-                or <a href="{{url_for('displayDocumentationPage', display='importConf')}}">importConf</a>),
-                the <a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">linear_tomography</a> function
-                uses linear techniques to find a good starting state for tomography. If the 'LINEAR' method is specified, then this linear tomography is what is returned from <strong>StateTomography()</strong>.</p>
-            <p class="stepdesc">linear_tomography takes the <strong>coincidences</strong> and <strong>measurements</strong> as inputs
-        and returns a <strong>density matrix</strong> corresponding to the starting state and an <strong>intensity</strong> value that was used to normalize the state</p>
-        </div>
-
-        <div class="row steprow">
-            <div class="col-md-7">
-                <h4 class="stepnumber">Step 4:</h4>
-                <p>If 'MLE' is the specified method or there is no specified method, the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">maximum_likelihood_tomography</a>
-                    function performs maximum likelihood estimation to find the state that corresponds to the maximum probability that the
-                    observed measurements occured.</p>
-                <br>
-                <p>If 'HMLE' is the specified method, the <a href="{{url_for('displayDocumentationPage', display='tomography_HMLE')}}" target="_blank">tomography_HMLE</a> function uses hedged maximum likelihood estimation to find desired density matrix.</p>
-                <br>
-                <p>If 'BME' is the specified method, the <a href="{{url_for('displayAlgorithmPage', function='tomography_BME')}}">tomography_BME</a> function uses bayesian methods to find the desired density matrix.</p>
-                <p class="stepdesc">These functions are all passed the <strong>starting matrix</strong>, <strong>coincidences</strong>,
-                    <strong>measurement density matrices</strong>, <strong>accidentals</strong>, and <strong>norms</strong>(used for drift correction). They all returns the <strong>final density matrix</strong>,
-                    <strong>intensity value</strong> used to normalize the state, and the <strong>final optimization difference</strong></p>
-            </div>
-            <div class="col-md-5">
-                <h3><strong>Return Values:</strong></h3>
-                <div class="gray-background">
-                    <ul>
-                        <li><strong>Density Matrix</strong></li>
-                        <ul><li>The matrix corresponding to the state that most likely to have produced the observed measurements.</li></ul>
-                        <li><strong>Intensity</strong></li>
-                        <ul><li>The predicted overall intensity that was used to normalize the state.</li></ul>
-                        <li><strong>Final Optimization Value</strong></li>
-                        <ul><li>The final value of the optimization function that was used to calculate the most likely state.</li></ul>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
+    <p class="AlgoDescription">Words in <b>bold</b> correspond to variables defined in the source code.</p>
+    <h4 style="padding-top:15px;">Reference Papers</h4>
+    <ul>
+        <li><a href="http://research.physics.illinois.edu/QI/Photonics/tomography-files/amo_tomo_chapter.pdf" target="_blank">Photonic State Tomography</a></li>
+    </ul>
 </div>
 {% endblock %}
 

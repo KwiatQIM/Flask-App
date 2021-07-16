@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" action="singleQubitVisuals">
+                <div class="row">
+                <label for="state">Choose a State:</label>
+                <select id="state" name="state_selection">
+                    <option value="H" {% if state_to_select == 'H' %} selected {% endif %}>|H></option>
+                    <option value="V" {% if state_to_select == 'V' %} selected {% endif %}>|V></option>
+                    <option value="D" {% if state_to_select == 'D' %} selected {% endif %}>|D></option>
+                    <option value="A" {% if state_to_select == 'A' %} selected {% endif %}>|A></option>
+                    <option value="R" {% if state_to_select == 'R' %} selected {% endif %}>|R></option>
+                    <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>|L></option>
+                </select>
+                <label for="gate">Choose a Gate:</label>
+                <select id="gate" name="gate_selection">
+                    <option value="X" {% if gate_to_select == 'X' %} selected {% endif %}>X gate</option>
+                    <option value="Y" {% if gate_to_select == 'Y' %} selected {% endif %}>Y gate</option>
+                    <option value="Z" {% if gate_to_select == 'Z' %} selected {% endif %}>Z gate</option>
+                    <option value="H" {% if gate_to_select == 'H' %} selected {% endif %}>H gate</option>
+                </select>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary btn-purple">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <img src="{{sphere_path}}">
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
