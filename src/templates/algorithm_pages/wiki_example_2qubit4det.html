@@ -1,0 +1,101 @@
+{% extends 'algorithm.html' %}
+
+{% block head %}{%endblock%}
+
+{% block body %}
+    {{ super() }}
+{% endblock %}
+
+{% block function %}
+<div class="AlgFunction" id="crosstalk">
+    <h1>Example : 2 Qubits and 4 Detectors</h1>
+    <p>In this example we perform tomography on a 2 qubit state using 4 detectors. The following is a representation
+    of the lab setup. Using this setup we can perform a series of measurements and receive coincidence counts between the detectors.</p>
+    <img class="AlgoDefinition" src="../static/images/Algorithm/example_2qubit4det.PNG" alt="2 qubits and 4 Detectors Lab Setup">
+
+    <div class="row">
+        <div class="col-md-8">
+            <p> In the following python example we collected data on the bellstate HH+VV. The detector pair order is stated to the right.</p>
+        </div>
+        <div class="col-md-4">
+            <ul>
+                <li>Det-pair 1 : 1-2</li>
+                <li>Det-pair 2 : 1-4</li>
+                <li>Det-pair 3 : 3-2</li>
+                <li>Det-pair 4 : 3-4</li>
+            </ul>
+        </div>
+    </div>
+    <h2>Python Code</h2>
+    <div class="python-example">
+        <code>
+            <pre>
+import QuantumTomography as qLib
+import numpy as np
+
+# Coincidence counts for 9 measurements.
+# Each row are is the coincidence counts for detector pairs 1,2,3 and 4 respectfully
+coincidence_counts = np.array([[497,   0,   0, 503],
+                               [256, 265, 250, 229],
+                               [235, 268, 242, 255],
+                               [254, 262, 249, 235],
+                               [521,   0,   0, 479],
+                               [235, 268, 248, 249],
+                               [265, 229, 280, 226],
+                               [253, 242, 247, 258],
+                               [  0, 495, 505,   0]])
+
+# Measurement basis for 9 measurements
+# In each row the first two numbers is the state the first qubit is projected onto when it ends up at detector 1.
+# The next two numbers is the state the second qubit is projected onto when it ends up at detector 2.
+measurements = np.array([[1+0j, 0j, 1+0j, 0j],
+                         [1+0j,  0j, 0.7071067811865476+0j,  0.7071067811865476+0j],
+                         [1+0j,  0j, 0.7071067811865476+0j,  0.7071067811865476j],
+                         [0.7071067811865476+0j, 0.7071067811865476+0j,  1+0j,0j],
+                         [0.7071067811865476+0j, 0.7071067811865476+0j,  0.7071067811865476+0j,  0.7071067811865476+0j],
+                         [0.7071067811865476+0j, 0.7071067811865476+0j,  0.7071067811865476+0j,  0.7071067811865476j],
+                         [0.7071067811865476+0j, 0.7071067811865476j,    1+0j,   0j],
+                         [0.7071067811865476+0j, 0.7071067811865476j,    0.7071067811865476+0j,  0.7071067811865476+0j],
+                         [0.7071067811865476+0j, 0.7071067811865476j,    0.7071067811865476+0j,  0.7071067811865476j],])
+
+# Initiate tomography object
+tomo_obj = qLib.Tomography()
+
+# Run tomography
+[rho_approx,intensity,fval] = tomo_obj.StateTomography(measurements,coincidence_counts)
+
+# Print Results
+tomo_obj.printLastOutput()
+print('----------------')
+bell_state = 1/np.sqrt(2) * np.array([1,0,0,1],dtype=complex)
+print('Fidelity with actual : ' + str(qLib.fidelity(bell_state,rho_approx)))
+            </pre>
+        </code>
+    </div>
+    <h3 class="python-output">Output:</h3>
+    <div class="python-output">
+        <code>
+            <pre>
+State:
+0.512               3.42e-03+i5.99e-03  5.10e-03+i1.63e-03  0.499+i1.98e-03
+3.42e-03-i5.99e-03  9.31e-05            5.32e-05-i4.88e-05  3.36e-03-i5.83e-03
+5.10e-03-i1.63e-03  5.32e-05+i4.88e-05  5.61e-05            4.98e-03-i1.57e-03
+0.499-i1.98e-03     3.36e-03+i5.83e-03  4.98e-03+i1.57e-03  0.487
+intensity : 1.0
+fval : 8.99e+06
+concurrence : 0.999
+tangle : 0.999
+entropy : 1.84e-06
+linear_entropy : 1.42e-07
+negativity : 0.999
+purity : 0.999
+----------------
+Fidelity with actual : 0.9996890733603662
+            </pre>
+        </code>
+    </h3>
+
+
+
+</div>
+{% endblock %}

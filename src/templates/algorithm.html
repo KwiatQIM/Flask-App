@@ -15,11 +15,18 @@
             <h3 style="text-align:center;">Table of Contents</h3>
             <ul>
                 <li><a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}">State Tomography</a></li>
-                <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">Maximum Likelihood</a></li>
                 <ul>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='filter_data')}}">filter_data</a></li>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">tomography_LINEAR</a></li>
-                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">tomography_MLE</a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">Maximum Likelihood Tomography</a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">Linear Tomography</a></li>
+                </ul>
+                <li>Error Corrections</li>
+                <ul>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='crosstalk')}}">Cross Talk</a></li>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='accidentals')}}">Accidental Correction</a></li>
+                </ul>
+                <li>Examples</li>
+                <ul>
+                    <li><a href="{{url_for('displayAlgorithmPage', function='example_2qubit4det')}}">2 Qubits 4 Detectors</a></li>
                 </ul>
             </ul>
         </div>

@@ -134,6 +134,21 @@ color:#000000;
 
 }
 
+div.python-example pre{
+    background: darkslategray;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+
+div.python-output pre{
+    border-left: 2px solid black;
+    padding: 10px;
+    color: rebeccapurple;
+}
+
 /* CSS for Documentation page */
 .wiki div#TableOfContents{
     border-right:solid 2px rebeccapurple;

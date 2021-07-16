@@ -1,0 +1,31 @@
+{% extends 'algorithm.html' %}
+
+{% block head %}{%endblock%}
+
+{% block body %}
+    {{ super() }}
+{% endblock %}
+
+{% block function %}
+<div class="AlgFunction" id="accidentals">
+    <h1>Accidental Correction</h1>
+    <p>The predicted accidental counts the jth detector pair of measurement i is calculated by the equation:</p>
+    <img class="AlgoDefinition" style="width:30%;"src="../static/images/Algorithm/accidental_counts.PNG" alt="Accidental Equation">
+    <h4>Variables</h4>
+    <ul class="AlgoVariables">
+        <li><i>T<sub>i</sub></i> : The <b>times</b> in nano-seconds of measurement i given as an input. Default is 1.</li>
+        <li><i>S<sub>ijk</sub></i> : For measurement i and detector pair j, S<sub>ijk</sub> is the <b>singles</b> count on the kth dector in the pair. For example in the first detector pair 1-2, the S<sub>ij1</sub> detector
+            is the singles count on detector 1. Default of the singles count is 0.</li>
+        <li><i>W<sub>k</sub></i> : The coincidence <b>window</b> duration for the jth detector pair given as an input. Default is 0.</li>
+        <li><i>E<sub>k</sub></i> : The relative <b>efficiency</b> on the jth detector pair. Default is 1.</li>
+    </ul>
+    <p>More details on the equation can be found in the <a href="http://research.physics.illinois.edu/QI/Photonics/tomography-files/amo_tomo_chapter.pdf" target="_blank">Photonic State Tomography</a> paper by Joe Altepeter.
+        The accidental counts are calculated in the <a href="{{url_for('displayDocumentationPage', display = 'filter_data' ) }}">filter_data()</a> function.</p>
+    <hr>
+    <p class="AlgoDescription">Words in <b>bold</b> correspond to variables defined in the source code.</p>
+    <h4 style="padding-top:15px;">Reference Papers</h4>
+    <ul>
+        <li><a href="http://research.physics.illinois.edu/QI/Photonics/tomography-files/amo_tomo_chapter.pdf" target="_blank">Photonic State Tomography</a></li>
+    </ul>
+</div>
+{% endblock %}

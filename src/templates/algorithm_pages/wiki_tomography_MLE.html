@@ -18,9 +18,24 @@ highest probability of producing the observed measurements. Simply it is the sta
     <img class="AlgoEquation" src="../static/images/Algorithm/loglikelihood_2det.PNG" alt="Log Likelihood Function 2 Det per Qubit">
     <p class="AlgoDescription">Our predicted state is one that maximizes the log likelihood or equally minimizes negation of this function:</p>
     <img class="AlgoEquation" src="../static/images/Algorithm/estimate_MLE.PNG" alt="MLE Estimate">
-    <h2>Hedged Maximum Likelihood Estimation (HMLE)</h2>
-    <p class="AlgoDescription">Hedged maximum likelihood is a simple modification of the maximum likelihood approach. Instead of maximizing the likelihood, the estimate is the one that maximizes the product of the likelihood with the following hedge function:</p>
+
+    <h2 style="padding-top:15px;">Optimization and T-Values</h2>
+    <p class="AlgoDescription">During the optimization we parameterize the density matrix in order to ensure we are only
+    considering valid density matrices.</p>
+    <img class="AlgoEquation" src="../static/images/Algorithm/t_vals.PNG" alt="T-Values">
+    <p class="AlgoDescription">The functions <a href="{{url_for('displayDocumentationPage', display = 't_to_density' ) }}">t_to_density(tvals)</a> and <a href="{{url_for('displayDocumentationPage', display = 'density2t' ) }}">density2t(rho)</a> are used to convert t-values to and from a density matrix.</p>
+
+    <h2 style="padding-top:15px;">Hedged Maximum Likelihood Estimation (HMLE)</h2>
+    <p class="AlgoDescription">Hedged maximum likelihood is a simple modification of the maximum likelihood approach. Instead of maximizing the likelihood,
+        the estimate is the one that maximizes the product of the likelihood with the following hedge function:</p>
     <img class="AlgoEquation" src="../static/images/Algorithm/estimate_HMLE.PNG" alt="HMLE Estimate">
-    <p class="AlgoDescription">Robin Blume-Kohout covers the hedged likelihood function in more detail in the paper titled <a href="https://arxiv.org/pdf/1001.2029.pdf">Hedged Maximum Likelihood Estimation</a>.</p>
+    <p class="AlgoDescription">The value of <b>Beta</b> can be defined in the conf settings, default is 1/2. Robin Blume-Kohout covers the hedged likelihood
+        function in more detail in the paper titled <a href="https://arxiv.org/pdf/1001.2029.pdf" target="_blank">Hedged Maximum Likelihood Estimation</a>.</p>
+    <hr>
+    <p class="AlgoDescription">Words in <b>bold</b> correspond to variables defined in the source code.</p>
+    <h4 style="padding-top:15px;">Reference Papers</h4>
+    <ul>
+        <li><a href="https://arxiv.org/pdf/1001.2029.pdf" target="_blank">Hedged Maximum Likelihood Estimation</a></li>
+    </ul>
 </div>
 {% endblock %}
