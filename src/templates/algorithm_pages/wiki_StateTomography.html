@@ -31,7 +31,7 @@
         <li><i>I<sub>0</sub></i> : The overall <b>intensity</b> initially approximated using <a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">linear tomography</a>.</li>
         <li><i>I<sub>i</sub></i> : The <b>overall_norms</b> of measurement i. For 1 qubit per detector this is simply the <b>intensities</b> which can be given as in input using drift correction. Default is 1.</li>
         <li><i>M'<sub>i</sub></i> : Measurement i with <a href="{{url_for('displayAlgorithmPage', function='tomography_crosstalk')}}">cross talk correction</a>.</li>
-        <li><i>M<sub>i</sub></i> : Measurement i. The state the our target quantum state is projected on. These are given in pure state form but in this equation they are converted to density form.</li>
+        <li><i>M<sub>i</sub></i> : Measurement i. The state the target quantum state is projected on. These are given in pure state form but in this equation they are converted to density form.</li>
         <li><i>a<sub>i</sub></i> : Predicted <b>accidentals</b> counts for measurement i. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='tomography_acc')}}"> accidental correction</a> page.
     </ul>
 
@@ -49,7 +49,7 @@
         <li><i>I<sub>0</sub></i> : The overall <b>intensity</b> initially approximated using <a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">linear tomography</a>.</li>
         <li><i>I<sub>k</sub></i> : The <b>overall_norms</b> of measurement k. Equal to the <b>intensities</b> of measurement i times the <b>efficiency</b> of pair j.</li>
         <li><i>M'<sub>k</sub></i> : Measurement k with <a href="{{url_for('displayAlgorithmPage', function='tomography_crosstalk')}}">cross talk correction</a>.</li>
-        <li><i>M<sub>k</sub></i> : Measurement k. The state the our target quantum state is projected on for measurement i and detector pair j. These are given in pure state form but in this equation they are presented in density form.</li>
+        <li><i>M<sub>k</sub></i> : Measurement k. The state the target quantum state is projected on for measurement i and detector pair j. These are given in pure state form but in this equation they are presented in density form.</li>
         <li><i>a<sub>k</sub></i> : Predicted <b>accidentals</b> counts for measurement i and detector pair j. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='tomography_acc')}}"> accidental correction</a> page.
     </ul>
     <hr>
