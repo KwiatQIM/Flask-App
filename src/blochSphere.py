@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 colors = ['#6900D1', '#2D00D1', '#0040D1', '#00A4D1', '#00D1AB', '#00D169', '#00D104', '#6FD100', '#D1D100', '#D18B00', '#D13300']
-
+purple = ['#663399']
 
 
 
@@ -41,35 +41,44 @@ def get_sphere():
     fig, ax = plt.subplots(figsize=(5,5), subplot_kw=dict(projection='3d'))
 
     sphere = qutip.Bloch(fig=fig, axes=ax)
-    sphere.point_color = colors
+    sphere.point_color = purple
     sphere.xlabel = ['$\\left|H\\right>$', '$\\left|V\\right>$']
     sphere.ylabel = ['$\\left|D\\right>$', '$\\left|A\\right>$']
     sphere.zlabel = ['$\\left|R\\right>$', '$\\left|L\\right>$']
 
     return sphere, fig, ax
 
-
+"""Returns a blank bloch sphere matplotlib figure"""
 def blank_bloch():
     sphere, fig, ax = get_sphere()
     sphere.render(fig=fig, axes=ax)
     return fig
 
-
-def bloch_sphere(state, gate):
+"""Given a state, and a list of gates, returns a figure with the corresponding bloch sphere plot of the transformation"""
+def bloch_sphere(state, input_gates):
         if state in states.keys():
             state = states[state]
         elif state.shape != (2,):
             raise ValueError(
                 "Input must be a pure state vector (numpy array with 2 elements) or one of the following: 'H' 'V' 'D' 'A' 'R' 'L'")
 
-        if gate in gates.keys():
-            gate = gates[gate]
-        elif gate.shape != (2, 2):
-            raise ValueError("Gate must be 2x2 matrix or one of the following: 'X' 'Y' 'Z' 'H'")
+        gates_list = []
+        for gate in input_gates:
+            if gate in gates.keys():
+                gates_list.append(gates[gate])
+            elif gate.shape != (2, 2):
+                raise ValueError("Gate must be 2x2 matrix or one of the following: 'X' 'Y' 'Z' 'H'")
+            else:
+                gates_list.append(gate)
 
         sphere, fig, ax = get_sphere()
 
-        points = gate_points(state, gate)
+        points = [[], [], []]
+        for gate in gates_list:
+            state, current_points = gate_points(state, gate)
+            points[0].extend(current_points[0])
+            points[1].extend(current_points[1])
+            points[2].extend(current_points[2])
 
         sphere.add_points(points, 'm')
 
@@ -78,6 +87,7 @@ def bloch_sphere(state, gate):
 
         return fig
 
+"""Returns a list of the lists of coordinates for a given state going through a given gate"""
 def gate_points(state, gate):
     if state.shape != (2,):
         raise ValueError('Input must be a pure state vector (numpy array with 2 elements)')
@@ -90,7 +100,7 @@ def gate_points(state, gate):
     stokes_after = normalize(stokes(post_gate_state))
     difference = [stokes_after[i] - stokes_before[i] for i in range(len(stokes_before))]
 
-    nsteps = 10
+    nsteps = 100
     difference_steps = [diff / nsteps for diff in difference]
 
     points = [stokes_before]
@@ -102,8 +112,9 @@ def gate_points(state, gate):
         points.append(current_point)
 
     points = coords(points)
-    return points
+    return post_gate_state, points
 
+"""Returns the stokes parameters (bloch sphere coordinates) of a pure state input"""
 def stokes(pure_state):
     if len(pure_state) != 2:
         raise ValueError('pure state must have two elements')
@@ -115,6 +126,7 @@ def stokes(pure_state):
 
     return [hv, da, rl]
 
+"""This changes a list of different points into a list containing three lists corresponding to the three stokes coordinates"""
 def coords(args):
     h = []
     d = []
@@ -125,6 +137,7 @@ def coords(args):
         r.append(arg[2])
     return [h, d, r]
 
+"""Normalizes a point within the sphere to the closest point on the outside of the sphere"""
 def normalize(stokes):
     magnitude = 0
     normalized_stokes = []
@@ -138,3 +151,6 @@ def normalize(stokes):
         normalized_stokes.append(parameter / magnitude)
 
     return normalized_stokes
+
+# b = bloch_sphere('H', ['X', '0', '0'])
+# plt.show()

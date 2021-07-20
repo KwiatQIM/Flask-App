@@ -4,6 +4,20 @@
 {% endblock %}
 
 {% block body %}
+
+<script>
+function toggleCustom1() {
+    var table = document.getElementById('customTable1');
+
+    var displaySetting = table.style.display;
+
+    if (displaySetting == 'none') {
+        table.style.display = 'block';
+    } else {
+        table.style.display = 'none';
+}
+</script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -18,21 +32,52 @@
                     <option value="R" {% if state_to_select == 'R' %} selected {% endif %}>|R></option>
                     <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>|L></option>
                 </select>
-                <label for="gate">Choose a Gate:</label>
-                <select id="gate" name="gate_selection">
-                    <option value="X" {% if gate_to_select == 'X' %} selected {% endif %}>X gate</option>
-                    <option value="Y" {% if gate_to_select == 'Y' %} selected {% endif %}>Y gate</option>
-                    <option value="Z" {% if gate_to_select == 'Z' %} selected {% endif %}>Z gate</option>
-                    <option value="H" {% if gate_to_select == 'H' %} selected {% endif %}>H gate</option>
+                <label for="gate1">Choose a First Gate:</label>
+                <select id="gate1" name="gate_1_selection" onchange="toggleCustom1()">
+                    <option value="X" {% if gate_1_to_select == 'X' %} selected {% endif %}>X gate</option>
+                    <option value="Y" {% if gate_1_to_select == 'Y' %} selected {% endif %}>Y gate</option>
+                    <option value="Z" {% if gate_1_to_select == 'Z' %} selected {% endif %}>Z gate</option>
+                    <option value="H" {% if gate_1_to_select == 'H' %} selected {% endif %}>H gate</option>
+                    <option value="custom">custom gate</option>
+                </select>
+                    <div id="customTable1" style="display:none;">
+                        <table>
+                        <tr>
+                            <td><input type="text" name="element1" value="0"></td>
+                            <td><input type="text" name="element2" value="0"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="element3" value="0"></td>
+                            <td><input type="text" name="element4" value="0"></td>
+                        </tr>
+                        </table>
+                    </div>
+
+                <label for="gate2">Choose a Second Gate:</label>
+                <select id="gate2" name="gate_2_selection">
+                    <option value="0" {% if gate_2_to_select == '0' %} selected {% endif %}>None</option>
+                    <option value="X" {% if gate_2_to_select == 'X' %} selected {% endif %}>X gate</option>
+                    <option value="Y" {% if gate_2_to_select == 'Y' %} selected {% endif %}>Y gate</option>
+                    <option value="Z" {% if gate_2_to_select == 'Z' %} selected {% endif %}>Z gate</option>
+                    <option value="H" {% if gate_2_to_select == 'H' %} selected {% endif %}>H gate</option>
+                </select>
+                <label for="gate3">Choose a Third Gate:</label>
+                <select id="gate3" name="gate_3_selection">
+                    <option value="0" {% if gate_3_to_select == '0' %} selected {% endif %}>None</option>
+                    <option value="X" {% if gate_3_to_select == 'X' %} selected {% endif %}>X gate</option>
+                    <option value="Y" {% if gate_3_to_select == 'Y' %} selected {% endif %}>Y gate</option>
+                    <option value="Z" {% if gate_3_to_select == 'Z' %} selected {% endif %}>Z gate</option>
+                    <option value="H" {% if gate_3_to_select == 'H' %} selected {% endif %}>H gate</option>
                 </select>
                 </div>
                 <div class="row">
                     <button type="submit" class="btn btn-primary btn-purple">Submit</button>
                 </div>
+
             </form>
         </div>
-        <div class="col-md-6">
-            <img src="{{sphere_path}}">
+        <div class="col-md-6 text-center">
+            <img src="{{sphere_path}}" style="vertical-align: middle;">
         </div>
     </div>
 </div>

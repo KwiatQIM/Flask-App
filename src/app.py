@@ -50,9 +50,10 @@ def state_characterization_results():
 def singleQubitVisuals():
     if request.method == "POST":
         state = str(request.form["state_selection"])
-        gate = str(request.form["gate_selection"])
-        sphere_path = f'/bloch/{state}/{gate}'
-        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=state, gate_to_select=gate)
+        gates = f'{request.form["gate_1_selection"]}_{request.form["gate_2_selection"]}_{request.form["gate_3_selection"]}'
+        sphere_path = f'/bloch/{state}/{gates}'
+        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=state, gate_1_to_select=request.form["gate_1_selection"]
+                               , gate_2_to_select=request.form["gate_2_selection"], gate_3_to_select=request.form["gate_3_selection"])
     else:
         sphere_path = '/bloch/0/0'
         return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select='H', gate_to_select='X')
@@ -102,12 +103,16 @@ def plot_everything(eps='1', dec='1', bac='0'):
     response.mimetype = 'image/png'
     return response
 
-@app.route('/bloch/<state>/<gate>')
-def bloch(state='H', gate='X'):
-    if state == '0' and gate == '0':
+@app.route('/bloch/<state>/<gates>')
+def bloch(state='H', gates='X'):
+    if state == '0' and gates == '0':
         fig = blank_bloch()
     else:
-        fig = bloch_sphere(state, gate)
+        gates_used = []
+        for gate in gates.split('_'):
+            if gate != '0':
+                gates_used.append(gate)
+        fig = bloch_sphere(state, gates_used)
 
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
