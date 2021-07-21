@@ -50,7 +50,27 @@ def state_characterization_results():
 def singleQubitVisuals():
     if request.method == "POST":
         state = str(request.form["state_selection"])
-        gates = f'{request.form["gate_1_selection"]}_{request.form["gate_2_selection"]}_{request.form["gate_3_selection"]}'
+
+        gate1 = request.form["gate_1_selection"]
+        if gate1 == 'custom':
+            gate1_elements = [request.form['gate1_element1'].strip(), request.form['gate1_element2'].strip(),
+                              request.form['gate1_element3'].strip(), request.form['gate1_element4'].strip()]
+            gate1 = f'{gate1_elements[0]}-{gate1_elements[1]}-{gate1_elements[2]}-{gate1_elements[3]}'
+
+        gate2 = request.form["gate_2_selection"]
+        if gate2 == 'custom':
+            gate2_elements = [request.form['gate2_element1'].strip(), request.form['gate2_element2'].strip(),
+                              request.form['gate2_element3'].strip(), request.form['gate2_element4'].strip()]
+            gate1 = f'{gate2_elements[0]}-{gate2_elements[1]}-{gate2_elements[2]}-{gate2_elements[3]}'
+
+        gate3 = request.form["gate_3_selection"]
+        if gate3 == 'custom':
+            gate3_elements = [request.form['gate3_element1'].strip(), request.form['gate3_element2'].strip(),
+                              request.form['gate3_element3'].strip(), request.form['gate3_element4'].strip()]
+            gate1 = f'{gate3_elements[0]}-{gate3_elements[1]}-{gate3_elements[2]}-{gate3_elements[3]}'
+
+
+        gates = f'{gate1}_{gate2}_{gate3}'
         sphere_path = f'/bloch/{state}/{gates}'
         return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=state, gate_1_to_select=request.form["gate_1_selection"]
                                , gate_2_to_select=request.form["gate_2_selection"], gate_3_to_select=request.form["gate_3_selection"])

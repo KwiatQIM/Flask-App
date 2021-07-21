@@ -66,10 +66,18 @@ def bloch_sphere(state, input_gates):
         for gate in input_gates:
             if gate in gates.keys():
                 gates_list.append(gates[gate])
-            elif gate.shape != (2, 2):
-                raise ValueError("Gate must be 2x2 matrix or one of the following: 'X' 'Y' 'Z' 'H'")
-            else:
+            elif gate.count('-') == 3:
+                elements = gate.split('-')
+                for i in range(len(elements)):
+                    if 'j' in elements[i]:
+                        elements[i] = complex(elements[i].replace(" ", ""))
+                    elif 'i' in elements[i]:
+                        elements[i] = complex(elements[i].replace("i", "j").replace(" ", ""))
+                    else:
+                        elements[i] = float(elements[i])
+                gate = np.array([[elements[0], elements[1]],[elements[2], elements[3]]], dtype=complex)
                 gates_list.append(gate)
+
 
         sphere, fig, ax = get_sphere()
 
@@ -152,5 +160,5 @@ def normalize(stokes):
 
     return normalized_stokes
 
-# b = bloch_sphere('H', ['X', '0', '0'])
+# b = bloch_sphere('H', ['1-1-1-1', '0', '0'])
 # plt.show()
