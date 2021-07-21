@@ -6,18 +6,25 @@
 {% block body %}
 
 <script>
-function toggleCustom(tableID, selectID) {
-    var table = document.getElementById(tableID);
+function toggleCustom(selectID, customValue, customID, pValue, pID) {
+    var customInput = document.getElementById(customID);
+    var pInput = document.getElementById(pID);
     var select = document.getElementById(selectID);
     var selected = select.value;
 
-    var displaySetting = table.style.display;
+    var customDisplaySetting = customInput.style.display;
+    var pDisplaySetting = pInput.style.display;
 
 
-    if (displaySetting == 'none' && selected == 'custom') {
-        table.style.display = 'block';
+    if (customDisplaySetting == 'none' && selected == customValue) {
+        customInput.style.display = 'block';
+        pInput.style.display = 'none';
+    } else  if (pDisplaySetting == 'none' && selected == pValue) {
+        customInput.style.display = 'none';
+        pInput.style.display = 'block';
     } else {
-        table.style.display = 'none';
+        customInput.style.display = 'none';
+        pInput.style.display = 'none';
     }
 }
 
@@ -38,11 +45,12 @@ function toggleCustom(tableID, selectID) {
                     <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>|L></option>
                 </select>
                 <label for="gate1">Choose a First Gate:</label>
-                <select id="gate1" name="gate_1_selection" onchange="toggleCustom('customTable1', 'gate1')">
+                <select id="gate1" name="gate_1_selection" onchange="toggleCustom('gate1', 'custom', 'customTable1', 'P', 'pgate1')">
                     <option value="X" {% if gate_1_to_select == 'X' %} selected {% endif %}>X gate</option>
                     <option value="Y" {% if gate_1_to_select == 'Y' %} selected {% endif %}>Y gate</option>
                     <option value="Z" {% if gate_1_to_select == 'Z' %} selected {% endif %}>Z gate</option>
                     <option value="H" {% if gate_1_to_select == 'H' %} selected {% endif %}>H gate</option>
+                    <option value="P" {% if gate_1_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
                     <option value="custom" {% if gate_1_to_select == 'custom' %} selected {% endif %}>custom gate</option>
                 </select>
                     <div id="customTable1" style="display:none;">
@@ -57,14 +65,19 @@ function toggleCustom(tableID, selectID) {
                         </tr>
                         </table>
                     </div>
+                    <div id="pgate1" style="display:none;">
+                        <p>Angle:</p>
+                        <input type="text" name="pgate1_angle" value="0">
+                    </div>
 
                 <label for="gate2">Choose a Second Gate:</label>
-                <select id="gate2" name="gate_2_selection" onchange="toggleCustom('customTable2', 'gate2')">
+                <select id="gate2" name="gate_2_selection" onchange="toggleCustom('gate2', 'custom', 'customTable2', 'P', 'pgate2')">
                     <option value="0" {% if gate_2_to_select == '0' %} selected {% endif %}>None</option>
                     <option value="X" {% if gate_2_to_select == 'X' %} selected {% endif %}>X gate</option>
                     <option value="Y" {% if gate_2_to_select == 'Y' %} selected {% endif %}>Y gate</option>
                     <option value="Z" {% if gate_2_to_select == 'Z' %} selected {% endif %}>Z gate</option>
                     <option value="H" {% if gate_2_to_select == 'H' %} selected {% endif %}>H gate</option>
+                    <option value="P" {% if gate_2_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
                     <option value="custom" {% if gate_2_to_select == 'custom' %} selected {% endif %}>custom gate</option>
                 </select>
                     <div id="customTable2" style="display:none;">
@@ -79,13 +92,18 @@ function toggleCustom(tableID, selectID) {
                         </tr>
                         </table>
                     </div>
+                    <div id="pgate2" style="display:none;">
+                        <p>Angle:</p>
+                        <input type="text" name="pgate2_angle" value="0">
+                    </div>
                 <label for="gate3">Choose a Third Gate:</label>
-                <select id="gate3" name="gate_3_selection" onchange="toggleCustom('customTable3', 'gate3')">
+                <select id="gate3" name="gate_3_selection" onchange="toggleCustom('gate3', 'custom', 'customTable3', 'P', 'pgate3')">
                     <option value="0" {% if gate_3_to_select == '0' %} selected {% endif %}>None</option>
                     <option value="X" {% if gate_3_to_select == 'X' %} selected {% endif %}>X gate</option>
                     <option value="Y" {% if gate_3_to_select == 'Y' %} selected {% endif %}>Y gate</option>
                     <option value="Z" {% if gate_3_to_select == 'Z' %} selected {% endif %}>Z gate</option>
                     <option value="H" {% if gate_3_to_select == 'H' %} selected {% endif %}>H gate</option>
+                    <option value="P" {% if gate_3_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
                     <option value="custom" {% if gate_3_to_select == 'custom' %} selected {% endif %}>custom gate</option>
                 </select>
                     <div id="customTable3" style="display:none;">
@@ -99,6 +117,10 @@ function toggleCustom(tableID, selectID) {
                             <td><input type="text" name="gate3_element4" value="0"></td>
                         </tr>
                         </table>
+                    </div>
+                    <div id="pgate3" style="display:none;">
+                        <p>Angle:</p>
+                        <input type="text" name="pgate3_angle" value="0">
                     </div>
                 </div>
                 <div class="row">

@@ -66,8 +66,8 @@ def bloch_sphere(state, input_gates):
         for gate in input_gates:
             if gate in gates.keys():
                 gates_list.append(gates[gate])
-            elif gate.count('-') == 3:
-                elements = gate.split('-')
+            elif gate.count('=') == 3:
+                elements = gate.split('=')
                 for i in range(len(elements)):
                     if 'j' in elements[i]:
                         elements[i] = complex(elements[i].replace(" ", ""))
@@ -159,6 +159,10 @@ def normalize(stokes):
         normalized_stokes.append(parameter / magnitude)
 
     return normalized_stokes
+
+def pgate(phi):
+    gate = ['1', '0', '0', f'{round(np.cos(phi), 5)}+{round(np.sin(phi), 5)}j']
+    return '='.join(gate)
 
 # b = bloch_sphere('H', ['1-1-1-1', '0', '0'])
 # plt.show()
