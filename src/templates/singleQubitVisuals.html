@@ -30,100 +30,123 @@ function toggleCustom(selectID, customValue, customID, pValue, pID) {
 
 </script>
 
-<div class="container">
+<div class="container blochsphere">
     <div class="row">
         <div class="col-md-6">
+            <h3>Here, you can visualize the effects of 1-qubit quantum gates on quantum states on the <a class="link" href="https://en.wikipedia.org/wiki/Bloch_sphere">Bloch (or Poincar&eacute;) Sphere.</a></h3>
+            <br>
+            <hr>
             <form method="post" action="singleQubitVisuals">
                 <div class="row">
-                <label for="state">Choose a State:</label>
-                <select id="state" name="state_selection">
-                    <option value="H" {% if state_to_select == 'H' %} selected {% endif %}>|H></option>
-                    <option value="V" {% if state_to_select == 'V' %} selected {% endif %}>|V></option>
-                    <option value="D" {% if state_to_select == 'D' %} selected {% endif %}>|D></option>
-                    <option value="A" {% if state_to_select == 'A' %} selected {% endif %}>|A></option>
-                    <option value="R" {% if state_to_select == 'R' %} selected {% endif %}>|R></option>
-                    <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>|L></option>
-                </select>
-                <label for="gate1">Choose a First Gate:</label>
-                <select id="gate1" name="gate_1_selection" onchange="toggleCustom('gate1', 'custom', 'customTable1', 'P', 'pgate1')">
-                    <option value="X" {% if gate_1_to_select == 'X' %} selected {% endif %}>X gate</option>
-                    <option value="Y" {% if gate_1_to_select == 'Y' %} selected {% endif %}>Y gate</option>
-                    <option value="Z" {% if gate_1_to_select == 'Z' %} selected {% endif %}>Z gate</option>
-                    <option value="H" {% if gate_1_to_select == 'H' %} selected {% endif %}>H gate</option>
-                    <option value="P" {% if gate_1_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
-                    <option value="custom" {% if gate_1_to_select == 'custom' %} selected {% endif %}>custom gate</option>
-                </select>
-                    <div id="customTable1" style="display:none;">
-                        <table>
-                        <tr>
-                            <td><input type="text" name="gate1_element1" value="0"></td>
-                            <td><input type="text" name="gate1_element2" value="0"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="gate1_element3" value="0"></td>
-                            <td><input type="text" name="gate1_element4" value="0"></td>
-                        </tr>
-                        </table>
-                    </div>
-                    <div id="pgate1" style="display:none;">
-                        <p>Angle:</p>
-                        <input type="text" name="pgate1_angle" value="0">
+                    <div class="stateEntry">
+                        <label for="state"><strong>Choose a State:</strong></label>
+                        <select id="state" name="state_selection">
+                            <option value="H" {% if state_to_select == 'H' %} selected {% endif %}>|H&#10217;</option>
+                            <option value="V" {% if state_to_select == 'V' %} selected {% endif %}>|V&#10217;</option>
+                            <option value="D" {% if state_to_select == 'D' %} selected {% endif %}>|D&#10217;</option>
+                            <option value="A" {% if state_to_select == 'A' %} selected {% endif %}>|A&#10217;</option>
+                            <option value="R" {% if state_to_select == 'R' %} selected {% endif %}>|R&#10217;</option>
+                            <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>|L&#10217;</option>
+                        </select>
                     </div>
 
-                <label for="gate2">Choose a Second Gate:</label>
-                <select id="gate2" name="gate_2_selection" onchange="toggleCustom('gate2', 'custom', 'customTable2', 'P', 'pgate2')">
-                    <option value="0" {% if gate_2_to_select == '0' %} selected {% endif %}>None</option>
-                    <option value="X" {% if gate_2_to_select == 'X' %} selected {% endif %}>X gate</option>
-                    <option value="Y" {% if gate_2_to_select == 'Y' %} selected {% endif %}>Y gate</option>
-                    <option value="Z" {% if gate_2_to_select == 'Z' %} selected {% endif %}>Z gate</option>
-                    <option value="H" {% if gate_2_to_select == 'H' %} selected {% endif %}>H gate</option>
-                    <option value="P" {% if gate_2_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
-                    <option value="custom" {% if gate_2_to_select == 'custom' %} selected {% endif %}>custom gate</option>
-                </select>
-                    <div id="customTable2" style="display:none;">
-                        <table>
-                        <tr>
-                            <td><input type="text" name="gate2_element1" value="0"></td>
-                            <td><input type="text" name="gate2_element2" value="0"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="gate2_element3" value="0"></td>
-                            <td><input type="text" name="gate2_element4" value="0"></td>
-                        </tr>
-                        </table>
+                    <hr>
+
+                    <div class="gateEntry">
+                        <label for="gate1"><strong>Choose a First Gate:</strong></label>
+                        <select id="gate1" name="gate_1_selection" onchange="toggleCustom('gate1', 'custom', 'customTable1', 'P', 'pgate1')">
+                            <option value="X" {% if gate_1_to_select == 'X' %} selected {% endif %}>X gate</option>
+                            <option value="Y" {% if gate_1_to_select == 'Y' %} selected {% endif %}>Y gate</option>
+                            <option value="Z" {% if gate_1_to_select == 'Z' %} selected {% endif %}>Z gate</option>
+                            <option value="H" {% if gate_1_to_select == 'H' %} selected {% endif %}>H gate</option>
+                            <option value="P" {% if gate_1_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
+                            <option value="custom" {% if gate_1_to_select == 'custom' %} selected {% endif %}>custom gate</option>
+                        </select>
+                        <div id="customTable1" style="display:none;" class="customgate">
+                            <p>Enter the <strong>Matrix Representation</strong> of the Desired Quantum Gate:</p>
+                            <p><small>Complex numbers can be entered as such: 1 + 2i</small></p>
+                            <table>
+                            <tr>
+                                <td><input type="text" name="gate1_element1" value="0"></td>
+                                <td><input type="text" name="gate1_element2" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="gate1_element3" value="0"></td>
+                                <td><input type="text" name="gate1_element4" value="0"></td>
+                            </tr>
+                            </table>
+                        </div>
+                        <div id="pgate1" style="display:none;" class="pgateangle">
+                            <p><strong>Angle: (degrees)</strong></p>
+                            <input type="text" name="pgate1_angle" value="0">
+                        </div>
                     </div>
-                    <div id="pgate2" style="display:none;">
-                        <p>Angle:</p>
-                        <input type="text" name="pgate2_angle" value="0">
+
+                    <div class="gateEntry">
+                        <label for="gate2"><strong>Choose a Second Gate:</strong></label>
+                        <select id="gate2" name="gate_2_selection" onchange="toggleCustom('gate2', 'custom', 'customTable2', 'P', 'pgate2')">
+                            <option value="0" {% if gate_2_to_select == '0' %} selected {% endif %}>None</option>
+                            <option value="X" {% if gate_2_to_select == 'X' %} selected {% endif %}>X gate</option>
+                            <option value="Y" {% if gate_2_to_select == 'Y' %} selected {% endif %}>Y gate</option>
+                            <option value="Z" {% if gate_2_to_select == 'Z' %} selected {% endif %}>Z gate</option>
+                            <option value="H" {% if gate_2_to_select == 'H' %} selected {% endif %}>H gate</option>
+                            <option value="P" {% if gate_2_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
+                            <option value="custom" {% if gate_2_to_select == 'custom' %} selected {% endif %}>custom gate</option>
+                        </select>
+                        <div id="customTable2" style="display:none;" class="customgate">
+                            <p>Enter the <strong>Matrix Representation</strong> of the Desired Quantum Gate:</p>
+                            <p><small>Complex numbers can be entered as such: 1 + 2i</small></p>
+                            <table>
+                            <tr>
+                                <td><input type="text" name="gate2_element1" value="0"></td>
+                                <td><input type="text" name="gate2_element2" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="gate2_element3" value="0"></td>
+                                <td><input type="text" name="gate2_element4" value="0"></td>
+                            </tr>
+                            </table>
+                        </div>
+                        <div id="pgate2" style="display:none;" class="pgateangle">
+                            <p><strong>Angle: (degrees)</strong></p>
+                            <input type="text" name="pgate2_angle" value="0">
+                        </div>
                     </div>
-                <label for="gate3">Choose a Third Gate:</label>
-                <select id="gate3" name="gate_3_selection" onchange="toggleCustom('gate3', 'custom', 'customTable3', 'P', 'pgate3')">
-                    <option value="0" {% if gate_3_to_select == '0' %} selected {% endif %}>None</option>
-                    <option value="X" {% if gate_3_to_select == 'X' %} selected {% endif %}>X gate</option>
-                    <option value="Y" {% if gate_3_to_select == 'Y' %} selected {% endif %}>Y gate</option>
-                    <option value="Z" {% if gate_3_to_select == 'Z' %} selected {% endif %}>Z gate</option>
-                    <option value="H" {% if gate_3_to_select == 'H' %} selected {% endif %}>H gate</option>
-                    <option value="P" {% if gate_3_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
-                    <option value="custom" {% if gate_3_to_select == 'custom' %} selected {% endif %}>custom gate</option>
-                </select>
-                    <div id="customTable3" style="display:none;">
-                        <table>
-                        <tr>
-                            <td><input type="text" name="gate3_element1" value="0"></td>
-                            <td><input type="text" name="gate3_element2" value="0"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="gate3_element3" value="0"></td>
-                            <td><input type="text" name="gate3_element4" value="0"></td>
-                        </tr>
-                        </table>
-                    </div>
-                    <div id="pgate3" style="display:none;">
-                        <p>Angle:</p>
-                        <input type="text" name="pgate3_angle" value="0">
+                    <div class="gateEntry">
+                        <label for="gate3"><strong>Choose a Third Gate:</strong></label>
+                        <select id="gate3" name="gate_3_selection" onchange="toggleCustom('gate3', 'custom', 'customTable3', 'P', 'pgate3')">
+                            <option value="0" {% if gate_3_to_select == '0' %} selected {% endif %}>None</option>
+                            <option value="X" {% if gate_3_to_select == 'X' %} selected {% endif %}>X gate</option>
+                            <option value="Y" {% if gate_3_to_select == 'Y' %} selected {% endif %}>Y gate</option>
+                            <option value="Z" {% if gate_3_to_select == 'Z' %} selected {% endif %}>Z gate</option>
+                            <option value="H" {% if gate_3_to_select == 'H' %} selected {% endif %}>H gate</option>
+                            <option value="P" {% if gate_3_to_select == 'P' %} selected {% endif %}>P gate (phase shift)</option>
+                            <option value="custom" {% if gate_3_to_select == 'custom' %} selected {% endif %}>custom gate</option>
+                        </select>
+                        <div id="customTable3" style="display:none;" class="customgate">
+                            <p>Enter the <strong>Matrix Representation</strong> of the Desired Quantum Gate:</p>
+                            <p><small>Complex numbers can be entered as such: 1 + 2i</small></p>
+                            <table>
+                            <tr>
+                                <td><input type="text" name="gate3_element1" value="0"></td>
+                                <td><input type="text" name="gate3_element2" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="gate3_element3" value="0"></td>
+                                <td><input type="text" name="gate3_element4" value="0"></td>
+                            </tr>
+                            </table>
+                        </div>
+                        <div id="pgate3" style="display:none;" class="pgateangle">
+                            <p><strong>Angle: (degrees)</strong></p>
+                            <input type="text" name="pgate3_angle" value="0">
+                        </div>
                     </div>
                 </div>
-                <div class="row">
+
+                <hr>
+
+                <div class="row"  style="padding-top: 20px;">
                     <button type="submit" class="btn btn-primary btn-purple">Submit</button>
                 </div>
 

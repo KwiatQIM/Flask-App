@@ -8,8 +8,10 @@ import matplotlib.pyplot as plt
 
 colors = ['#6900D1', '#2D00D1', '#0040D1', '#00A4D1', '#00D1AB', '#00D169', '#00D104', '#6FD100', '#D1D100', '#D18B00', '#D13300']
 purple = ['#663399']
+blue = ['#001DD1']
+green = ['#00D126']
 
-
+three_colors = 702*purple + 702*blue + 702*green
 
 gates = {
     'X': np.array([[0, 1], [1, 0]], dtype=complex),
@@ -41,7 +43,10 @@ def get_sphere():
     fig, ax = plt.subplots(figsize=(5,5), subplot_kw=dict(projection='3d'))
 
     sphere = qutip.Bloch(fig=fig, axes=ax)
-    sphere.point_color = purple
+    sphere.point_color = three_colors
+    sphere.point_marker = ['o']
+    sphere.point_size = [55]
+    sphere.view = [-67, 12]
     sphere.xlabel = ['$\\left|H\\right>$', '$\\left|V\\right>$']
     sphere.ylabel = ['$\\left|D\\right>$', '$\\left|A\\right>$']
     sphere.zlabel = ['$\\left|R\\right>$', '$\\left|L\\right>$']
@@ -70,9 +75,9 @@ def bloch_sphere(state, input_gates):
                 elements = gate.split('=')
                 for i in range(len(elements)):
                     if 'j' in elements[i]:
-                        elements[i] = complex(elements[i].replace(" ", ""))
+                        elements[i] = complex(elements[i].replace(" ", "").replace("+-", "-"))
                     elif 'i' in elements[i]:
-                        elements[i] = complex(elements[i].replace("i", "j").replace(" ", ""))
+                        elements[i] = complex(elements[i].replace("i", "j").replace(" ", "").replace("+-", "-"))
                     else:
                         elements[i] = float(elements[i])
                 gate = np.array([[elements[0], elements[1]],[elements[2], elements[3]]], dtype=complex)
@@ -108,7 +113,7 @@ def gate_points(state, gate):
     stokes_after = normalize(stokes(post_gate_state))
     difference = [stokes_after[i] - stokes_before[i] for i in range(len(stokes_before))]
 
-    nsteps = 100
+    nsteps = 700
     difference_steps = [diff / nsteps for diff in difference]
 
     points = [stokes_before]
@@ -116,9 +121,13 @@ def gate_points(state, gate):
     for i in range(nsteps):
         step_number = i + 1
         step = [step_number * element for element in difference_steps]
-        current_point = [stokes_before[i] + step[i] for i in range(len(step))]
-        points.append(current_point)
+        current_point = [stokes_before[i] + step[i]  for i in range(len(step))]
+        current_point[0] += -0.04
+        current_point[1] += -0.04
+        current_point[2] += 0.04
+        points.append(normalize(current_point))
 
+    points.append(stokes_after)
     points = coords(points)
     return post_gate_state, points
 
@@ -164,5 +173,6 @@ def pgate(phi):
     gate = ['1', '0', '0', f'{round(np.cos(phi), 5)}+{round(np.sin(phi), 5)}j']
     return '='.join(gate)
 
-# b = bloch_sphere('H', ['1-1-1-1', '0', '0'])
+
+# b = bloch_sphere('H', ['X', 'H', 'Y'])
 # plt.show()

@@ -57,7 +57,7 @@ def singleQubitVisuals():
                               request.form['gate1_element3'].strip(), request.form['gate1_element4'].strip()]
             gate1 = f'{gate1_elements[0]}={gate1_elements[1]}={gate1_elements[2]}={gate1_elements[3]}'
         elif gate1 == 'P':
-            gate1 = pgate(float(request.form['pgate1_angle']))
+            gate1 = pgate(float(request.form['pgate1_angle'])* (3.1415926535897 / 180))
 
         gate2 = request.form["gate_2_selection"]
         if gate2 == 'custom':
@@ -65,7 +65,7 @@ def singleQubitVisuals():
                               request.form['gate2_element3'].strip(), request.form['gate2_element4'].strip()]
             gate1 = f'{gate2_elements[0]}={gate2_elements[1]}={gate2_elements[2]}={gate2_elements[3]}'
         elif gate2 == 'P':
-            gate2 = pgate(float(request.form['pgate2_angle']))
+            gate2 = pgate(float(request.form['pgate2_angle']) * (3.1415926535897 / 180))
 
         gate3 = request.form["gate_3_selection"]
         if gate3 == 'custom':
@@ -73,7 +73,7 @@ def singleQubitVisuals():
                               request.form['gate3_element3'].strip(), request.form['gate3_element4'].strip()]
             gate3 = f'{gate3_elements[0]}={gate3_elements[1]}={gate3_elements[2]}={gate3_elements[3]}'
         elif gate3 == 'P':
-            gate3 = pgate(float(request.form['pgate3_angle']))
+            gate3 = pgate(float(request.form['pgate3_angle'])* (3.1415926535897 / 180))
 
         gates = f'{gate1}_{gate2}_{gate3}'
         sphere_path = f'/bloch/{state}/{gates}'

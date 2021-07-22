@@ -271,3 +271,29 @@ img.latex {
 .wiki p.AlgoDescription {
     margin-bottom:0px;
 }
+
+
+
+
+
+.blochsphere .stateEntry {
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+.blochsphere .gateEntry {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.blochsphere .pgateangle {
+
+    padding-top: 10px;
+    text-align: center;
+}
+.blochsphere .customgate {
+    padding-top: 15px;
+    width:70%;
+    margin-right: 15%;
+    margin-left: 15%;
+}
