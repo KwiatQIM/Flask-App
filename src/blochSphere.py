@@ -109,6 +109,11 @@ def gate_points(state, gate):
 
     post_gate_state = gate @ state
 
+    # to the points that make the lines around which to rotate
+    w, v = np.linalg.eig(gate)
+    for i in range(v.shape[1]):
+        print(stokes(v[:,i]))
+
     stokes_before = normalize(stokes(state))
     stokes_after = normalize(stokes(post_gate_state))
     difference = [stokes_after[i] - stokes_before[i] for i in range(len(stokes_before))]
@@ -174,5 +179,5 @@ def pgate(phi):
     return '='.join(gate)
 
 
-# b = bloch_sphere('H', ['X', 'H', 'Y'])
-# plt.show()
+b = bloch_sphere('H', ['X', 'H', 'Y'])
+plt.show()
