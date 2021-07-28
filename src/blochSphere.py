@@ -11,7 +11,7 @@ purple = ['#663399']
 blue = ['#001DD1']
 green = ['#00D126']
 
-three_colors = 702*purple + 702*blue + 702*green
+three_colors = 202*purple + 202*blue + 202*green
 
 gates = {
     'X': np.array([[0, 1], [1, 0]], dtype=complex),
@@ -110,27 +110,46 @@ def gate_points(state, gate):
     post_gate_state = gate @ state
 
     # to the points that make the lines around which to rotate
-    w, v = np.linalg.eig(gate)
-    for i in range(v.shape[1]):
-        print(stokes(v[:,i]))
+    eigvals, eigvectors = np.linalg.eig(gate)
+    eig_point = []
+    direction = []
+
+    eig_point = stokes(eigvectors[:,0])
+    direction = normalize([stokes(eigvectors[:,1])[i] - eig_point[i] for i in range(len(eig_point))])
 
     stokes_before = normalize(stokes(state))
     stokes_after = normalize(stokes(post_gate_state))
-    difference = [stokes_after[i] - stokes_before[i] for i in range(len(stokes_before))]
 
-    nsteps = 700
-    difference_steps = [diff / nsteps for diff in difference]
+    # rotating (x, y, z) around line with point (a, b, c) and direction (u, v, w)
+    (x, y, z) = stokes_before
+    (x2, y2, z2) = stokes_after
+    (a, b, c) = eig_point
+    (u, v, w) = direction
+
+
+    A_matrix = np.array([[x - (a*(v**2 + w**2) - u*(b*v + c*w - u*x - v*y - w*z)), -1*c*v + b*w - w*y + v*z],
+                         [y - (b*(u**2 + w**2) - v*(a*u + c*w - u*x - v*y - w*z)), c*u - a*w + w*x - u*z],
+                         [z - (c*(u**2 + v**2) - w*(a*u + b*v - u*x - v*y - w*z)), -1*b*u + a*v - v*x + u*y]])
+
+    B_vector = np.array([x2 - (a*(v**2 + w**2) - u*(b*v + c*w - u*x - v*y - w*z)),
+                         y2 - (b*(u**2 + w**2) - v*(a*u + c*w - u*x - v*y - w*z)),
+                         z2 - (c*(u**2 + v**2) - w*(a*u + b*v - u*x - v*y - w*z))])
+
+    cos_sin_theta = np.linalg.lstsq(A_matrix, B_vector)[0]
+    theta = -1*np.arccos(min(max(cos_sin_theta[0], -1), 1))
+
+    n_steps = 200
 
     points = [stokes_before]
+    for i in range(n_steps):
+        prop = i / n_steps
+        thet = theta * prop
+        current_point = [(a*(v**2 + w**2) - u*(b*v + c*w - u*x - v*y - w*z))*(1 - np.cos(thet)) + x*np.cos(thet) + (-1*c*v + v*w - w*y + v*z)*np.sin(thet),
+                         (b*(u**2 + w**2) - v*(a*u + c*w - u*x - v*y - w*z))*(1 - np.cos(thet)) + y*np.cos(thet) + (c*u - a*w + w*x - u*z)*np.sin(thet),
+                         (c*(u**2 + v**2) - w*(a*u + b*v - u*x - v*y - w*z))*(1 - np.cos(thet)) + z*np.cos(thet) + (-1*b*u + a*v - v*x + u*y)*np.sin(thet)]
+        points.append(current_point)
 
-    for i in range(nsteps):
-        step_number = i + 1
-        step = [step_number * element for element in difference_steps]
-        current_point = [stokes_before[i] + step[i]  for i in range(len(step))]
-        current_point[0] += -0.04
-        current_point[1] += -0.04
-        current_point[2] += 0.04
-        points.append(normalize(current_point))
+
 
     points.append(stokes_after)
     points = coords(points)
@@ -179,5 +198,5 @@ def pgate(phi):
     return '='.join(gate)
 
 
-b = bloch_sphere('H', ['X', 'H', 'Y'])
-plt.show()
+# b = bloch_sphere('H', ['1=1=1=1'])
+# plt.show()
