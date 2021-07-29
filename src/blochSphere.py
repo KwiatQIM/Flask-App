@@ -63,9 +63,18 @@ def blank_bloch():
 def bloch_sphere(state, input_gates):
         if state in states.keys():
             state = states[state]
-        elif state.shape != (2,):
-            raise ValueError(
-                "Input must be a pure state vector (numpy array with 2 elements) or one of the following: 'H' 'V' 'D' 'A' 'R' 'L'")
+        elif state.count('=') == 1:
+            state_elements = state.split('=')
+            for i in range(len(state_elements)):
+                if 'j' in state_elements[i]:
+                    state_elements[i] = complex(state_elements[i].replace(" ", "").replace("+-", "-"))
+                elif 'i' in state_elements[i]:
+                    state_elements[i] = complex(state_elements[i].replace("i","j").replace(" ", "").replace("+-", "-"))
+                else:
+                    state_elements[i] = float(state_elements[i])
+            state = np.zeros(2, dtype=complex)
+            state[0] += state_elements[0]
+            state[1] += state_elements[1]
 
         gates_list = []
         for gate in input_gates:

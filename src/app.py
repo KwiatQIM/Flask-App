@@ -50,6 +50,13 @@ def state_characterization_results():
 def singleQubitVisuals():
     if request.method == "POST":
         state = str(request.form["state_selection"])
+        if state == 'custom':
+            a_coef = request.form['custom_state_a']
+            b_coef = request.form['custom_state_b']
+            state = f'{a_coef}={b_coef}'
+            state_todisplay = state.split("=")
+        else:
+            state_todisplay = [0, 0]
 
 
         gate1 = request.form["gate_1_selection"]
@@ -91,13 +98,13 @@ def singleQubitVisuals():
 
         gates = f'{gate1}_{gate2}_{gate3}'
         sphere_path = f'/bloch/{state}/{gates}'
-        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=state, gate_1_to_select=request.form["gate_1_selection"]
+        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=request.form["state_selection"], gate_1_to_select=request.form["gate_1_selection"]
                                , gate_2_to_select=request.form["gate_2_selection"], gate_3_to_select=request.form["gate_3_selection"],
-                               dispgate1=gate1_todisplay, dispgate2=gate2_todisplay, dispgate3=gate3_todisplay)
+                               dispstate=state_todisplay, dispgate1=gate1_todisplay, dispgate2=gate2_todisplay, dispgate3=gate3_todisplay)
     else:
         sphere_path = '/bloch/0/0'
         return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select='H', gate_to_select='X',
-                               dispgate1=[0,0,0,0], dispgate2=[0,0,0,0], dispgate3=[0,0,0,0])
+                               dispstate=[0,0], dispgate1=[0,0,0,0], dispgate2=[0,0,0,0], dispgate3=[0,0,0,0])
 
 
 TomoClassFunctions, TomoFunctionsFunctions, TomoDisplayFunctions, functions, \

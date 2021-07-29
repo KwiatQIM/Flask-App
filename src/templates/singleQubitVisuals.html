@@ -28,6 +28,21 @@ function toggleCustom(selectID, customValue, customID, pValue, pID) {
     }
 }
 
+function toggleCustomState(selectID, customID) {
+    var select = document.getElementById(selectID);
+    var selected = select.value;
+
+    var customInput = document.getElementById(customID);
+
+    var customDisplaySetting = customInput.style.display;
+
+    if (selected == 'custom' && customDisplaySetting == 'none') {
+        customInput.style.display = 'block';
+    } else {
+        customInput.style.display = 'none';
+    }
+}
+
 </script>
 
 <div class="container blochsphere">
@@ -40,14 +55,24 @@ function toggleCustom(selectID, customValue, customID, pValue, pID) {
                 <div class="row">
                     <div class="stateEntry">
                         <label for="state"><strong>Choose a State:</strong></label>
-                        <select id="state" name="state_selection">
+                        <select id="state" name="state_selection" onchange="toggleCustomState('state', 'customstate')">
                             <option value="H" {% if state_to_select == 'H' %} selected {% endif %}>|H&#10217;</option>
                             <option value="V" {% if state_to_select == 'V' %} selected {% endif %}>|V&#10217;</option>
                             <option value="D" {% if state_to_select == 'D' %} selected {% endif %}>|D&#10217;</option>
                             <option value="A" {% if state_to_select == 'A' %} selected {% endif %}>|A&#10217;</option>
                             <option value="R" {% if state_to_select == 'R' %} selected {% endif %}>|R&#10217;</option>
                             <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>|L&#10217;</option>
+                            <option value="custom" {% if state_to_select == 'custom' %} selected {% endif %}>custom state</option>
                         </select>
+                        <div id="customstate" {% if state_to_select == 'custom' %} style="display:block;" {% else %} style="display:none;" {% endif %}>
+                            <p>Enter Coefficients a and b in the equation &psi; = a|H&#10217; + b|V&#10217;</p>
+                            <table>
+                                <tr>
+                                    <td><input type="text" name="custom_state_a" value="{{dispstate[0]}}"></td>
+                                    <td><input type="text" name="custom_state_b" value="{{dispstate[1]}}"</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
 
                     <hr>
