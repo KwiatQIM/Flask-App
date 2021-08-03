@@ -17,7 +17,11 @@ gates = {
     'X': np.array([[0, 1], [1, 0]], dtype=complex),
     'Y': np.array([[0, -1j], [1j, 0]], dtype=complex),
     'Z': np.array([[1, 0], [0, 1]], dtype=complex),
-    'H': (1 / np.sqrt(2)) * np.array([[1, 1], [1, -1]], dtype=complex)
+    'H': (1 / np.sqrt(2)) * np.array([[1, 1], [1, -1]], dtype=complex),
+    'S': np.array([[1, 0],[0, np.cos(np.pi / 2) + 1j*np.sin(np.pi / 2)]], dtype=complex),
+    'St': np.array([[1, 0],[0, np.cos(-1*np.pi / 2) + 1j*np.sin(-1*np.pi / 2)]], dtype=complex),
+    'T': np.array([[1, 0],[0, np.cos(np.pi / 4) + 1j*np.sin(np.pi / 4)]], dtype=complex),
+    'Tt': np.array([[1, 0],[0, np.cos(-1*np.pi / 4) + 1j*np.sin(-1*np.pi / 4)]], dtype=complex)
 }
 
 paulis = {

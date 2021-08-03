@@ -69,7 +69,7 @@ def singleQubitVisuals():
             gate1 = pgate(float(request.form['pgate1_angle'])* (3.1415926535897 / 180))
             gate1_todisplay = [float(request.form['pgate1_angle'])]
         else:
-            gate1_todisplay = request.form['gate_1_selection']
+            gate1_todisplay = 0
 
 
         gate2 = request.form["gate_2_selection"]
@@ -82,7 +82,7 @@ def singleQubitVisuals():
             gate2 = pgate(float(request.form['pgate2_angle']) * (3.1415926535897 / 180))
             gate2_todisplay = [float(request.form['pgate2_angle'])]
         else:
-            gate2_todisplay = request.form['gate_2_selection']
+            gate2_todisplay = 0
 
         gate3 = request.form["gate_3_selection"]
         if gate3 == 'custom':
@@ -94,7 +94,7 @@ def singleQubitVisuals():
             gate3 = pgate(float(request.form['pgate3_angle'])* (3.1415926535897 / 180))
             gate3_todisplay = [float(request.form['pgate3_angle'])]
         else:
-            gate3_todisplay = request.form['gate_3_selection']
+            gate3_todisplay = 0
 
         gates = f'{gate1}_{gate2}_{gate3}'
         sphere_path = f'/bloch/{state}/{gates}'

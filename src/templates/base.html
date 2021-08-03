@@ -42,16 +42,20 @@
                     <a class="nav-link" href="http://research.physics.illinois.edu/QI/Photonics/">Group Page</a>
                 </li>
                 <li class="nav-item btn">
-                    <a class="nav-link" href="{{url_for('state_characterization')}}">State Characterization</a>
-                </li>
-                <li class="nav-item btn">
                     <a class="nav-link" href="{{url_for('displayDocumentationPage')}}">Documentation</a>
                 </li>
                 <li class="nav-item btn">
                     <a class="nav-link" href="{{url_for('displayAlgorithmPage')}}">Our Algorithm</a>
                 </li>
-                <li class="nav-item btn">
-                    <a class="nav-link" href="{{url_for('singleQubitVisuals')}}">1-Qubit Visualization</a>
+                <li class="nav-item btn dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Apps
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="http://tomography.web.engr.illinois.edu/TomographyDemo.php" target="_blank">State Tomography</a>
+                        <a class="dropdown-item" href="{{url_for('state_characterization')}}">State Characterization</a>
+                        <a class="dropdown-item" href="{{url_for('singleQubitVisuals')}}">1-qubit visualization</a>
+                    </div>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -76,6 +80,10 @@
     </div>
     <!-- Body Content END-->
     <!--#################-->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 
