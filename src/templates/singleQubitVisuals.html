@@ -50,8 +50,12 @@ function toggleCustomState(selectID, customID) {
         <div class="col-md-6">
             <h3>Here, you can visualize the effects of 1-qubit quantum gates on quantum states on the <a class="link" href="https://en.wikipedia.org/wiki/Bloch_sphere" target="_blank">Poincar&eacute; (or Bloch) Sphere.</a></h3>
             <br>
-            <hr>
             <form method="post" action="singleQubitVisuals">
+                <input type="radio" id="bloch" name="sphereType" value="bloch">
+                <label for="bloch">Bloch Sphere</label><br>
+                <input type="radio" id="poincare" name="sphereType" value="poincare">
+                <label for="poincare">Poincare Sphere</label>
+                <hr>
                 <div class="row">
                     <div class="stateEntry">
                         <label for="state"><strong>Choose a State:</strong></label>

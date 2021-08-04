@@ -97,12 +97,12 @@ def singleQubitVisuals():
             gate3_todisplay = 0
 
         gates = f'{gate1}_{gate2}_{gate3}'
-        sphere_path = f'/bloch/{state}/{gates}'
+        sphere_path = f'/bloch/poincare/{state}/{gates}'
         return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=request.form["state_selection"], gate_1_to_select=request.form["gate_1_selection"]
                                , gate_2_to_select=request.form["gate_2_selection"], gate_3_to_select=request.form["gate_3_selection"],
                                dispstate=state_todisplay, dispgate1=gate1_todisplay, dispgate2=gate2_todisplay, dispgate3=gate3_todisplay)
     else:
-        sphere_path = '/bloch/0/0'
+        sphere_path = '/bloch/poincare/0/0'
         return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select='H', gate_to_select='X',
                                dispstate=[0,0], dispgate1=[0,0,0,0], dispgate2=[0,0,0,0], dispgate3=[0,0,0,0])
 
@@ -151,16 +151,16 @@ def plot_everything(eps='1', dec='1', bac='0'):
     response.mimetype = 'image/png'
     return response
 
-@app.route('/bloch/<state>/<gates>')
-def bloch(state='H', gates='X'):
+@app.route('/bloch/<type>/<state>/<gates>')
+def bloch(type = 'poincare', state='H', gates='X'):
     if state == '0' and gates == '0':
-        fig = blank_bloch()
+        fig = blank_bloch(type)
     else:
         gates_used = []
         for gate in gates.split('_'):
             if gate != '0':
                 gates_used.append(gate)
-        fig = bloch_sphere(state, gates_used)
+        fig = bloch_sphere(type, state, gates_used)
 
     canvas = FigureCanvas(fig)
     output = io.BytesIO()
