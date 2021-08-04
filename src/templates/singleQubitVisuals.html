@@ -43,6 +43,34 @@ function toggleCustomState(selectID, customID) {
     }
 }
 
+function switchelements(sphereType) {
+    if (sphereType == 'bloch') {
+        var select = document.getElementById('state');
+        select.options[0].innerHTML = '|0&#10217;';
+        select.options[1].innerHTML = '|1&#10217;';
+        select.options[2].innerHTML = 'x';
+        select.options[3].innerHTML = '-x';
+        select.options[4].innerHTML = 'y';
+        select.options[5].innerHTML = '-y';
+
+        var sphere = document.getElementById('Sphere');
+        sphere.src = '/bloch/bloch/0/0';
+    } else if (sphereType == 'poincare') {
+        var select = document.getElementById('state');
+        select.options[0].innerHTML = '|H&#10217;';
+        select.options[1].innerHTML = '|V&#10217;';
+        select.options[2].innerHTML = '|D&#10217;';
+        select.options[3].innerHTML = '|A&#10217;';
+        select.options[4].innerHTML = '|R&#10217;';
+        select.options[5].innerHTML = '|L&#10217;';
+
+        var sphere = document.getElementById('Sphere');
+
+        sphere.src = '/bloch/poincare/0/0';
+
+    }
+}
+
 </script>
 
 <div class="container blochsphere">
@@ -51,15 +79,16 @@ function toggleCustomState(selectID, customID) {
             <h3>Here, you can visualize the effects of 1-qubit quantum gates on quantum states on the <a class="link" href="https://en.wikipedia.org/wiki/Bloch_sphere" target="_blank">Poincar&eacute; (or Bloch) Sphere.</a></h3>
             <br>
             <form method="post" action="singleQubitVisuals">
-                <input type="radio" id="bloch" name="sphereType" value="bloch">
+                <input type="radio" id="bloch" name="sphereType" value="bloch" onchange="switchelements('bloch')" {% if sphereType == 'bloch' %} checked {% endif %}>
                 <label for="bloch">Bloch Sphere</label><br>
-                <input type="radio" id="poincare" name="sphereType" value="poincare">
+                <input type="radio" id="poincare" name="sphereType" value="poincare" onchange="switchelements('poincare')" {% if sphereType == 'poincare' %} checked {% endif %}>
                 <label for="poincare">Poincare Sphere</label>
                 <hr>
                 <div class="row">
                     <div class="stateEntry">
                         <label for="state"><strong>Choose a State:</strong></label>
                         <select id="state" name="state_selection" onchange="toggleCustomState('state', 'customstate')">
+                            {% if sphereType == 'poincare' %}
                             <option value="H" {% if state_to_select == 'H' %} selected {% endif %}>|H&#10217;</option>
                             <option value="V" {% if state_to_select == 'V' %} selected {% endif %}>|V&#10217;</option>
                             <option value="D" {% if state_to_select == 'D' %} selected {% endif %}>|D&#10217;</option>
@@ -67,6 +96,15 @@ function toggleCustomState(selectID, customID) {
                             <option value="R" {% if state_to_select == 'R' %} selected {% endif %}>|R&#10217;</option>
                             <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>|L&#10217;</option>
                             <option value="custom" {% if state_to_select == 'custom' %} selected {% endif %}>custom state</option>
+                            {% elif sphereType == 'bloch' %}
+                            <option value="H" {% if state_to_select == 'H' %} selected {% endif %}>|0&#10217;</option>
+                            <option value="V" {% if state_to_select == 'V' %} selected {% endif %}>|1&#10217;</option>
+                            <option value="D" {% if state_to_select == 'D' %} selected {% endif %}>x</option>
+                            <option value="A" {% if state_to_select == 'A' %} selected {% endif %}>-x</option>
+                            <option value="R" {% if state_to_select == 'R' %} selected {% endif %}>y</option>
+                            <option value="L" {% if state_to_select == 'L' %} selected {% endif %}>-y</option>
+                            <option value="custom" {% if state_to_select == 'custom' %} selected {% endif %}>custom state</option>
+                            {% endif %}
                         </select>
                         <div id="customstate" {% if state_to_select == 'custom' %} style="display:block;" {% else %} style="display:none;" {% endif %}>
                             <p>Enter Coefficients a and b in the equation &psi; = a|H&#10217; + b|V&#10217;</p>
@@ -194,7 +232,7 @@ function toggleCustomState(selectID, customID) {
             </form>
         </div>
         <div class="col-md-6 text-center">
-            <img src="{{sphere_path}}" style="vertical-align: middle;">
+            <img id="Sphere" src="{{sphere_path}}" style="vertical-align: middle;">
         </div>
     </div>
 </div>

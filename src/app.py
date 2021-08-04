@@ -97,13 +97,14 @@ def singleQubitVisuals():
             gate3_todisplay = 0
 
         gates = f'{gate1}_{gate2}_{gate3}'
-        sphere_path = f'/bloch/poincare/{state}/{gates}'
-        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select=request.form["state_selection"], gate_1_to_select=request.form["gate_1_selection"]
+        sphereType = request.form['sphereType']
+        sphere_path = f'/bloch/{sphereType}/{state}/{gates}'
+        return render_template("singleQubitVisuals.html", sphereType=sphereType, sphere_path=sphere_path, state_to_select=request.form["state_selection"], gate_1_to_select=request.form["gate_1_selection"]
                                , gate_2_to_select=request.form["gate_2_selection"], gate_3_to_select=request.form["gate_3_selection"],
                                dispstate=state_todisplay, dispgate1=gate1_todisplay, dispgate2=gate2_todisplay, dispgate3=gate3_todisplay)
     else:
         sphere_path = '/bloch/poincare/0/0'
-        return render_template("singleQubitVisuals.html", sphere_path=sphere_path, state_to_select='H', gate_to_select='X',
+        return render_template("singleQubitVisuals.html", sphereType='poincare', sphere_path=sphere_path, state_to_select='H', gate_to_select='X',
                                dispstate=[0,0], dispgate1=[0,0,0,0], dispgate2=[0,0,0,0], dispgate3=[0,0,0,0])
 
 

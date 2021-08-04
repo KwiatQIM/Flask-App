@@ -198,7 +198,7 @@ def stokes(type, pure_state):
     if type == 'poincare':
         return [hv, da, rl]
     elif type == 'bloch':
-        return [da, rl, hv]
+        return [da, rl, -1*hv]
 
 """This changes a list of different points into a list containing three lists corresponding to the three stokes coordinates"""
 def coords(args):
