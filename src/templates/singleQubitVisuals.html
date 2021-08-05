@@ -233,6 +233,31 @@ function switchelements(sphereType) {
         </div>
         <div class="col-md-6 text-center">
             <img id="Sphere" src="{{sphere_path}}" style="vertical-align: middle;">
+            {% if results == True %}
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="StateHeader"><u>Legend:</u></h3>
+                    {% for i in range(numstates - 1) %}
+                    <h4 id="gate{{i+1}}legend"><strong>Gate {{i + 1}}</strong></h4>
+                    {% endfor %}
+                </div>
+                <div class="col-md-8">
+                    <h3 class="StateHeader"><u>Starting State:</u></h3>
+                    {% for i in range(numstates) %}
+                    {% if i == numstates - 1 %}
+                    <h3 class="StateHeader"><u>Final State:</u></h3>
+                    {% elif i == 1 %}
+                    <h3 class="StateHeader"><u>Intermediate States:</u></h3>
+                    {% endif %}
+                    {% if sphereType == 'poincare' %}
+                    <h5>&Psi; = <strong class="coefficient">{{states_list[i][0]}}</strong>|H&#10217; + <strong class="coefficient">{{states_list[i][1]}}</strong>|V&#10217;</h5>
+                    {% elif sphereType == 'bloch' %}
+                    <h5>&Psi; = <strong class="coefficient">{{states_list[i][0]}}</strong>|0&#10217; + <strong class="coefficient">{{states_list[i][1]}}</strong>|1&#10217;</h5>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

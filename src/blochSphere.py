@@ -16,7 +16,7 @@ three_colors = 202*purple + 202*blue + 202*green
 gates = {
     'X': np.array([[0, 1], [1, 0]], dtype=complex),
     'Y': np.array([[0, -1j], [1j, 0]], dtype=complex),
-    'Z': np.array([[1, 0], [0, 1]], dtype=complex),
+    'Z': np.array([[1, 0], [0, -1]], dtype=complex),
     'H': (1 / np.sqrt(2)) * np.array([[1, 1], [1, -1]], dtype=complex),
     'S': np.array([[1, 0],[0, np.cos(np.pi / 2) + 1j*np.sin(np.pi / 2)]], dtype=complex),
     'St': np.array([[1, 0],[0, np.cos(-1*np.pi / 2) + 1j*np.sin(-1*np.pi / 2)]], dtype=complex),
@@ -70,6 +70,7 @@ def blank_bloch(type):
 
 """Given a state, and a list of gates, returns a figure with the corresponding bloch sphere plot of the transformation"""
 def bloch_sphere(type, state, input_gates):
+        states_list = []
         if state in states.keys():
             state = states[state]
         elif state.count('=') == 1:
@@ -103,20 +104,21 @@ def bloch_sphere(type, state, input_gates):
 
 
         sphere, fig, ax = get_sphere(type)
-
+        states_list.append(state)
         points = [[], [], []]
         for gate in gates_list:
             state, current_points = gate_points(type, state, gate)
             points[0].extend(current_points[0])
             points[1].extend(current_points[1])
             points[2].extend(current_points[2])
+            states_list.append(state)
 
         sphere.add_points(points, 'm')
 
         sphere.render(fig=fig, axes=ax)
 
 
-        return fig
+        return fig, states_list
 
 """Returns a list of the lists of coordinates for a given state going through a given gate"""
 def gate_points(type, state, gate):
