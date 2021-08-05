@@ -297,3 +297,44 @@ img.latex {
     margin-right: 15%;
     margin-left: 15%;
 }
+
+
+.blochsphere .StateHeader {
+    padding-top: 15px;
+}
+
+.blochsphere .coefficient {
+    color: #663399;
+}
+
+.blochsphere #gate1legend {
+    color: #663399;
+}
+.blochsphere #gate2legend {
+    color: #001DD1;
+}
+.blochsphere #gate3legend {
+    color: #00D126;
+}
+
+
+input[type="radio"] {
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    padding: 4px;
+    background-clip: content-box;
+    border: 2px solid #bbbbbb;
+    background-color: #e7e6e7;
+    border-radius: 50%;
+}
+
+
+
+input[type="radio"]:checked {
+    background-color: #663399;
+    border-color: #663399;
+}
