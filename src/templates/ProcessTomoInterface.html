@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="container ProcessTomoInterface">
+    <h1>Welcome to the Process Tomography Interface!</h1>
+    <form method="post" action="ProcessTomoInterface">
+        <label for="numMeasurements">Number of Inputs/Measurements</label>
+        <input type="number" min="4" max="6" value="6" id="numMeasurements" name="numMeasurements">
+        <div class="bigtable">
+            <table>
+                <tr>
+                    <td></td><td></td><td></td><td>inp 1</td><td>inp 2</td><td>inp 3</td><td>inp 4</td><td>inp 5</td><td>inp 6</td>
+                </tr>
+                <tr>
+                    <td></td><td></td><td></td><td>H</td><td>V</td><td>D</td><td>A</td><td>R</td><td>L</td>
+                </tr>
+                <tr>
+                    <td></td><td></td><td></td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+                </tr>
+                <tr>
+                    <td>meas 1</td><td>H</td><td>0</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td>
+                </tr>
+                <tr>
+                    <td>meas 2</td><td>V</td><td>0</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td>
+                </tr>
+                <tr>
+                    <td>meas 3</td><td>D</td><td>0</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td>
+                </tr>
+                <tr>
+                    <td>meas 4</td><td>A</td><td>0</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td>
+                </tr>
+                <tr>
+                    <td>meas 5</td><td>R</td><td>0</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td>
+                </tr>
+                <tr>
+                    <td>meas 6</td><td>L</td><td>0</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td><td>500</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <button type="submit"class="btn btn-primary btn-purple">Run</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
