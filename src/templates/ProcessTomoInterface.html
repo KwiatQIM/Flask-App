@@ -16,42 +16,48 @@
                 </tr>
                 <tr>
                     <td><strong>Input State</strong></td><td></td><td></td>
-                    <td><select id="inp-select-1" name="inp-select-0">
+                    <td><select id="inp-select-0" name="inp-select-0">
                         <option value="H" selected>H</option>
                         <option value="custom">custom</option>
                     </select></td>
-                    <td><select id="inp-select-2" name="inp-select-1">
+                    <td><select id="inp-select-1" name="inp-select-1">
                         <option value="V" selected>V</option>
                         <option value="custom">custom</option>
                     </select></td>
-                    <td><select id="inp-select-3" name="inp-select-2">
+                    <td><select id="inp-select-2" name="inp-select-2">
                         <option value="D" selected>D</option>
                         <option value="custom">custom</option>
                     </select></td>
-                    <td><select id="inp-select-4" name="inp-select-3">
+                    <td><select id="inp-select-3" name="inp-select-3">
                         <option value="A" selected>A</option>
                         <option value="custom">custom</option>
                     </select></td>
-                    <td><select id="inp-select-5" name="inp-select-4">
+                    <td><select id="inp-select-4" name="inp-select-4">
                         <option value="R" selected>R</option>
                         <option value="custom">custom</option>
                     </select></td>
-                    <td><select id="inp-select-6" name="inp-select-5">
+                    <td><select id="inp-select-5" name="inp-select-5">
                         <option value="L" selected>L</option>
                         <option value="custom">custom</option>
                     </select></td>
                 </tr>
                 <tr>
                     <td><strong>Coefficients</strong></td><td></td><td></td>
-                    <td><input type="text" class="coeff" id="inp-0-coef-1" name="inp-0-coef-1" value="1"><input type="text" class="coeff" id="inp-0-coef-2" name="inp-0-coef-2" value="0"></td>
-                    <td><input type="text" class="coeff" id="inp-1-coef-1" name="inp-1-coef-1" value="0"><input type="text" class="coeff" id="inp-1-coef-2" name="inp-1-coef-2" value="1"></td>
-                    <td><input type="text" class="coeff" id="inp-2-coef-1" name="inp-2-coef-1" value="0.7071"><input type="text" class="coeff" id="inp-2-coef-2" name="inp-2-coef-2" value="0.7071"></td>
-                    <td><input type="text" class="coeff" id="inp-3-coef-1" name="inp-3-coef-1" value="0.7071"><input type="text" class="coeff" id="inp-3-coef-2" name="inp-3-coef-2" value="-0.7071"></td>
-                    <td><input type="text" class="coeff" id="inp-4-coef-1" name="inp-4-coef-1" value="0.7071"><input type="text" class="coeff" id="inp-4-coef-2" name="inp-4-coef-2" value="0.7071i"></td>
-                    <td><input type="text" class="coeff" id="inp-5-coef-1" name="inp-5-coef-1" value="0.7071"><input type="text" class="coeff" id="inp-5-coef-2" name="inp-5-coef-2" value="-0.7071i"></td>
+                    <td><input type="text" class="coeff" id="inp-0-coef-1" name="inp-0-coef-1" value="1" onchange="document.getElementById('inp-select-0').value='custom'">
+                        <input type="text" class="coeff" id="inp-0-coef-2" name="inp-0-coef-2" value="0" onchange="document.getElementById('inp-select-0').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-1-coef-1" name="inp-1-coef-1" value="0" onchange="document.getElementById('inp-select-1').value='custom'">
+                        <input type="text" class="coeff" id="inp-1-coef-2" name="inp-1-coef-2" value="1" onchange="document.getElementById('inp-select-1').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-2-coef-1" name="inp-2-coef-1" value="0.7071" onchange="document.getElementById('inp-select-2').value='custom'">
+                        <input type="text" class="coeff" id="inp-2-coef-2" name="inp-2-coef-2" value="0.7071" onchange="document.getElementById('inp-select-2').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-3-coef-1" name="inp-3-coef-1" value="0.7071" onchange="document.getElementById('inp-select-3').value='custom'">
+                        <input type="text" class="coeff" id="inp-3-coef-2" name="inp-3-coef-2" value="-0.7071" onchange="document.getElementById('inp-select-3').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-4-coef-1" name="inp-4-coef-1" value="0.7071" onchange="document.getElementById('inp-select-4').value='custom'">
+                        <input type="text" class="coeff" id="inp-4-coef-2" name="inp-4-coef-2" value="0.7071i" onchange="document.getElementById('inp-select-4').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-5-coef-1" name="inp-5-coef-1" value="0.7071" onchange="document.getElementById('inp-select-5').value='custom'">
+                        <input type="text" class="coeff" id="inp-5-coef-2" name="inp-5-coef-2" value="-0.7071i" onchange="document.getElementById('inp-select-5').value='custom'"></td>
                 </tr>
                 <tr>
-                    <td></td><td><select id="meas-select-1" name="meas-select-1">
+                    <td></td><td><select id="meas-select-0" name="meas-select-0">
                         <option value="H" selected>H</option>
                         <option value="custom">custom</option>
                     </select></td>
@@ -64,11 +70,12 @@
                     <td><input type="number" class="countinp" value="0" min="0" id="count-0-5" name="count-0-5"></td>
                 </tr>
                 <tr>
-                    <td></td><td><select id="meas-select-2" name="meas-select-2">
+                    <td></td><td><select id="meas-select-1" name="meas-select-1">
                         <option value="V" selected>V</option>
                         <option value="custom">custom</option>
                     </select></td>
-                    <td><input type="text" class="coeff" id="meas-1-coef-1" name="meas-1-coef-1"><input type="text" class="coeff" id="meas-1-coef-2" name="meas-1-coef-2"></td>
+                    <td><input type="text" class="coeff" id="meas-1-coef-1" name="meas-1-coef-1" onchange="document.getElementById('meas-select-0').value='custom'">
+                        <input type="text" class="coeff" id="meas-1-coef-2" name="meas-1-coef-2" onchange="document.getElementById('meas-select-0').value='custom'"></td>
                     <td><input type="number" class="countinp" value="0" min="0" id="count-1-0" name="count-1-0"></td>
                     <td><input type="number" class="countinp" value="0" min="0" id="count-1-1" name="count-1-1"></td>
                     <td><input type="number" class="countinp" value="0" min="0" id="count-1-2" name="count-1-2"></td>
@@ -77,7 +84,7 @@
                     <td><input type="number" class="countinp" value="0" min="0" id="count-1-5" name="count-1-5"></td>
                 </tr>
                 <tr>
-                    <td></td><td><select id="meas-select-3" name="meas-select-3">
+                    <td></td><td><select id="meas-select-2" name="meas-select-2">
                         <option value="D" selected>D</option>
                         <option value="custom">custom</option>
                     </select></td>
@@ -90,7 +97,7 @@
                     <td><input type="number" class="countinp" value="0" min="0" id="count-2-5" name="count-2-5"></td>
                 </tr>
                 <tr>
-                    <td></td><td><select id="meas-select-4" name="meas-select-4">
+                    <td></td><td><select id="meas-select-3" name="meas-select-3">
                         <option value="A" selected>A</option>
                         <option value="custom">custom</option>
                     </select></td>
@@ -103,7 +110,7 @@
                     <td><input type="number" class="countinp" value="0" min="0" id="count-3-5" name="count-3-5"></td>
                 </tr>
                 <tr>
-                    <td></td><td><select id="meas-select-5" name="meas-select-5">
+                    <td></td><td><select id="meas-select-4" name="meas-select-4">
                         <option value="R" selected>R</option>
                         <option value="custom">custom</option>
                     </select></td>
@@ -117,7 +124,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><select id="meas-select-6" name="meas-select-6">
+                    <td><select id="meas-select-5" name="meas-select-5">
                         <option value="L" selected>L</option>
                         <option value="custom">custom</option>
                     </select></td>
