@@ -9,13 +9,13 @@
 {% block function %}
 <div class="AlgFunction" id="crosstalk">
     <h1>Example : 2 Qubits and 4 Detectors</h1>
-    <p>In this example we perform tomography on a 2 qubit state using 4 detectors. The following is a representation
+    <p>In this example we perform tomography on a 2-qubit state using 4 detectors. The following is a representation
     of the lab setup. Using this setup we can perform a series of measurements and receive coincidence counts between the detectors.</p>
-    <img class="AlgoDefinition" src="../static/images/Algorithm/example_2qubit4det.PNG" alt="2 qubits and 4 Detectors Lab Setup">
+    <img style="padding-bottom:25px;"class="AlgoDefinition" src="../static/images/Algorithm/example_2qubit4det.PNG" alt="2 qubits and 4 Detectors Lab Setup">
 
     <div class="row">
         <div class="col-md-8">
-            <p> In the following python example we collected data on the bellstate HH+VV. The detector pair order is stated to the right.</p>
+            <p> In the following python example we collected data on the Bell state HH+VV. The detector pair order is stated to the right.</p>
         </div>
         <div class="col-md-4">
             <ul>
@@ -34,7 +34,7 @@ import QuantumTomography as qLib
 import numpy as np
 
 # Coincidence counts for 9 measurements.
-# Each row are is the coincidence counts for detector pairs 1,2,3 and 4 respectfully
+# Each row is the coincidence counts for detector pairs 1,2,3 and 4 respectfully
 coincidence_counts = np.array([[497,   0,   0, 503],
                                [256, 265, 250, 229],
                                [235, 268, 242, 255],
@@ -46,17 +46,18 @@ coincidence_counts = np.array([[497,   0,   0, 503],
                                [  0, 495, 505,   0]])
 
 # Measurement basis for 9 measurements
-# In each row the first two numbers is the state the first qubit is projected onto when it ends up at detector 1.
+# In each row the first two (possible complex) numbers alpha and beta represent the state that the first qubit
+# is projected onto when it ends up at detector 1.
 # The next two numbers is the state the second qubit is projected onto when it ends up at detector 2.
 measurements = np.array([[1+0j, 0j, 1+0j, 0j],
-                         [1+0j,  0j, 0.7071067811865476+0j,  0.7071067811865476+0j],
-                         [1+0j,  0j, 0.7071067811865476+0j,  0.7071067811865476j],
-                         [0.7071067811865476+0j, 0.7071067811865476+0j,  1+0j,0j],
-                         [0.7071067811865476+0j, 0.7071067811865476+0j,  0.7071067811865476+0j,  0.7071067811865476+0j],
-                         [0.7071067811865476+0j, 0.7071067811865476+0j,  0.7071067811865476+0j,  0.7071067811865476j],
-                         [0.7071067811865476+0j, 0.7071067811865476j,    1+0j,   0j],
-                         [0.7071067811865476+0j, 0.7071067811865476j,    0.7071067811865476+0j,  0.7071067811865476+0j],
-                         [0.7071067811865476+0j, 0.7071067811865476j,    0.7071067811865476+0j,  0.7071067811865476j],])
+                         [1+0j,  0j, 0.70710678+0j,  0.7071067811865476+0j],
+                         [1+0j,  0j, 0.70710678+0j,  0.70710678j],
+                         [0.70710678+0j, 0.70710678+0j,  1+0j,0j],
+                         [0.70710678+0j, 0.70710678+0j,  0.70710678+0j,  0.70710678+0j],
+                         [0.70710678+0j, 0.70710678+0j,  0.70710678+0j,  0.70710678j],
+                         [0.70710678+0j, 0.70710678j,    1+0j,   0j],
+                         [0.70710678+0j, 0.70710678j,    0.70710678+0j,  0.70710678+0j],
+                         [0.70710678+0j, 0.70710678j,    0.70710678+0j,  0.7071067811865476j],])
 
 # Initiate tomography object
 tomo_obj = qLib.Tomography()

@@ -9,48 +9,55 @@
 {% block function %}
 <div class="AlgFunction" id="StateTomography">
     <h1>State Tomography</h1>
-    <p class="AlgoDescription">State tomography starts with measuring the quantum state on a complete basis of measurements. Given the measurement data we wish to determine
+    <p class="AlgoDescription">State tomography starts with measuring the quantum state in a complete basis of measurements. Given the measurement data we wish to determine
         the best possible estimate for the quantum state. Using <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem" target="_blank">Bayes’ theorem</a> we can define the probability of the state (<i>&rho;</i>) given the data:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/Bayes_Rule.PNG" alt="Bayes Rule">
-    <p class="AlgoDescription">There is a variety of methods we can use to find an estimate for the state <i>&rho;</i>, one of which is the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">maximum likelihood</a> approach, the
+    <img style="width:40%;padding:10px;" class="AlgoEquation" src="../static/images/Algorithm/Bayes_Rule.PNG" alt="Bayes Rule">
+    <p class="AlgoDescription">There are a variety of methods we can use to find an estimate for the state <i>&rho;</i>, the most common of which is the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">maximum likelihood</a> approach, the
         default method of our library. </p>
     <h2 style="padding-top:15px;">Distribution of Counts</h2>
     <p class="AlgoDescription">The counts of the measurements can be modeled by a <a href="https://en.wikipedia.org/wiki/Poisson_distribution" target="_blank">Poisson Distribution</a>. With high enough counts we can approximate this with a Normal
-        Distribution using the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem" target="_blank">Central Limit Theorem</a>. A important fact of the poisson distribution is the variance is equal to the mean. Derivation
+        Distribution using the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem" target="_blank">Central Limit Theorem(CLT)</a>. A important fact of the poisson distribution is the variance is equal to the mean. Derivation
         of the model used is covered in <a href="http://research.physics.illinois.edu/QI/Photonics/tomography-files/amo_tomo_chapter.pdf" target="_blank">Photonic State Tomography</a> by  Joe Altepeter.
     </p>
 
 
     <h3 style="padding-top:15px;">1 Detector per Qubit</h3>
-    <p class="AlgoDescription">For each measurement we have 1 count number. For tomography on a single qubit using one detector the counts are the singles on our detector. For two qubits
-        and two detectors, the counts are the coincidences between our two detectors. The mean number of counts follows:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/1det_counts.PNG" alt="1 detector counts">
-    <img class="AlgoDefinition" src="../static/images/Algorithm/1det_definitions.PNG" alt="1 detector definitions">
-    <h4>Variables</h4>
+    <p class="AlgoDescription">For each measurement we have 1 count number. For tomography on a single qubit using one detector, the counts are the singles on the detector. For two qubits
+        and two detectors, the counts are the coincidences between the two detectors. The mean number of counts follows:</p>
+    <img style="width:50%;padding-top:15px;" class="AlgoEquation" src="../static/images/Algorithm/1det_counts.PNG" alt="1 detector counts">
+    <h4>Definitions</h4>
     <ul class="AlgoVariables">
+        <li><i>&rho;</i> : Quantum state in density matrix form.</li>
+        <li><i>n<sub>i</sub></i> : Number of counts on measurement i.</li>
+        <li><i>&mu;<sub>i</sub></i> : Expected number of counts on measurement i given ρ.</li>
+        <li><i>&sigma;<sub>i</sub></i> : Standard Deviation for the number of counts on measurement i given &rho;. Equal to the square root of &mu;<sub>i</sub> assuming a poisson distribution.</li>
         <li><i>I<sub>0</sub></i> : The overall <b>intensity</b> initially approximated using <a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">linear tomography</a>.</li>
-        <li><i>I<sub>i</sub></i> : The <b>overall_norms</b> of measurement i. For 1 qubit per detector this is simply the <b>intensities</b> which can be given as in input using drift correction. Default is 1.</li>
-        <li><i>M'<sub>i</sub></i> : Measurement i with <a href="{{url_for('displayAlgorithmPage', function='tomography_crosstalk')}}">cross talk correction</a>.</li>
-        <li><i>M<sub>i</sub></i> : Measurement i. The state the target quantum state is projected on. These are given in pure state form but in this equation they are converted to density form.</li>
-        <li><i>a<sub>i</sub></i> : Predicted <b>accidentals</b> counts for measurement i. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='tomography_acc')}}"> accidental correction</a> page.
+        <li><i>I<sub>i</sub></i> : The <b>intensities</b> of measurement i, which can be given as in input using drift correction. Default is 1.</li>
+        <li><i>M'<sub>i</sub></i> : Measurement i with <a href="{{url_for('displayAlgorithmPage', function='crosstalk')}}">cross talk correction</a>.</li>
+        <li><i>a<sub>i</sub></i> : Predicted <b>accidentals</b> counts for measurement i. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='accidentals')}}"> accidental correction</a> page.
+        <li><i>Tr(x)</i> : The <a href="https://en.wikipedia.org/wiki/Trace_(linear_algebra)" target="_blank">trace</a> of input matrix x.</li>
+        <li><i>i</i> &isin; [1,m], where m = Number of Measurements.</li>
     </ul>
 
 
     <h3>2 Detector per Qubit</h3>
-    <p class="AlgoDescription">For each measurement we have 2<sup>N</sup> count numbers, N being the number of qubits. For tomography on a single qubit using two detectors the counts are the singles on each detector. For two qubits
-        and four detectors, the counts are the coincidences for each detector pair. For more details see the <a href="{{url_for('displayAlgorithmPage', function='tomography_MLE')}}">2 qubits 4 detectors example</a>. The mean number of counts follows:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/2det_counts.PNG" alt="2 detector counts">
-    <img class="AlgoDefinition" src="../static/images/Algorithm/2det_definitions.PNG" alt="2 detector definitions">
-    To reach a similar form as 1 detector per qubit we flatten our equation into:
-    <img class="AlgoEquation" src="../static/images/Algorithm/2detFlat_counts.PNG" alt="2 detector counts flattened">
-    <img class="AlgoDefinition" src="../static/images/Algorithm/2detFlat_definitions.PNG" alt="2 detector definitions flattened">
-    <h4>Variables</h4>
+    <p class="AlgoDescription">For each measurement we have 2<sup>N</sup> count numbers, N being the number of qubits. For tomography on a single qubit using two detectors, the counts are the singles on each detector. For two qubits
+        and four detectors, the counts are the coincidences for each detector pair. For more details see the <a href="{{url_for('displayAlgorithmPage', function='example_2qubit4det')}}">2 qubits 4 detectors example</a>. The mean number of counts follows:</p>
+    <img style="width:50%;padding-top:15px;" class="AlgoEquation" src="../static/images/Algorithm/2det_counts.PNG" alt="2 detector counts">
+    <h4>Definitions</h4>
     <ul class="AlgoVariables">
+        <li><i>&rho;</i> : Quantum state in density matrix form.</li>
+        <li><i>n<sub>ij</sub></i> : Number of counts on measurement i for detector pair j.</li>
+        <li><i>&mu;<sub>ij</sub></i> : Expected number of counts on measurement i, detector j given &rho;.</li>
+        <li><i>&sigma;<sub>ij</sub></i> : Standard Deviation for the number of counts on measurement i, detector j given &rho;. Equal to the square root of &mu;<sub>ij</sub> assuming a poisson distribution.</li>
         <li><i>I<sub>0</sub></i> : The overall <b>intensity</b> initially approximated using <a href="{{url_for('displayAlgorithmPage', function='tomography_LINEAR')}}">linear tomography</a>.</li>
-        <li><i>I<sub>k</sub></i> : The <b>overall_norms</b> of measurement k. Equal to the <b>intensities</b> of measurement i times the <b>efficiency</b> of pair j.</li>
-        <li><i>M'<sub>k</sub></i> : Measurement k with <a href="{{url_for('displayAlgorithmPage', function='tomography_crosstalk')}}">cross talk correction</a>.</li>
-        <li><i>M<sub>k</sub></i> : Measurement k. The state the target quantum state is projected on for measurement i and detector pair j. These are given in pure state form but in this equation they are presented in density form.</li>
-        <li><i>a<sub>k</sub></i> : Predicted <b>accidentals</b> counts for measurement i and detector pair j. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='tomography_acc')}}"> accidental correction</a> page.
+        <li><i>I<sub>i</sub></i> : The <b>intensities</b> of measurement i, which can be given as in input using drift correction. Default is 1.</li>
+        <li><i>E<sub>j</sub></i> : The relative <b>efficiency</b> on the jth detector pair. Default is 1.</li>
+        <li><i>M'<sub>ij</sub></i> : jth basis of measurement i with <a href="{{url_for('displayAlgorithmPage', function='crosstalk')}}">cross talk correction</a>.</li>
+        <li><i>a<sub>ij</sub></i> : Predicted <b>accidentals</b> counts for measurement i and detector pair j. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='accidentals')}}"> accidental correction</a> page.
+        <li><i>Tr(x)</i> : The <a href="https://en.wikipedia.org/wiki/Trace_(linear_algebra)" target="_blank">trace</a> of input matrix x.</li>
+        <li><i>i</i> &isin; [1,m], where m = Number of Measurements.</li>
+        <li><i>j</i> &isin; [1,k], where k = Number of Detector pairs, which is equal to the number of qubits squared.</li>
     </ul>
     <hr>
     <p class="AlgoDescription">Words in <b>bold</b> correspond to variables defined in the source code.</p>
