@@ -33,6 +33,7 @@ you first clone this repo.
 
         git submodule update --init
 
+7. To run the app just run the **app.py** script
 
 ## Troubleshooting
 
