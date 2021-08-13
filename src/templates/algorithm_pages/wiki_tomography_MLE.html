@@ -10,26 +10,45 @@
 <div class="AlgFunction" id="tomography_MLE">
     <h1>Maximum Likelihood Estimation (MLE)</h1>
     <p class="AlgoDescription">The maximum likelihood estimation approach to quantum state tomography calculates the state with the
-highest probability of producing the observed measurements. Simply it is the state which maximizes the likelihood function:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/likelihood.PNG" alt="Likelihood Function">
+highest probability of producing the observed measurements. Specifically, it is the state which maximizes the likelihood function or equivalently, minimizes the negative log of this function:</p>
+    <img style="width:25%;" class="AlgoEquation" src="../static/images/Algorithm/likelihood.PNG" alt="Likelihood Function">
+    <img style="width:35%;"class="AlgoEquation" src="../static/images/Algorithm/estimate_MLE.PNG" alt="MLE Estimate">
+    <h3>1 Detector per Qubit</h3>
+    <img style="width:43%;"class="AlgoEquation" src="../static/images/Algorithm/likelihood_1det.PNG" alt="Log Likelihood Function 1 Det per Qubit">
     <p class="AlgoDescription">Ignoring the normalization factor, plugging in the variance, and taking the log of this function we get the following:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/loglikelihood_1det.PNG" alt="Log Likelihood Function 1 Det per Qubit">
-    <p class="AlgoDescription">For 2 detectors per qubit:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/loglikelihood_2det.PNG" alt="Log Likelihood Function 2 Det per Qubit">
-    <p class="AlgoDescription">Our predicted state is one that maximizes the log likelihood or equally minimizes negation of this function:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/estimate_MLE.PNG" alt="MLE Estimate">
+    <img style="width:35%;"class="AlgoEquation" src="../static/images/Algorithm/loglikelihood_1det.PNG" alt="Log Likelihood Function 1 Det per Qubit">
+
+    <h4>Definitions</h4>
+    <ul class="AlgoVariables">
+        <li><i>&rho;</i> : Quantum state in density matrix form.</li>
+        <li><i>n<sub>i</sub></i> : Number of counts on measurement i.</li>
+        <li><i>&mu;<sub>i</sub></i> : Expected number of counts on measurement i given ρ. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}">State Tomography page</a>.</li>
+        <li><i>i</i> &isin; [1,m], where m = Number of Measurements.</li>
+    </ul>
+    <h3>2 Detector per Qubit</h3>
+    <img style="width:50%;" class="AlgoEquation" src="../static/images/Algorithm/likelihood_2det.PNG" alt="Log Likelihood Function 1 Det per Qubit">
+    <p class="AlgoDescription">Ignoring the normalization factor, plugging in the variance, and taking the log of this function we get the following:</p>
+    <img style="width:45%;" class="AlgoEquation" src="../static/images/Algorithm/loglikelihood_2det.PNG" alt="Log Likelihood Function 2 Det per Qubit">
+    <h4>Definitions</h4>
+    <ul class="AlgoVariables">
+        <li><i>&rho;</i> : Quantum state in density matrix form.</li>
+        <li><i>n<sub>ij</sub></i> : Number of counts on measurement i for detector pair j.</li>
+        <li><i>&mu;<sub>ij</sub></i> : Expected number of counts on measurement i, detector j given ρ. More info can be found on the <a href="{{url_for('displayAlgorithmPage', function='StateTomography')}}">State Tomography page</a>.</li>
+        <li><i>i</i> &isin; [1,m], where m = Number of Measurements.</li>
+        <li><i>j</i> &isin; [1,k], where k = Number of Detector pairs, which is equal to the number of qubits squared.</li>
+    </ul>
 
     <h2 style="padding-top:15px;">Optimization and T-Values</h2>
-    <p class="AlgoDescription">During the optimization we parameterize the density matrix in order to ensure we are only
-    considering valid density matrices.</p>
-    <img style="width:6g5%" class="AlgoEquation" src="../static/images/Algorithm/t_vals.PNG" alt="T-Values">
+    <p class="AlgoDescription">During the optimization we parameterize the density matrix as follows in order to ensure we are only
+    considering valid density matrices:</p>
+    <img style="width:65%" class="AlgoEquation" src="../static/images/Algorithm/t_vals.PNG" alt="T-Values">
     <p class="AlgoDescription">The functions <a href="{{url_for('displayDocumentationPage', display = 't_to_density' ) }}">t_to_density(tvals)</a> and <a href="{{url_for('displayDocumentationPage', display = 'density2t' ) }}">density2t(rho)</a> are used to convert t-values to and from a density matrix.</p>
 
     <h2 style="padding-top:15px;">Hedged Maximum Likelihood Estimation (HMLE)</h2>
-    <p class="AlgoDescription">Hedged maximum likelihood is a simple modification of the maximum likelihood approach. Instead of maximizing the likelihood,
+    <p class="AlgoDescription">Hedged maximum likelihood is a simple modification of the maximum likelihood approach. This is available in our python code but not available on our <a href="http://tomography.web.engr.illinois.edu/TomographyDemo.php" target="_blank">state tomography interface</a>. This procedure utilizes Lidstone's law, and hedges the estimate against un-seen possibilities. Instead of maximizing the likelihood,
         the estimate is the one that maximizes the product of the likelihood with the following hedge function:</p>
-    <img class="AlgoEquation" src="../static/images/Algorithm/estimate_HMLE.PNG" alt="HMLE Estimate">
-    <p class="AlgoDescription">The value of <b>Beta</b> can be defined in the conf settings, default is 1/2. Robin Blume-Kohout covers the hedged likelihood
+    <img style="width:35%;" class="AlgoEquation" src="../static/images/Algorithm/estimate_HMLE.PNG" alt="HMLE Estimate">
+    <p class="AlgoDescription">The value of <b>Beta</b> can be defined in the conf settings; default is 1/2. Robin Blume-Kohout covers the hedged likelihood
         function in more detail in the paper titled <a href="https://arxiv.org/pdf/1001.2029.pdf" target="_blank">Hedged Maximum Likelihood Estimation</a>.</p>
     <hr>
     <p class="AlgoDescription">Words in <b>bold</b> correspond to variables defined in the source code.</p>

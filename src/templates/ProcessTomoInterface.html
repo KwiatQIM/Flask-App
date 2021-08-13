@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="container ProcessTomoInterface">
+    <h1>Welcome to the Process Tomography Interface!</h1>
+    <form method="post" action="ProcessTomoInterface">
+        <label for="numMeasurements">Number of Inputs/Measurements</label>
+        <input type="number" min="4" max="6" value="6" id="numMeasurements" name="numMeasurements">
+        <div class="bigtable">
+            <table>
+                <tr>
+                    <td></td><td><strong>Measurement<br>State</strong></td><td><strong>Coefficients</strong></srong></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td><strong>Input State</strong></td><td></td><td></td>
+                    <td><select id="inp-select-0" name="inp-select-0">
+                        <option value="H" selected>H</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><select id="inp-select-1" name="inp-select-1">
+                        <option value="V" selected>V</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><select id="inp-select-2" name="inp-select-2">
+                        <option value="D" selected>D</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><select id="inp-select-3" name="inp-select-3">
+                        <option value="A" selected>A</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><select id="inp-select-4" name="inp-select-4">
+                        <option value="R" selected>R</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><select id="inp-select-5" name="inp-select-5">
+                        <option value="L" selected>L</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><strong>Coefficients</strong></td><td></td><td></td>
+                    <td><input type="text" class="coeff" id="inp-0-coef-1" name="inp-0-coef-1" value="1" onchange="document.getElementById('inp-select-0').value='custom'">
+                        <input type="text" class="coeff" id="inp-0-coef-2" name="inp-0-coef-2" value="0" onchange="document.getElementById('inp-select-0').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-1-coef-1" name="inp-1-coef-1" value="0" onchange="document.getElementById('inp-select-1').value='custom'">
+                        <input type="text" class="coeff" id="inp-1-coef-2" name="inp-1-coef-2" value="1" onchange="document.getElementById('inp-select-1').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-2-coef-1" name="inp-2-coef-1" value="0.7071" onchange="document.getElementById('inp-select-2').value='custom'">
+                        <input type="text" class="coeff" id="inp-2-coef-2" name="inp-2-coef-2" value="0.7071" onchange="document.getElementById('inp-select-2').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-3-coef-1" name="inp-3-coef-1" value="0.7071" onchange="document.getElementById('inp-select-3').value='custom'">
+                        <input type="text" class="coeff" id="inp-3-coef-2" name="inp-3-coef-2" value="-0.7071" onchange="document.getElementById('inp-select-3').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-4-coef-1" name="inp-4-coef-1" value="0.7071" onchange="document.getElementById('inp-select-4').value='custom'">
+                        <input type="text" class="coeff" id="inp-4-coef-2" name="inp-4-coef-2" value="0.7071i" onchange="document.getElementById('inp-select-4').value='custom'"></td>
+                    <td><input type="text" class="coeff" id="inp-5-coef-1" name="inp-5-coef-1" value="0.7071" onchange="document.getElementById('inp-select-5').value='custom'">
+                        <input type="text" class="coeff" id="inp-5-coef-2" name="inp-5-coef-2" value="-0.7071i" onchange="document.getElementById('inp-select-5').value='custom'"></td>
+                </tr>
+                <tr>
+                    <td></td><td><select id="meas-select-0" name="meas-select-0">
+                        <option value="H" selected>H</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><input type="text" class="coeff" id="meas-0-coef-1" name="meas-0-coef-1"><input type="text" class="coeff" id="meas-0-coef-2" name="meas-0-coef-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-0-0" name="count-0-0"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-0-1" name="count-0-1"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-0-2" name="count-0-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-0-3" name="count-0-3"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-0-4" name="count-0-4"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-0-5" name="count-0-5"></td>
+                </tr>
+                <tr>
+                    <td></td><td><select id="meas-select-1" name="meas-select-1">
+                        <option value="V" selected>V</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><input type="text" class="coeff" id="meas-1-coef-1" name="meas-1-coef-1" onchange="document.getElementById('meas-select-0').value='custom'">
+                        <input type="text" class="coeff" id="meas-1-coef-2" name="meas-1-coef-2" onchange="document.getElementById('meas-select-0').value='custom'"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-1-0" name="count-1-0"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-1-1" name="count-1-1"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-1-2" name="count-1-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-1-3" name="count-1-3"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-1-4" name="count-1-4"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-1-5" name="count-1-5"></td>
+                </tr>
+                <tr>
+                    <td></td><td><select id="meas-select-2" name="meas-select-2">
+                        <option value="D" selected>D</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><input type="text" class="coeff" id="meas-2-coef-1" name="meas-2-coef-1"><input type="text" class="coeff" id="meas-2-coef-2" name="meas-2-coef-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-2-0" name="count-2-0"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-2-1" name="count-2-1"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-2-2" name="count-2-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-2-3" name="count-2-3"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-2-4" name="count-2-4"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-2-5" name="count-2-5"></td>
+                </tr>
+                <tr>
+                    <td></td><td><select id="meas-select-3" name="meas-select-3">
+                        <option value="A" selected>A</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><input type="text" class="coeff" id="meas-3-coef-1" name="meas-3-coef-1"><input type="text" class="coeff" id="meas-3-coef-2" name="meas-3-coef-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-3-0" name="count-3-0"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-3-1" name="count-3-1"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-3-2" name="count-3-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-3-3" name="count-3-3"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-3-4" name="count-3-4"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-3-5" name="count-3-5"></td>
+                </tr>
+                <tr>
+                    <td></td><td><select id="meas-select-4" name="meas-select-4">
+                        <option value="R" selected>R</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><input type="text" class="coeff" id="meas-4-coef-1" name="meas-4-coef-1"><input type="text" class="coeff" id="meas-4-coef-2" name="meas-4-coef-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-4-0" name="count-4-0"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-4-1" name="count-4-1"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-4-2" name="count-4-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-4-3" name="count-4-3"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-4-4" name="count-4-4"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-4-5" name="count-4-5"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><select id="meas-select-5" name="meas-select-5">
+                        <option value="L" selected>L</option>
+                        <option value="custom">custom</option>
+                    </select></td>
+                    <td><input type="text" class="coeff" id="meas-5-coef-1" name="meas-5-coef-1"><input type="text" class="coeff" id="meas-5-coef-2" name="meas-5-coef-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-5-0" name="count-5-0"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-5-1" name="count-5-1"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-5-2" name="count-5-2"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-5-3" name="count-5-3"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-5-4" name="count-5-4"></td>
+                    <td><input type="number" class="countinp" value="0" min="0" id="count-5-5" name="count-5-5"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <button type="submit"class="btn btn-primary btn-purple">Run</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -338,3 +338,15 @@ input[type="radio"]:checked {
     background-color: #663399;
     border-color: #663399;
 }
+
+
+
+
+.ProcessTomoInterface .coeff {
+    width: 50px;
+    font-size:12px;
+}
+
+.ProcessTomoInterface .countinp {
+    width: 100px;
+}
